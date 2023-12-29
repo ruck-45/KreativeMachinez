@@ -37,9 +37,9 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ftp.infinityfree.com
-          username: ${{ secrets.ftp_username_test }}
-          password: ${{ secrets.ftp_password_test }}
-          server-dir: /htdocs/
+          username: ${{ secrets.ftp_username }}
+          password: ${{ secrets.ftp_password }}
+          server-dir: /test-kreativemachinez.kesug.com/htdocs/
     
           
     
