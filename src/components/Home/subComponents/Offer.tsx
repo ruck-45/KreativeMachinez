@@ -46,9 +46,10 @@ const Offer = () => {
                   </h1>
                 </div>
                 <p className="text-justify text-default-500">
-                  For just $99 elevate your online presence with two free websites and essential services like SEO and
-                  web analytics. Unleash the power of digital marketing without the hefty price tag, seize this
-                  opportunity for your brand's success!
+                  For just $99 elevate your online presence with two free
+                  websites and essential services like SEO and web analytics.
+                  Unleash the power of digital marketing without the hefty price
+                  tag, seize this opportunity for your brand's success!
                 </p>
               </div>
 
@@ -75,7 +76,9 @@ const Offer = () => {
                   variant="bordered"
                   color="danger"
                   radius="full"
-                  endContent={<FaArrowCircleRight className="mt-[0.2rem] mr-[1rem]" />}
+                  endContent={
+                    <FaArrowCircleRight className="mt-[0.2rem] mr-[1rem]" />
+                  }
                   className="w-[9rem] p-0 gap-0"
                 >
                   <Link to="../Pricing" className="p-[8px] grow">
