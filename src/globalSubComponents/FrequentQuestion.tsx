@@ -1,7 +1,5 @@
 // Dependencies
-import { Button } from "@nextui-org/react";
 import { FaArrowCircleRight } from "react-icons/fa";
-import { Link } from "react-router-dom";
 
 // Local Files
 import questions from "../globalAssets/frequetQuestions.json";
@@ -37,12 +35,13 @@ const FrequentQuestion = () => {
           </li>
         </ul>
         <ButtonElement
-          to=".../Pricing"
+          to="../Pricing"
           variant="shadow"
           color="warning"
           label="Learn More"
           radius="full"
           endContent={<FaArrowCircleRight className="mt-[0.2rem] ml-[1rem]" />}
+          className="w-[9rem] p-0 gap-0 mt-[1rem]"
         />
       </div>
 

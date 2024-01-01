@@ -12,6 +12,8 @@ import { RiComputerFill } from "react-icons/ri";
 import "./Offer.css";
 import MissionChip from "../../../globalSubComponents/MissionChip";
 
+// components
+import ButtonElement from "../../../globalElements/ButtonElement";
 const missionChips = [
   {
     logo: <RiComputerFill className="text-[2rem]" />,
@@ -72,7 +74,7 @@ const Offer = () => {
               <Divider />
 
               <div className="flex justify-between">
-                <Button
+                {/* <Button
                   variant="bordered"
                   color="danger"
                   radius="full"
@@ -84,7 +86,18 @@ const Offer = () => {
                   <Link to="../Pricing" className="p-[8px] grow">
                     Learn More
                   </Link>
-                </Button>
+                </Button> */}
+                <ButtonElement
+                  to="../Pricing"
+                  variant="bordered"
+                  color="danger"
+                  label="Learn More"
+                  radius="full"
+                  endContent={
+                    <FaArrowCircleRight className="mt-[0.2rem] ml-[1rem]" />
+                  }
+                  // className="w-[9rem] p-0 gap-0 mt-[1rem]"
+                />
                 <div className="flex text-[1.8rem] gap-[1rem]">
                   <SiFacebook className="mt-[0.4rem] cursor-pointer hover:scale-105" />
                   <FaSquareXTwitter className="mt-[0.4rem] cursor-pointer hover:scale-105" />
