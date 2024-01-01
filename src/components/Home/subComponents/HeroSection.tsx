@@ -2,11 +2,15 @@
 import { Button, Image } from "@nextui-org/react";
 import { FaArrowCircleRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
+<<<<<<< HEAD
 
 // Local Files
 import "./HeroSection.css";
 import HeroAsset from "../assets/HeroAsset.svg";
 
+=======
+import ButtonElement from "../../../globalElements/ButtonElement";
+>>>>>>> 5becd15 (refactor all the button elements)
 const HeroSection = () => {
   return (
     <div className="h-[40rem] flex items-center text-white">
@@ -21,21 +25,19 @@ const HeroSection = () => {
         </div>
 
         <p className="max-w-[26rem] text-center lg:text-justify">
-          We are a dynamic digital marketing agency dedicated to crafting innovative solutions for businesses seeking a
-          powerful online presence.
+          We are a dynamic digital marketing agency dedicated to crafting
+          innovative solutions for businesses seeking a powerful online
+          presence.
         </p>
-
-        <Button
+        <ButtonElement
+          to="../About"
           variant="ghost"
           color="default"
+          label="Learn More"
           radius="full"
-          endContent={<FaArrowCircleRight className="mt-[0.2rem] mr-[1rem]" />}
-          className="w-[9rem] p-0 gap-0 text-white hover:text-[#ef233c]"
-        >
-          <Link to="../About" className="p-[8px] grow">
-            Learn More
-          </Link>
-        </Button>
+          endContent={<FaArrowCircleRight className="mt-[0.2rem] ml-[1rem]" />}
+          className="text-white hover:text-[#ef233c] "
+        />
       </div>
       <div className="translate-x-[25%] hidden lg:block">
         <Image width={1000} src={HeroAsset} className="rotating" />

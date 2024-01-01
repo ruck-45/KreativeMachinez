@@ -2,7 +2,7 @@
 import { Divider, Button } from "@nextui-org/react";
 import { Link } from "react-router-dom";
 import { FaArrowCircleRight } from "react-icons/fa";
-
+import ButtonElement from "../../../globalElements/ButtonElement";
 const serviceInfo = [
   {
     heading: "Website Design & Development",
@@ -50,19 +50,41 @@ const OurServices = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-[3rem] lg:py-[5rem]">
         {serviceInfo.map((data, index) => (
           <div key={index} className="flex flex-col gap-[1rem]">
-            <h1 className="font-['DM_Serif_Display'] text-[2rem] font-semibold">{data.heading}</h1>
-            <p className="text-justify text-default-500 text-[0.95rem] sm:text-md">{data.content}</p>
-            <Button
+            <h1 className="font-['DM_Serif_Display'] text-[2rem] font-semibold">
+              {data.heading}
+            </h1>
+            <p className="text-justify text-default-500 text-[0.95rem] sm:text-md">
+              {data.content}
+            </p>
+            {/* <Button
               variant="ghost"
               color="warning"
               radius="full"
-              endContent={<FaArrowCircleRight className="mt-[0.2rem] mr-[1rem]" />}
+              endContent={
+                <FaArrowCircleRight className="mt-[0.2rem] mr-[1rem]" />
+              }
               className="w-[8rem] p-0 gap-0"
             >
-              <Link to="../Individual" state={{ id: index }} className="p-[8px] grow">
+              <Link
+                to="../Individual"
+                state={{ id: index }}
+                className="p-[8px] grow"
+              >
                 Learn More
               </Link>
-            </Button>
+            </Button> */}
+            <ButtonElement
+              to="../Individual"
+              variant="ghost"
+              color="warning"
+              label="Learn More"
+              radius="full"
+              endContent={
+                <FaArrowCircleRight className="mt-[0.2rem] ml-[1rem]" />
+              }
+              state={{ id: index }}
+              className="w-[9rem] p-0 gap-0 mt-[1rem]"
+            />
           </div>
         ))}
       </div>

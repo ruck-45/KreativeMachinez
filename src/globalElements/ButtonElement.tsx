@@ -1,6 +1,9 @@
 import { Button } from "@nextui-org/react";
 import { ReactNode } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+interface MyState {
+  id: number;
+}
 interface ButtonProps {
   to: string;
   size?: "sm" | "md" | "lg";
@@ -13,7 +16,7 @@ interface ButtonProps {
     | "warning"
     | "danger"
     | undefined;
-  variant:
+  variant?:
     | "solid"
     | "bordered"
     | "light"
@@ -22,34 +25,46 @@ interface ButtonProps {
     | "shadow"
     | "ghost"
     | undefined;
-  label: string;
+  label?: string;
   backgroundColor?: string;
   startContent?: ReactNode;
   endContent?: ReactNode;
   isIconOnly?: boolean;
   isDisabled?: boolean;
+  className?: string;
+  index?: number;
+  state?: MyState;
+  icon?: ReactNode;
+  onClickFunction?: () => void;
 }
 const ButtonElement = (props: ButtonProps) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    const toUrl = props.isDisabled ? "" : props.to;
+    if (props.onClickFunction) {
+      props.onClickFunction();
+    }
+    if (!props.isDisabled || toUrl !== "") {
+      navigate(toUrl, { state: props.state });
+    }
+  };
+
   return (
-    <Link
-      to={props.isDisabled ? "" : props.to}
-      className="w-[9rem] p-0 gap-0 mt-[1rem]"
+    <Button
+      size={props.size} // size for the button
+      radius={props.radius} // radius for the  button
+      variant={props.variant} // variant for the button
+      color={props.color} // color for the button
+      startContent={props.startContent} // start content
+      isIconOnly={props.isIconOnly} // if button is icon only
+      isDisabled={props.isDisabled} // if button is disabled
+      endContent={props.endContent} // end content
+      className={`${props.className}`} // Tailwind class name for button
+      style={{ backgroundColor: props.backgroundColor }}
+      onClick={handleClick} // handle click
     >
-      <Button
-        size={props.size}
-        radius={props.radius}
-        variant={props.variant}
-        color={props.color}
-        startContent={props.startContent}
-        isIconOnly={props.isIconOnly}
-        isDisabled={props.isDisabled}
-        endContent={props.endContent}
-        className="p-[18px] grow"
-        style={{ backgroundColor: props.backgroundColor }}
-      >
-        {props.label}
-      </Button>
-    </Link>
+      {props.icon || props.label}
+    </Button>
   );
 };
 
