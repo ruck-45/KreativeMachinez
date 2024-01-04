@@ -1,16 +1,8 @@
 // Dependencies
-import { Button, Image } from "@nextui-org/react";
+import { Image } from "@nextui-org/react";
 import { FaArrowCircleRight } from "react-icons/fa";
-import { Link } from "react-router-dom";
-<<<<<<< HEAD
-
-// Local Files
-import "./HeroSection.css";
-import HeroAsset from "../assets/HeroAsset.svg";
-
-=======
 import ButtonElement from "../../../globalElements/ButtonElement";
->>>>>>> 5becd15 (refactor all the button elements)
+import HeroAsset from "../assets/HeroAsset.svg";
 const HeroSection = () => {
   return (
     <div className="h-[40rem] flex items-center text-white">
@@ -23,7 +15,6 @@ const HeroSection = () => {
             Machinez
           </h1>
         </div>
-
         <p className="max-w-[26rem] text-center lg:text-justify">
           We are a dynamic digital marketing agency dedicated to crafting
           innovative solutions for businesses seeking a powerful online

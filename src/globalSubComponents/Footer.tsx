@@ -121,23 +121,43 @@ const Footer = () => {
               Connections"
             </p>
             <div className="flex text-[1.8rem] gap-[1rem]">
-            <a href="https://www.facebook.com/profile.php?id=61554936182745" target="_blank" rel="noreferrer">
-              <SiFacebook className="mt-[0.4rem] cursor-pointer hover:scale-105" />
-            </a>
-            <a href="https://twitter.com/Kreativemachinz " target="_blank" rel="noreferrer">
-              <FaSquareXTwitter className="mt-[0.4rem] cursor-pointer hover:scale-105" />
-            </a>
-            <a href="https://www.youtube.com/@KreativeMachinez-23" target="_blank" rel="noreferrer">
-              <TbBrandYoutubeFilled className="mt-[0.4rem] cursor-pointer hover:scale-105" />
-            </a>
-            <a href="https://www.instagram.com/kreativemachinez23/" target="_blank" rel="noreferrer">
-              <AiFillInstagram className="mt-[0.4rem] cursor-pointer hover:scale-105" />
-            </a>
-            <a href="https://www.pinterest.com/KreativeMachinez23/ " target="_blank" rel="noreferrer">
-              <FaPinterest className="mt-[0.4rem] cursor-pointer hover:scale-105" />
-            </a>
+              <a
+                href="https://www.facebook.com/profile.php?id=61554936182745"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <SiFacebook className="mt-[0.4rem] cursor-pointer hover:scale-105" />
+              </a>
+              <a
+                href="https://twitter.com/Kreativemachinz "
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaSquareXTwitter className="mt-[0.4rem] cursor-pointer hover:scale-105" />
+              </a>
+              <a
+                href="https://www.youtube.com/@KreativeMachinez-23"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <TbBrandYoutubeFilled className="mt-[0.4rem] cursor-pointer hover:scale-105" />
+              </a>
+              <a
+                href="https://www.instagram.com/kreativemachinez23/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <AiFillInstagram className="mt-[0.4rem] cursor-pointer hover:scale-105" />
+              </a>
+              <a
+                href="https://www.pinterest.com/KreativeMachinez23/ "
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaPinterest className="mt-[0.4rem] cursor-pointer hover:scale-105" />
+              </a>
+            </div>
           </div>
-        </div>
 
           <div className="flex flex-col items-center justify-center gap-[1.2rem]">
             <div className="flex gap-[2rem] w-full justify-between contactInfo">
@@ -168,10 +188,10 @@ const Footer = () => {
               ))}
             </div>
 
-          <div className="w-[100%] upperDivider">
-            <Divider className="dark" />
-            <Divider className="dark" />
-          </div>
+            <div className="w-[100%] upperDivider">
+              <Divider className="dark" />
+              <Divider className="dark" />
+            </div>
 
             <div className="flex justify-between w-full footerLinks">
               {footerLinks.map((ele, index) => (
@@ -223,8 +243,9 @@ const Footer = () => {
           <Divider className="dark" />
         </div>
 
-      <p>© 2023 Kreative Machinez • All Rights Reserved</p>
-    </div>
+        <p>© 2023 Kreative Machinez • All Rights Reserved</p>
+      </div>
+    </>
   );
 };
 
