@@ -11,13 +11,15 @@ import Pricing from "./components/Pricing/Pricing";
 import Services from "./components/Services/Services";
 import Auth from "./components/Auth/Auth";
 import Footer from "./globalSubComponents/Footer";
+import FrequentQuestion from "./globalSubComponents/FrequentQuestion";
+import CTA from "./globalSubComponents/CTA";
 import QuickContacts from "./globalSubComponents/QuickContacts";
 import ScrollToTop from "./globalSubComponents/ScrollToTop";
 import { RootState } from "./store/store";
-import HomeHero from "./globalAssets/HomeHero.png";
+import HomeHero from "./globalAssets/HomeHero.jpg";
 import AboutHero from "./globalAssets/About.jpg";
-import ContactHero from "./globalAssets/contact.svg";
-import PricingHero from "./globalAssets/Prices.svg";
+import ContactHero from "./globalAssets/Contact.jpg";
+import PricingHero from "./globalAssets/Prices.jpg";
 import ServiceHero from "./globalAssets/Services.jpg";
 
 function App() {
@@ -28,7 +30,7 @@ function App() {
 
   switch (curTab) {
     case "Home":
-      className = "bg-no-repeat bg-top lg:bg-right-top bg-[#ef233c]";
+      className = "bg-no-repeat bg-top lg:bg-right-top bg-cover";
       background += `,url(${HomeHero})`;
       break;
 
@@ -38,20 +40,20 @@ function App() {
       break;
 
     case "Contact":
-      className = "";
+      className = "bg-no-repeat bg-top";
       background += `,url(${ContactHero})`;
       break;
 
     case "Pricing":
-      className = "";
+      className = "bg-no-repeat bg-top";
       background += `,url(${PricingHero})`;
       break;
-    
+
     case "Services":
       className = "bg-no-repeat bg-top";
       background += `,url(${ServiceHero})`;
       break;
-    
+
     default:
       break;
   }
@@ -71,6 +73,10 @@ function App() {
           <Route path="*" element={<Navigate to="/Home" />} />
         </Routes>
       </div>
+      {curTab === "Auth" || curTab === "Pricing" || curTab === "Services" ? null : <FrequentQuestion />}
+      {curTab === "Auth" ? null : (
+        <CTA text="❝ We Care for your Brand as Passionately as You Do. ❞" color="warning" showArrow={false} />
+      )}
       {curTab === "Auth" ? null : <Footer />}
       {curTab === "Auth" ? null : <QuickContacts />}
       {curTab === "Auth" ? null : <ScrollToTop />}

@@ -12,6 +12,8 @@ import { RiComputerFill } from "react-icons/ri";
 import "./Offer.css";
 import MissionChip from "../../../globalSubComponents/MissionChip";
 
+// components
+import ButtonElement from "../../../globalElements/ButtonElement";
 const missionChips = [
   {
     logo: <RiComputerFill className="text-[2rem]" />,
@@ -46,9 +48,10 @@ const Offer = () => {
                   </h1>
                 </div>
                 <p className="text-justify text-default-500">
-                  For just $99 elevate your online presence with two free websites and essential services like SEO and
-                  web analytics. Unleash the power of digital marketing without the hefty price tag, seize this
-                  opportunity for your brand's success!
+                  For just $99 elevate your online presence with two free
+                  websites and essential services like SEO and web analytics.
+                  Unleash the power of digital marketing without the hefty price
+                  tag, seize this opportunity for your brand's success!
                 </p>
               </div>
 
@@ -71,21 +74,40 @@ const Offer = () => {
               <Divider />
 
               <div className="flex justify-between">
-                <Button
+                {/* <Button
                   variant="bordered"
                   color="danger"
                   radius="full"
-                  endContent={<FaArrowCircleRight className="mt-[0.2rem] mr-[1rem]" />}
+                  endContent={
+                    <FaArrowCircleRight className="mt-[0.2rem] mr-[1rem]" />
+                  }
                   className="w-[9rem] p-0 gap-0"
                 >
                   <Link to="../Pricing" className="p-[8px] grow">
                     Learn More
                   </Link>
-                </Button>
+                </Button> */}
+                <ButtonElement
+                  to="../Pricing"
+                  variant="bordered"
+                  color="danger"
+                  label="Learn More"
+                  radius="full"
+                  endContent={
+                    <FaArrowCircleRight className="mt-[0.2rem] ml-[1rem]" />
+                  }
+                  // className="w-[9rem] p-0 gap-0 mt-[1rem]"
+                />
                 <div className="flex text-[1.8rem] gap-[1rem]">
-                  <SiFacebook className="mt-[0.4rem] cursor-pointer hover:scale-105" />
-                  <FaSquareXTwitter className="mt-[0.4rem] cursor-pointer hover:scale-105" />
-                  <TbBrandYoutubeFilled className="mt-[0.4rem] cursor-pointer hover:scale-105" />
+                  <a href="https://www.facebook.com/profile.php?id=61554936182745" target="_blank" rel="noreferrer">
+                    <SiFacebook className="mt-[0.4rem] cursor-pointer hover:scale-105" />
+                  </a>
+                  <a href="https://twitter.com/Kreativemachinz" target="_blank" rel="noreferrer">
+                    <FaSquareXTwitter className="mt-[0.4rem] cursor-pointer hover:scale-105" />
+                  </a>
+                  <a href="https://www.youtube.com/@KreativeMachinez-23" target="_blank" rel="noreferrer">
+                    <TbBrandYoutubeFilled className="mt-[0.4rem] cursor-pointer hover:scale-105" />
+                  </a>
                 </div>
               </div>
             </div>

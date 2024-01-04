@@ -1,8 +1,6 @@
 // Dependencies
-import { Link } from "react-router-dom";
-import { Button } from "@nextui-org/react";
 import { FaArrowCircleRight } from "react-icons/fa";
-
+import ButtonElement from "../../../globalElements/ButtonElement";
 const benefitData = [
   {
     heading: "Excellence",
@@ -28,23 +26,30 @@ const WhyChooseUs = () => {
       </h1>
       <div className="grow flex lg:py-[5rem] xl:py-0 gap-[2rem] xl:gap-[5rem] flex-col xl:flex-row">
         {benefitData.map((data, index) => (
-          <div key={index} className="xl:w-[50%] xl:py-[5rem] flex flex-col gap-[2rem]">
+          <div
+            key={index}
+            className="xl:w-[50%] xl:py-[5rem] flex flex-col gap-[2rem]"
+          >
             <div>
-              <h1 className="font-['DM_Serif_Display'] text-[2.5rem] font-semibold">{data.heading}</h1>
+              <h1 className="font-['DM_Serif_Display'] text-[2.5rem] font-semibold">
+                {data.heading}
+              </h1>
               <p className="italic text-md text-default-800">{data.caption}</p>
             </div>
-            <p className="text-justify text-default-500 text-[0.95rem] sm:text-md">{data.content}</p>
+            <p className="text-justify text-default-500 text-[0.95rem] sm:text-md">
+              {data.content}
+            </p>
 
-            <Button
+            <ButtonElement
+              to={`../${data.link.dest}`}
               variant="bordered"
+              label={`${data.link.text}`}
               radius="full"
-              endContent={<FaArrowCircleRight className="mt-[0.2rem] text-default-500 mr-[1rem]" />}
-              className="w-[8rem] p-0 gap-0"
-            >
-              <Link to={data.link.dest} className="p-[8px] grow">
-                {data.link.text}
-              </Link>
-            </Button>
+              endContent={
+                <FaArrowCircleRight className="mt-[0.2rem] ml-[1rem]" />
+              }
+              className="w-[9rem] p-0 gap-0 mt-[1rem]"
+            />
           </div>
         ))}
       </div>

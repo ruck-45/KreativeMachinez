@@ -1,6 +1,6 @@
 // Dependencies
 import { Image, Divider } from "@nextui-org/react";
-import who from "../assets/who.svg";
+import who from "../assets/q1.jpg";
 
 const AboutUs = () => {
   return (
@@ -18,7 +18,7 @@ const AboutUs = () => {
             project.
           </p>
         </div>
-        <Image width={350} src={who} className="m-5" />
+        <Image width={350} src={who} className="m-5" isBlurred/>
       </div>
       <Divider className="max-w-[28rem] sm:max-w-[36rem] md:max-w-[47rem] lg:max-w-[55rem] self-center" />
     </div>

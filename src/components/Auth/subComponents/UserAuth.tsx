@@ -1,8 +1,8 @@
 // Dependencies
 import { useState, useRef } from "react";
-import { Button, Input, Checkbox, Image } from "@nextui-org/react";
+import { Button, Input, Checkbox } from "@nextui-org/react";
 import { FaFacebook } from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
+import { FaSquareXTwitter, FaArrowRightLong } from "react-icons/fa6";
 import { AiFillGoogleCircle, AiFillInstagram } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,7 +11,6 @@ import { useSelector, useDispatch } from "react-redux";
 import "./UserAuth.css";
 import EyeFilledIcon from "./EyeFilledIcon";
 import EyeSlashFilledIcon from "./EyeSlashFilledIcon";
-import logo from "../../../globalAssets/logoDark.svg";
 import {
   emailRe,
   passwordRe,
@@ -116,10 +115,11 @@ const UserAuth = () => {
   };
 
   return (
-    <form className="flex flex-col justify-center p-12 gap-3 Auth rounded-3xl">
-      {/* <Link to="../Home">
-        <Image width={70} src={logo} alt="logo" radius="none" className="mb-[1rem]" />
-      </Link> */}
+    <form className="flex flex-col justify-center sm:min-w-[27rem] p-12 gap-3 Auth rounded-3xl">
+      <Link to="../" className="mb-[2rem] flex items-center gap-[0.5rem] hover:gap-[1rem] duration-100 text-[#006FEE]">
+        <FaArrowRightLong />
+        <p>Home</p>
+      </Link>
       <div className="flex gap-2 font-semibold welcomeText">
         <h1>Welcome to Kreative Machinez </h1>
         <p>👋</p>

@@ -7,7 +7,7 @@ import FAQAccordion from "./subComponents/FAQAccordion";
 import Banner from "./subComponents/Banner";
 import Intro from "../../globalSubComponents/Intro";
 import PricingOptions from "./subComponents/PricingOptions";
-import { scrollTop } from "../../utils/scrollTop";
+import { scrollTop } from "../../utils/controllers";
 
 const Pricing = () => {
   const dispatch = useDispatch();

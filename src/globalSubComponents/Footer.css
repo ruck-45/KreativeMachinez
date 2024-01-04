@@ -1,8 +1,8 @@
 .footer {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.8) 20%, rgba(0, 0, 0, 0.8)), url("../globalAssets/FooterBg.png");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6) 20%, rgba(0, 0, 0, 0.6)), url("../globalAssets/FooterBg.jpg");
   background-repeat: no-repeat;
-  background-size: contain;
-  background-position: right;
+  background-size: cover;
+  background-position: center;
 }
 
 @media only screen and (max-width: 1231px) {

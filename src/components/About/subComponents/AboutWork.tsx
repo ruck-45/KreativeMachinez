@@ -1,11 +1,11 @@
 // Dependencies
 import { Image } from "@nextui-org/react";
-import work from "../assets/work.svg";
+import work from "../assets/q2.jpg";
 
 const AboutWork = () => {
   return (
     <div className="bg-[#e9ecef] flex flex-col items-center lg:flex-row justify-evenly px-[3rem] md:px-[5rem] lg:px-[8rem] py-[5rem] gap-[5rem]">
-      <Image width={350} src={work} className="m-5 order-last" />
+      <Image width={350} src={work} className="m-5 order-last" isBlurred />
       <div className="flex flex-col gap-[1rem] order-first lg:order-last">
         <h1 className="font-['DM_Serif_Display'] text-[2.5rem] font-semibold">What We Do ?</h1>
         <p className="italic text-md text-default-800">" Crafting Success, Fueled by Passion and Expertise! "</p>

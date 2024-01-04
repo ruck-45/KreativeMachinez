@@ -4,7 +4,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 
 // Local Files
 import { updateTab } from "../../store/curTabSlice";
-import { scrollTop } from "../../utils/scrollTop";
+import { scrollTop } from "../../utils/controllers";
 import AllServices from "./subComponents/AllServices";
 import IndividualServices from "./subComponents/IndividualServices";
 

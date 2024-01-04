@@ -41,15 +41,8 @@
 }
 
 .ribbon {
-  background: radial-gradient(circle, #ffffff 10%, transparent 11%),
-    radial-gradient(circle at bottom left, #ffffff 5%, transparent 6%),
-    radial-gradient(circle at bottom right, #ffffff 5%, transparent 6%),
-    radial-gradient(circle at top left, #ffffff 5%, transparent 6%),
-    radial-gradient(circle at top right, #ffffff 5%, transparent 6%);
-  background-size: 1em 1em;
   background-color: #e9ecef;
   border: 3px solid black;
-
 }
 
 .slant-down {
@@ -64,7 +57,7 @@
   left: -1rem;
   rotate: 25deg;
   background-color: black;
-  top: 15.50rem;
+  top: 15.5rem;
 }
 
 .right-ribbon-border {
@@ -74,5 +67,5 @@
   right: -1rem;
   rotate: -25deg;
   background-color: black;
-  top: 15.50rem;
+  top: 15.5rem;
 }

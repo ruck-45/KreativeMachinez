@@ -24,17 +24,17 @@ const contactChips = [
   {
     logo: <FaPhoneAlt className="text-[1.5rem]" />,
     heading: "Call Us @ ",
-    caption: "+1 (xxx) xxx-xxxx",
+    caption: "+1 (845) 687-3270",
   },
   {
     logo: <FaLocationDot className="text-[1.5rem]" />,
     heading: "Visit Us @ ",
-    caption: "London Eye, UK",
+    caption: "Unit-544, McCabe Street, Florida, USA",
   },
   {
     logo: <MdEmail className="text-[1.5rem]" />,
     heading: "Mail Us @ ",
-    caption: "support@kmachinez.com",
+    caption: "support@hmsfreedom.com",
   },
 ];
 
