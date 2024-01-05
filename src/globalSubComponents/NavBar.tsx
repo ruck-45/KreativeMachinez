@@ -132,20 +132,6 @@ const NavBar = () => {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
-          {/* <Button
-            color="warning"
-            variant="bordered"
-            radius="full"
-            className="p-0"
-          >
-            <Link
-              to="../Auth"
-              className="w-full px-[8px] py-[10px]"
-              onClick={() => dispatch(updateToLoginStatus(true))}
-            >
-              Login
-            </Link>
-          </Button> */}
           <ButtonElement
             to="../Auth"
             variant="bordered"
@@ -157,20 +143,6 @@ const NavBar = () => {
           />
         </NavbarItem>
         <NavbarItem>
-          {/* <Button
-            color="warning"
-            variant="solid"
-            radius="full"
-            className="font-semibold p-0"
-          >
-            <Link
-              to="../Auth"
-              className="w-full px-[8px] py-[10px]"
-              onClick={() => dispatch(updateToLoginStatus(false))}
-            >
-              Sign Up
-            </Link>
-          </Button> */}
           <ButtonElement
             to="../Auth"
             variant="solid"

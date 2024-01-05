@@ -1,10 +1,10 @@
 import { Button } from "@nextui-org/react";
 import { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
-interface MyState {
+type MyState = {
   id: number;
-}
-interface ButtonProps {
+};
+type ButtonProps = {
   to: string;
   size?: "sm" | "md" | "lg";
   radius?: "none" | "sm" | "md" | "lg" | "full";
@@ -36,17 +36,14 @@ interface ButtonProps {
   state?: MyState;
   icon?: ReactNode;
   onClickFunction?: () => void;
-}
+};
 const ButtonElement = (props: ButtonProps) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    const toUrl = props.isDisabled ? "" : props.to;
     if (props.onClickFunction) {
       props.onClickFunction();
     }
-    if (!props.isDisabled || toUrl !== "") {
-      navigate(toUrl, { state: props.state });
-    }
+    navigate(props.to, { state: props.state });
   };
 
   return (

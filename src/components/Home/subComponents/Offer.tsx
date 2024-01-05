@@ -74,19 +74,6 @@ const Offer = () => {
               <Divider />
 
               <div className="flex justify-between">
-                {/* <Button
-                  variant="bordered"
-                  color="danger"
-                  radius="full"
-                  endContent={
-                    <FaArrowCircleRight className="mt-[0.2rem] mr-[1rem]" />
-                  }
-                  className="w-[9rem] p-0 gap-0"
-                >
-                  <Link to="../Pricing" className="p-[8px] grow">
-                    Learn More
-                  </Link>
-                </Button> */}
                 <ButtonElement
                   to="../Pricing"
                   variant="bordered"
@@ -99,13 +86,25 @@ const Offer = () => {
                   // className="w-[9rem] p-0 gap-0 mt-[1rem]"
                 />
                 <div className="flex text-[1.8rem] gap-[1rem]">
-                  <a href="https://www.facebook.com/profile.php?id=61554936182745" target="_blank" rel="noreferrer">
+                  <a
+                    href="https://www.facebook.com/profile.php?id=61554936182745"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     <SiFacebook className="mt-[0.4rem] cursor-pointer hover:scale-105" />
                   </a>
-                  <a href="https://twitter.com/Kreativemachinz" target="_blank" rel="noreferrer">
+                  <a
+                    href="https://twitter.com/Kreativemachinz"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     <FaSquareXTwitter className="mt-[0.4rem] cursor-pointer hover:scale-105" />
                   </a>
-                  <a href="https://www.youtube.com/@KreativeMachinez-23" target="_blank" rel="noreferrer">
+                  <a
+                    href="https://www.youtube.com/@KreativeMachinez-23"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     <TbBrandYoutubeFilled className="mt-[0.4rem] cursor-pointer hover:scale-105" />
                   </a>
                 </div>

@@ -39,17 +39,6 @@ const ServicesCard = (props: ServicesCardProps) => {
               </p>
             </div>
 
-            {/* <Link to={`../${props.heading}`}>
-              <Button
-                variant="ghost"
-                color="danger"
-                radius="full"
-                endContent={<FaArrowCircleRight className="mt-[0.2rem]" />}
-                className="max-w-[10rem]"
-              >
-                Learn More
-              </Button>
-            </Link> */}
             <ButtonElement
               to={`../${props.heading}`}
               label="Learn More"

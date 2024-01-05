@@ -15,14 +15,8 @@ import { scrollTop } from "../../../utils/controllers";
 const thumbnails = [webdev, seo, socialmedia, webanalytics, graphics, email];
 
 const IndividualServices = () => {
-  // let id = 0;
   const location = useLocation();
-  console.log(location);
   const id = location.state?.id || 0;
-  // if (location.state) {
-  //   id = location.state.id;
-  // }
-
   const data = serviceData.find((item) => item.id === id);
   scrollTop();
 

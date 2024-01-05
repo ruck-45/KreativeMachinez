@@ -88,13 +88,6 @@ const footerLinks = [
 const Footer = () => {
   return (
     <>
-      {/* <Button
-        color="warning"
-        className="w-full p-[3rem] font-['DM_Serif_Display'] text-[1rem] sm:text-[1.5rem]"
-        radius="none"
-      >
-        ❝ We Care for your Brand as Passionately as You Do. ❞
-      </Button> */}
       <ButtonElement
         to=""
         color="warning"
@@ -163,14 +156,6 @@ const Footer = () => {
             <div className="flex gap-[2rem] w-full justify-between contactInfo">
               {contactInfo.map((data, index) => (
                 <div key={index} className="flex items-center  gap-[1rem]">
-                  {/* <Button
-                    isIconOnly
-                    variant="solid"
-                    radius="full"
-                    className="w-[3rem] h-[3rem] text-[1.5rem]"
-                  >
-                    {data.icon}
-                  </Button> */}
                   <ButtonElement
                     to=""
                     isIconOnly={true}

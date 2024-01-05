@@ -56,23 +56,6 @@ const OurServices = () => {
             <p className="text-justify text-default-500 text-[0.95rem] sm:text-md">
               {data.content}
             </p>
-            {/* <Button
-              variant="ghost"
-              color="warning"
-              radius="full"
-              endContent={
-                <FaArrowCircleRight className="mt-[0.2rem] mr-[1rem]" />
-              }
-              className="w-[8rem] p-0 gap-0"
-            >
-              <Link
-                to="../Individual"
-                state={{ id: index }}
-                className="p-[8px] grow"
-              >
-                Learn More
-              </Link>
-            </Button> */}
             <ButtonElement
               to="../Individual"
               variant="ghost"
