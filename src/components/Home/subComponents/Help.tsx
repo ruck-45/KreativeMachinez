@@ -4,8 +4,6 @@ import { FaArrowCircleRight } from "react-icons/fa";
 
 // Local Files
 import city from "../assets/city.jpg";
-
-// import elements
 import ButtonElement from "../../../globalElements/ButtonElement";
 
 const Help = () => {
@@ -22,11 +20,9 @@ const Help = () => {
             </h1>
           </div>
           <p className="max-w-[35rem] text-justify">
-            We're here for you, no matter the industry : photography, real
-            estate, education, medical, and beyond. Our personalized digital
-            marketing solutions are crafted with care to elevate your unique
-            story and bring success to your business online. Let's grow together
-            in the digital world, hand in hand.
+            We're here for you, no matter the industry : photography, real estate, education, medical, and beyond. Our
+            personalized digital marketing solutions are crafted with care to elevate your unique story and bring
+            success to your business online. Let's grow together in the digital world, hand in hand.
           </p>
 
           <ButtonElement
@@ -35,21 +31,11 @@ const Help = () => {
             color="danger"
             label="Learn More"
             radius="full"
-            endContent={
-              <FaArrowCircleRight className="mt-[0.2rem] ml-[1rem]" />
-            }
-            // className="w-[9rem] p-0 gap-0 mt-[1rem]"
+            endContent={<FaArrowCircleRight className="mt-[0.2rem] ml-[1rem]" />}
           />
         </div>
       </div>
-      <Image
-        isBlurred
-        src={city}
-        alt="Help"
-        width={500}
-        radius="none"
-        className="border-[1rem] hidden lg:block"
-      />
+      <Image isBlurred src={city} alt="Help" width={500} radius="none" className="border-[1rem] hidden lg:block" />
     </div>
   );
 };

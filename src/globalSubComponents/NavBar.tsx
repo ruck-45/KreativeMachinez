@@ -3,7 +3,6 @@ import {
   Navbar,
   NavbarContent,
   NavbarItem,
-  Button,
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
@@ -20,13 +19,12 @@ import { RootState } from "../store/store";
 import { updateNavStatus } from "../store/navOpenStatusSlice";
 import { updateToLoginStatus } from "../store/toLoginSlice";
 import ButtonElement from "../globalElements/ButtonElement";
+
 const menuItems = ["Home", "Services", "About", "Contact", "Pricing", "Log In"];
 
 const NavBar = () => {
   const curTab = useSelector((state: RootState) => state.curTab.value);
-  const navOpenStatus = useSelector(
-    (state: RootState) => state.navOpenStatus.value
-  );
+  const navOpenStatus = useSelector((state: RootState) => state.navOpenStatus.value);
   const dispatch = useDispatch();
   return (
     <Navbar
@@ -40,19 +38,10 @@ const NavBar = () => {
       classNames={{ base: "bg-[rgba(0,0,0,0.4)]" }}
     >
       <NavbarContent>
-        <NavbarMenuToggle
-          aria-label={navOpenStatus ? "Close menu" : "Open menu"}
-          className="lg:hidden text-white"
-        />
+        <NavbarMenuToggle aria-label={navOpenStatus ? "Close menu" : "Open menu"} className="lg:hidden text-white" />
         <Link to="../Home">
           <div className="bg-white p-[1rem] pb-[2rem] ribbon slant-down hidden lg:block">
-            <Image
-              width={90}
-              src={logo}
-              alt="logo"
-              radius="none"
-              className="mt-[5rem]"
-            />
+            <Image width={90} src={logo} alt="logo" radius="none" className="mt-[5rem]" />
             <div className="left-ribbon-border"></div>
             <div className="right-ribbon-border"></div>
           </div>
@@ -70,11 +59,7 @@ const NavBar = () => {
         <NavbarItem>
           <Link
             to="../Home"
-            className={
-              curTab === "Home"
-                ? "active navActive flex flex-col px-[1rem]"
-                : "notActive px-[1rem]"
-            }
+            className={curTab === "Home" ? "active navActive flex flex-col px-[1rem]" : "notActive px-[1rem]"}
           >
             HOME
           </Link>
@@ -83,11 +68,7 @@ const NavBar = () => {
         <NavbarItem>
           <Link
             to="../Services"
-            className={
-              curTab === "Services"
-                ? "active navActive flex flex-col px-[1rem]"
-                : "notActive px-[1rem]"
-            }
+            className={curTab === "Services" ? "active navActive flex flex-col px-[1rem]" : "notActive px-[1rem]"}
           >
             SERVICES
           </Link>
@@ -96,11 +77,7 @@ const NavBar = () => {
         <NavbarItem>
           <Link
             to="../About"
-            className={
-              curTab === "About"
-                ? "active navActive flex flex-col px-[1rem]"
-                : "notActive px-[1rem]"
-            }
+            className={curTab === "About" ? "active navActive flex flex-col px-[1rem]" : "notActive px-[1rem]"}
           >
             ABOUT
           </Link>
@@ -108,11 +85,7 @@ const NavBar = () => {
         <NavbarItem>
           <Link
             to="../Contact"
-            className={
-              curTab === "Contact"
-                ? "active navActive flex flex-col px-[1rem]"
-                : "notActive px-[1rem]"
-            }
+            className={curTab === "Contact" ? "active navActive flex flex-col px-[1rem]" : "notActive px-[1rem]"}
           >
             CONTACT US
           </Link>
@@ -120,11 +93,7 @@ const NavBar = () => {
         <NavbarItem>
           <Link
             to="../Pricing"
-            className={
-              curTab === "Pricing"
-                ? "active navActive flex flex-col px-[1rem]"
-                : "notActive px-[1rem]"
-            }
+            className={curTab === "Pricing" ? "active navActive flex flex-col px-[1rem]" : "notActive px-[1rem]"}
           >
             PRICING
           </Link>

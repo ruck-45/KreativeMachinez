@@ -1,8 +1,12 @@
 // Dependencies
 import { Image } from "@nextui-org/react";
 import { FaArrowCircleRight } from "react-icons/fa";
+
+// Local Files
 import ButtonElement from "../../../globalElements/ButtonElement";
 import HeroAsset from "../assets/HeroAsset.svg";
+
+
 const HeroSection = () => {
   return (
     <div className="h-[40rem] flex items-center text-white">
@@ -16,9 +20,8 @@ const HeroSection = () => {
           </h1>
         </div>
         <p className="max-w-[26rem] text-center lg:text-justify">
-          We are a dynamic digital marketing agency dedicated to crafting
-          innovative solutions for businesses seeking a powerful online
-          presence.
+          We are a dynamic digital marketing agency dedicated to crafting innovative solutions for businesses seeking a
+          powerful online presence.
         </p>
         <ButtonElement
           to="../About"

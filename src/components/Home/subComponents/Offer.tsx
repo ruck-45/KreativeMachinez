@@ -1,19 +1,17 @@
 // Dependencies
-import { Card, CardBody, Divider, Button } from "@nextui-org/react";
+import { Card, CardBody, Divider } from "@nextui-org/react";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaArrowCircleRight } from "react-icons/fa";
 import { SiFacebook } from "react-icons/si";
 import { TbBrandYoutubeFilled } from "react-icons/tb";
-import { Link } from "react-router-dom";
 import { TbWorldWww } from "react-icons/tb";
 import { RiComputerFill } from "react-icons/ri";
 
 // Local Files
 import "./Offer.css";
 import MissionChip from "../../../globalSubComponents/MissionChip";
-
-// components
 import ButtonElement from "../../../globalElements/ButtonElement";
+
 const missionChips = [
   {
     logo: <RiComputerFill className="text-[2rem]" />,
@@ -48,10 +46,9 @@ const Offer = () => {
                   </h1>
                 </div>
                 <p className="text-justify text-default-500">
-                  For just $99 elevate your online presence with two free
-                  websites and essential services like SEO and web analytics.
-                  Unleash the power of digital marketing without the hefty price
-                  tag, seize this opportunity for your brand's success!
+                  For just $99 elevate your online presence with two free websites and essential services like SEO and
+                  web analytics. Unleash the power of digital marketing without the hefty price tag, seize this
+                  opportunity for your brand's success!
                 </p>
               </div>
 
@@ -80,31 +77,16 @@ const Offer = () => {
                   color="danger"
                   label="Learn More"
                   radius="full"
-                  endContent={
-                    <FaArrowCircleRight className="mt-[0.2rem] ml-[1rem]" />
-                  }
-                  // className="w-[9rem] p-0 gap-0 mt-[1rem]"
+                  endContent={<FaArrowCircleRight className="mt-[0.2rem] ml-[1rem]" />}
                 />
                 <div className="flex text-[1.8rem] gap-[1rem]">
-                  <a
-                    href="https://www.facebook.com/profile.php?id=61554936182745"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
+                  <a href="https://www.facebook.com/profile.php?id=61554936182745" target="_blank" rel="noreferrer">
                     <SiFacebook className="mt-[0.4rem] cursor-pointer hover:scale-105" />
                   </a>
-                  <a
-                    href="https://twitter.com/Kreativemachinz"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
+                  <a href="https://twitter.com/Kreativemachinz" target="_blank" rel="noreferrer">
                     <FaSquareXTwitter className="mt-[0.4rem] cursor-pointer hover:scale-105" />
                   </a>
-                  <a
-                    href="https://www.youtube.com/@KreativeMachinez-23"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
+                  <a href="https://www.youtube.com/@KreativeMachinez-23" target="_blank" rel="noreferrer">
                     <TbBrandYoutubeFilled className="mt-[0.4rem] cursor-pointer hover:scale-105" />
                   </a>
                 </div>

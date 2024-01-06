@@ -1,8 +1,11 @@
 // Dependencies
-import { Divider, Button } from "@nextui-org/react";
-import { Link } from "react-router-dom";
+import { Divider } from "@nextui-org/react";
 import { FaArrowCircleRight } from "react-icons/fa";
+
+// Local Files
 import ButtonElement from "../../../globalElements/ButtonElement";
+
+
 const serviceInfo = [
   {
     heading: "Website Design & Development",
@@ -50,21 +53,15 @@ const OurServices = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-[3rem] lg:py-[5rem]">
         {serviceInfo.map((data, index) => (
           <div key={index} className="flex flex-col gap-[1rem]">
-            <h1 className="font-['DM_Serif_Display'] text-[2rem] font-semibold">
-              {data.heading}
-            </h1>
-            <p className="text-justify text-default-500 text-[0.95rem] sm:text-md">
-              {data.content}
-            </p>
+            <h1 className="font-['DM_Serif_Display'] text-[2rem] font-semibold">{data.heading}</h1>
+            <p className="text-justify text-default-500 text-[0.95rem] sm:text-md">{data.content}</p>
             <ButtonElement
               to="../Individual"
               variant="ghost"
               color="warning"
               label="Learn More"
               radius="full"
-              endContent={
-                <FaArrowCircleRight className="mt-[0.2rem] ml-[1rem]" />
-              }
+              endContent={<FaArrowCircleRight className="mt-[0.2rem] ml-[1rem]" />}
               state={{ id: index }}
               className="w-[9rem] p-0 gap-0 mt-[1rem]"
             />

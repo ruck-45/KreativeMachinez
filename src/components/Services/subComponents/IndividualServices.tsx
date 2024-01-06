@@ -15,9 +15,14 @@ import { scrollTop } from "../../../utils/controllers";
 const thumbnails = [webdev, seo, socialmedia, webanalytics, graphics, email];
 
 const IndividualServices = () => {
+  let id = 0;
   const location = useLocation();
-  const id = location.state?.id || 0;
+  if (location.state) {
+    id = location.state.id;
+  }
+
   const data = serviceData.find((item) => item.id === id);
+
   scrollTop();
 
   return (
@@ -37,9 +42,7 @@ const IndividualServices = () => {
                 {String(index) + ". " + item.heading}
               </h1>
             ) : null}
-            <p className="text-justify text-default-500 text-[0.95rem] sm:text-md">
-              {item.body}
-            </p>
+            <p className="text-justify text-default-500 text-[0.95rem] sm:text-md">{item.body}</p>
           </div>
         ))}
       </div>

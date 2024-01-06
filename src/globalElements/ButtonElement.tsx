@@ -1,30 +1,18 @@
+// Dependencies
 import { Button } from "@nextui-org/react";
 import { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
+
 type MyState = {
   id: number;
 };
+
 type ButtonProps = {
   to: string;
   size?: "sm" | "md" | "lg";
   radius?: "none" | "sm" | "md" | "lg" | "full";
-  color?:
-    | "default"
-    | "primary"
-    | "secondary"
-    | "success"
-    | "warning"
-    | "danger"
-    | undefined;
-  variant?:
-    | "solid"
-    | "bordered"
-    | "light"
-    | "flat"
-    | "faded"
-    | "shadow"
-    | "ghost"
-    | undefined;
+  color?: "default" | "primary" | "secondary" | "success" | "warning" | "danger" | undefined;
+  variant?: "solid" | "bordered" | "light" | "flat" | "faded" | "shadow" | "ghost" | undefined;
   label?: string;
   backgroundColor?: string;
   startContent?: ReactNode;
@@ -37,6 +25,7 @@ type ButtonProps = {
   icon?: ReactNode;
   onClickFunction?: () => void;
 };
+
 const ButtonElement = (props: ButtonProps) => {
   const navigate = useNavigate();
   const handleClick = () => {
