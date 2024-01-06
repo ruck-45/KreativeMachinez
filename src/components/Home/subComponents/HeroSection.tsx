@@ -3,6 +3,7 @@ import { Image } from "@nextui-org/react";
 import { FaArrowCircleRight } from "react-icons/fa";
 
 // Local Files
+import "./HeroSection.css";
 import ButtonElement from "../../../globalElements/ButtonElement";
 import HeroAsset from "../assets/HeroAsset.svg";
 
