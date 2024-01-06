@@ -1,7 +1,7 @@
 name: Build and Deploy
 on:
   push:
-    branches: [main]
+    branches: [test]
   workflow_dispatch:
 
 jobs:
@@ -39,7 +39,4 @@ jobs:
           server: ftp.infinityfree.com
           username: ${{ secrets.ftp_username }}
           password: ${{ secrets.ftp_password }}
-          server-dir: /kreativemachinez.kesug.com/htdocs/
-    
-          
-    
+          server-dir: /test-kreativemachinez.kesug.com/htdocs/
