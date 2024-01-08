@@ -100,7 +100,7 @@ const EmailForm = () => {
       >
         Send Message
       </Button>
-      <Toaster transition={slide}/>
+      <Toaster />
     </div>
   );
 };
