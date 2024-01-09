@@ -20,8 +20,9 @@ const Specialization = () => {
       <div className="text-center">
         <h1 className="font-['lilita_one'] text-[3rem]">Our Area Of Service</h1>
         <p className="text-default-400 max-w-[35rem]">
-          Explore our versatile services, spanning SEO, web design, analytics, and more tailored for diverse industries,
-          ensuring impactful online strategies.
+          At Kreative Machinez, we're passionate about crafting innovative brand solutions. We seamlessly blend
+          technology and design with cutting-edge visual storytelling, giving our clients a competitive edge in the
+          digital realm. This approach has empowered us to establish partnerships across diverse industries.
         </p>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-[2rem]">

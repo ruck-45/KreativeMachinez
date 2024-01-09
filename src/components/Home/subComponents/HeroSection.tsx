@@ -21,8 +21,8 @@ const HeroSection = () => {
           </h1>
         </div>
         <p className="max-w-[26rem] text-center lg:text-justify">
-          We are a dynamic digital marketing agency dedicated to crafting innovative solutions for businesses seeking a
-          powerful online presence.
+          A unit of HMS Freedom LLC, is a digital marketing agency that's all about crafting innovative solutions for
+          brands helping them build a robust online presence that truly stands out.
         </p>
         <ButtonElement
           to="../About"

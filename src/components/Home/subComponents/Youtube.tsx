@@ -10,12 +10,15 @@ const Youtube = () => {
   return (
     <div className="px-[3rem] md:px-[5rem] py-[5rem] flex flex-col lg:flex-row lg:justify-evenly items-center gap-[2rem] lg:gap-[5rem] bg-white">
       <div className="lg:w-[40%] flex flex-col gap-[1.5rem] lg:order-last">
-        <h1 className="font-['lilita_one'] text-[3rem] leading-[2.7rem]">Watch Us In Action</h1>
+        <h1 className="font-['lilita_one'] text-[3rem] leading-[2.7rem]">A Visual Odyssey into Digital Brilliance</h1>
         <p className="text-justify text-default-500 text-[0.95rem] sm:text-md">
-          Explore the dynamic world of Kreative Machinez through our promotional video. Immerse yourself in the essence
-          of our innovative digital marketing solutions, where creativity meets strategy. Join us on a visual journey
-          showcasing how we elevate brands, boost online presence, and drive success. Watch now and envision the
-          possibilities for your brand's digital future!
+          Step into the dynamic world of Kreative Machinez, where innovation and creativity converge to sculpt
+          exceptional digital experiences. Our video introduction captures the essence of who we are and what sets us
+          apart. Witness our team's passion, diverse expertise, and commitment to excellence unfold on screen. As
+          architects of success in the digital realm, we invite you to embark on a journey where ideas transform into
+          impactful realities. Press play, explore our vision, and discover how Kreative Machinez is redefining the
+          landscape of digital excellence. Your story begins here, where creativity knows no bounds, and innovation
+          knows no limits.
         </p>
         <p className="text-justify text-default-500 text-[0.95rem] sm:text-md">
           Press play and step into the extraordinary realm of Kreative Machinez!
