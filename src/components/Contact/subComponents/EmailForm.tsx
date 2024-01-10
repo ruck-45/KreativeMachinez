@@ -90,17 +90,17 @@ const EmailForm = () => {
         </div>
         <Input type="text" label="Subject" name="subject" />
         <Textarea label="Message" />
+        <Button
+          color="warning"
+          variant="shadow"
+          className="w-[10rem]"
+          endContent={<IoSend className="mt-[0.2rem]" />}
+          onClick={sendEmail}
+        >
+          Send Message
+        </Button>
+        <Toaster />
       </form>
-      <Button
-        color="warning"
-        variant="shadow"
-        className="w-[10rem]"
-        endContent={<IoSend className="mt-[0.2rem]" />}
-        onClick={sendEmail}
-      >
-        Send Message
-      </Button>
-      <Toaster />
     </div>
   );
 };

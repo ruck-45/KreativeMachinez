@@ -1,6 +1,5 @@
 // Dependencies
 import ServiceImage from "./ServiceImage";
-
 // Local Files
 import socialMedia from "../assets/socialMedia.jpg";
 import seo from "../assets/seo.jpg";
@@ -17,12 +16,12 @@ const Services = () => {
 
   return (
     <div className="flex flex-col md:flex-row bg-white">
-      <ServiceImage className="smm" textSize="3rem" width={800} image={socialMedia} />
+      <ServiceImage className="smm" textSize="3rem" width={800} image={socialMedia}  state={{id: 2}}/>
       <div className="grow grid grid-cols-1 md:grid-cols-2">
-        <ServiceImage className="seo" textSize="2rem" width={miniWidth} image={seo} />
-        <ServiceImage className="web" textSize="2rem" width={miniWidth} image={webDev} />
-        <ServiceImage className="graph" textSize="2rem" width={miniWidth} image={graphic} />
-        <ServiceImage className="analytics" textSize="2rem" width={miniWidth} image={analytics} />
+        <ServiceImage className="seo" textSize="2rem" width={miniWidth} image={seo} state={{id: 1}}/>
+        <ServiceImage className="web" textSize="2rem" width={miniWidth} image={webDev} state={{id: 0}}/>
+        <ServiceImage className="graph" textSize="2rem" width={miniWidth} image={graphic} state={{id: 4}}/>
+        <ServiceImage className="analytics" textSize="2rem" width={miniWidth} image={analytics} state={{id: 3}}/>
       </div>
     </div>
   );
