@@ -1,0 +1,38 @@
+.WebDev {
+    background-image:  url("../assets/webdkm.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+  }
+
+  .SEO {
+    background-image:  url("../assets/SeoService.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  .SMM {
+    background-image:  url("../assets/SocialMedia.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+  }
+  .WA {
+    background-image:  url("../assets/Webananlytics.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .GD {
+    background-image:  url("../assets/graphicDesign.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  .EM {
+    background-image:  url("../assets/EmailMarketing.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }

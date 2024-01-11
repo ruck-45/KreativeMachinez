@@ -61,16 +61,17 @@ const Footer = () => {
         <div className="max-w-[20rem] flex flex-col gap-[2rem] companySection">
           <Image width={150} src={logo} alt="logo" className="bg-white p-[1rem]" />
           <p className="text-justify text-sm">
-            At Kreative Machinez, we are a dynamic digital marketing agency dedicated to crafting innovative solutions
-            for businesses seeking a powerful online presence. With a fusion of expertise and creativity, we specialize
-            in delivering captivating digital experiences that elevate your brand. Our commitment is encapsulated in our
-            motto : "Empowering Brands, Inspiring Connections"
+            Kreative Machinez is a unit of <span className="font-bold">HMS Freedom LLC</span>, we're a lively digital
+            marketing agency that's all about crafting innovative solutions for businesses like yours, helping you build
+            a robust online presence that truly stands out. Driven by a ferocious hunger to create tangible impact for
+            your brands, we work with in-house specialists, industry partners and technology leaders to push the
+            boundaries of creativity and put your brand ahead of the competition.
           </p>
           <div className="flex text-[1.8rem] gap-[1rem]">
             <a href="https://www.facebook.com/profile.php?id=61554936182745" target="_blank" rel="noreferrer">
               <SiFacebook className="mt-[0.4rem] cursor-pointer hover:scale-105" />
             </a>
-            <a href="https://twitter.com/Kreativemachinz " target="_blank" rel="noreferrer">
+            <a href="https://twitter.com/Kreativemachinz" target="_blank" rel="noreferrer">
               <FaSquareXTwitter className="mt-[0.4rem] cursor-pointer hover:scale-105" />
             </a>
             <a href="https://www.youtube.com/@KreativeMachinez-23" target="_blank" rel="noreferrer">
@@ -79,7 +80,7 @@ const Footer = () => {
             <a href="https://www.instagram.com/kreativemachinez23/" target="_blank" rel="noreferrer">
               <AiFillInstagram className="mt-[0.4rem] cursor-pointer hover:scale-105" />
             </a>
-            <a href="https://www.pinterest.com/KreativeMachinez23/ " target="_blank" rel="noreferrer">
+            <a href="https://www.pinterest.com/KreativeMachinez23/" target="_blank" rel="noreferrer">
               <FaPinterest className="mt-[0.4rem] cursor-pointer hover:scale-105" />
             </a>
           </div>

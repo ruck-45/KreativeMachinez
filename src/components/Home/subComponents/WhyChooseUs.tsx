@@ -6,17 +6,17 @@ import ButtonElement from "../../../globalElements/ButtonElement";
 
 const benefitData = [
   {
-    heading: "Excellence",
-    caption: '"Empowering Brands, Inspiring Connections"',
+    heading: "Client-Centric",
+    caption: "‘Standing by clients’",
     content:
-      "We bring proven expertise, creative excellence, & a personalized approach to every project. With years of industry experience, we are committed to delivering results that set your brand apart in the digital landscape. Our client-centric approach ensures transparent communication, making your success our top priority. Elevate your brand with a digital partnership that goes beyond expectations.",
+      "At the heart of what we do is a blend of digital expertise, creative flair, coupled with innovative tech for each project. With a decade of experience across a wide spectrum of categories, our commitment is to bring results that truly distinguish your brand in an ever-evolving digital landscape. Through a mix of creativity, transparency, and innovation, our goal is to forge a partnership that will help your brand achieve wonders.",
     link: { text: "About Us", dest: "../About" },
   },
   {
-    heading: "Solutions",
-    caption: '"Elevate Your Brand with Our Comprehensive Services"',
+    heading: "Digital Pioneers",
+    caption: "‘Nurturing brands in the digital landscape’",
     content:
-      "Our comprehensive digital marketing services encompass strategic planning, creative content creation, social media management, SEO optimization, and performance analytics. With a focus on tailored solutions, we amplify your online impact, driving engagement and conversions. Trust us to navigate the dynamic digital landscape, ensuring your brand stands out and thrives in the ever-evolving world of online marketing.",
+      "We provide a full suite of digital marketing services crafted as per your brand and for your audience. From strategic planning to creating captivating content, managing your social media presence, search engine optimization, and diving deep into performance analytics – it's all about building your brand. Count on us to not only navigate the ever-changing digital landscape but to also make sure your brand not only stands out among the competition but thrives in this dynamic world of online marketing.",
     link: { text: "Services", dest: "../Services" },
   },
 ];

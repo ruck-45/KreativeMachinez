@@ -16,12 +16,12 @@ const missionChips = [
   {
     logo: <RiComputerFill className="text-[2rem]" />,
     heading: "Complementry Websites",
-    caption: "Gain Two Professional Websites",
+    caption: "Gain 2 Professional Websites",
   },
   {
     logo: <TbWorldWww className="text-[2rem]" />,
-    heading: "SEO, Analytics & Many More",
-    caption: "Unleash The Power of Digital Marketing",
+    heading: "SEO, Analytics & Much More",
+    caption: "Boost your online presence",
   },
 ];
 
@@ -39,16 +39,16 @@ const Offer = () => {
               <div className="flex flex-col gap-[1.5rem]">
                 <div>
                   <h1 className="font-['DM_Serif_Display']  font-bold text-[2.7rem] lg:text-[3rem] text-[#191f22] leading-[3.7rem] text-center lg:text-left">
-                    Unlock Your Digital Success
+                    Build your brand
                   </h1>
                   <h1 className="font-['DM_Serif_Display']  font-bold text-[2.7rem] lg:text-[3rem] text-[#191f22] leading-[3.7rem] text-center lg:text-left">
                     For <span className="text-[#F31260]">$99</span> Only!
                   </h1>
                 </div>
                 <p className="text-justify text-default-500">
-                  For just $99 elevate your online presence with two free websites and essential services like SEO and
-                  web analytics. Unleash the power of digital marketing without the hefty price tag, seize this
-                  opportunity for your brand's success!
+                  Take your business online for just $99 with a complimentary website & services such as Google Business
+                  Profile, social media management, search engine optimization, website analytics and much more. Enter
+                  the digital world and explore its countless possibilities without the burden of a high cost.
                 </p>
               </div>
 

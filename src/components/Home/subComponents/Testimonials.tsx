@@ -6,39 +6,46 @@ import { Settings } from "react-slick";
 
 const reviews = [
   {
-    name: "John Doe",
-    designation: "CEO, Tech Innovations",
+    name: "Sarah Thompson",
+    designation: "Small Business Owner",
     rating: "⭐⭐⭐⭐⭐",
     comment:
-      "❝ Working with Kreative Machinez has been a game-changer for us. Their team's expertise in digital marketing has not only increased our online visibility but has also significantly boosted our conversions. Their commitment to excellence and results-driven approach make them our go-to for all things digital. ❞",
+      "❝ Kreative Machinez breathed life into my brand! Their team’s dedication and creative finesse transformed my online presence. They didn't just meet expectations; they exceeded them. Kreative Machinez is not just a service; it's a transformative partner for small businesses like mine. ❞",
   },
   {
-    name: "Jane Smith",
-    designation: "Marketing Director, HealthHub",
+    name: "Alex Martin",
+    designation: "Marketing Manage",
     rating: "⭐⭐⭐⭐⭐⭐",
     comment:
-      "❝ Kreative Machinez has truly been a partner in our success. Their comprehensive digital marketing strategies, particularly in SEO and social media, have propelled our brand to new heights. The team's dedication, creativity, and attention to detail make them stand out in the industry. We couldn't be more satisfied with the results. ❞",
+      "❝ Working with Kreative Machinez was a game-changer for our marketing strategy. Their digital marketing solutions and attention to detail sets them apart. It's rare to find a team so committed to the success of their clients. Kreative Machinez is our go-to for all things digital. ❞",
   },
   {
-    name: "David Patel",
-    designation: "Founder, EcomCraft",
+    name: " Emily Rodriguez",
+    designation: "E-commerce Entrepreneur",
     rating: "⭐⭐⭐⭐",
     comment:
-      "❝ We owe a significant portion of our e-commerce success to Kreative Machinez. Their SEO tactics have not only improved our search rankings but have also translated into tangible sales growth. The personalized approach and timely delivery of results make them a valuable partner for any online business. ❞",
+      "❝ Kreative Machinez took our e-commerce game to the next level. Their personalized approach and understanding of our niche were refreshing. From creative content to strategic SEO, they've been instrumental in our success. Kreative Machinez is more than an agency; it's a partner. ❞",
   },
   {
-    name: "Emily Wong",
-    designation: "Education Solutions Manager",
+    name: "James Harrison",
+    designation: "Tech Startup Founder",
     rating: "⭐⭐⭐⭐⭐",
     comment:
-      "❝ Kreative Machinez has been instrumental in shaping our digital presence. Their team took the time to understand the unique challenges of our industry and delivered a tailored digital strategy that surpassed our expectations. Their consistency, creativity, and transparent communication have made them a trusted ally in our journey. ❞",
+      "❝ The Kreative Machinez team delivered beyond our expectations. Their strategic approach and ability to adapt to our evolving needs were impressive. They don't just provide solutions; they become an extension of your team. Kreative Machinez is our secret weapon for digital marketing. ❞",
   },
   {
-    name: "Michael Turner",
-    designation: "Photography Studio Owner",
+    name: "Linda Cooper",
+    designation: "Non-Profit Director",
     rating: "⭐⭐⭐⭐⭐",
     comment:
-      "❝ Choosing Kreative Machinez was one of the best decisions for our photography studio. From designing a visually stunning website to executing effective social media campaigns, they've elevated our brand in a highly competitive market. Their creative flair, attention to detail, and commitment to our brand's success are commendable. ❞",
+      "❝ Kreative Machinez understood our mission and translated it into a compelling digital narrative. Their commitment to client satisfaction sets them apart. The team's passion for our business is evident in every project. With Kreative Machinez, it’s not just about marketing; it's about making a difference ❞",
+  },
+  {
+    name: "Chris Walker",
+    designation: "Restaurant Owner",
+    rating: "⭐⭐⭐⭐⭐",
+    comment:
+      "❝ In a competitive market, Kreative Machinez gave our restaurant a distinctive online identity. Their ability to capture the essence of our brand in every campaign is commendable. Kreative Machinez is more than a marketing agency; it's a partner that understands your business’ needs.   ❞",
   },
 ];
 

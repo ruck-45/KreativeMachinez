@@ -7,12 +7,12 @@ const Achievement = () => {
       </div>
 
       <div>
-        <h1 className="font-['lilita_one'] text-[2.5rem]">160 +</h1>
+        <h1 className="font-['lilita_one'] text-[2.5rem]">1000 +</h1>
         <p className="font-['poppins']">Portfolio</p>
       </div>
 
       <div>
-        <h1 className="font-['lilita_one'] text-[2.5rem]">500 +</h1>
+        <h1 className="font-['lilita_one'] text-[2.5rem]">1000 +</h1>
         <p className="font-['poppins']">Satisfied Customers</p>
       </div>
 

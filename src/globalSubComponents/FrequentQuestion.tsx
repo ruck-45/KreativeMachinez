@@ -10,11 +10,11 @@ const FrequentQuestion = () => {
   return (
     <div className="flex flex-col md:flex-row px-[3rem] lg:px-[5rem] py-[5rem] gap-[2rem] md:gap-[0rem] bg-[#e9ecef]">
       <div className="md:w-[50%] flex flex-col gap-[1rem]">
-        <h1 className="font-['DM_Serif_Display'] text-[2rem] font-bold">Frequently Asked Questions</h1>
+        <h1 className="font-['DM_Serif_Display'] text-[2rem] font-bold">FAQs</h1>
         <p>
-          Discover quick answers to common questions about our digital marketing services in our FAQ section. For
-          specific queries or additional assistance, our support team is ready to help. We're dedicated to ensuring you
-          have the information you need for a seamless experience with us.
+          Find quick answers to common questions about our digital marketing services in our FAQ section. If you have
+          specific questions or need more help, our support team is here for you. We're dedicated to making sure you
+          have all the information you need for a smooth experience with us
         </p>
 
         <ul className="list-disc list-inside text-justify">

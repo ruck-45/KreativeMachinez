@@ -14,7 +14,7 @@ const QuestionAccordion = (props: QuestionAccordionProps) => {
   const className = "font-['poppins'] " + props.className;
 
   return (
-    <Accordion className={className} isCompact variant={props.varient}>
+    <Accordion className={className} isCompact variant={props.varient} >
       {props.questions.map((queries, index) => (
         <AccordionItem
           key={index}

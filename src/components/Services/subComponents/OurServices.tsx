@@ -10,32 +10,32 @@ const serviceInfo = [
   {
     heading: "Website Design & Development",
     content:
-      "We create impactful websites that captivate your audience. From sleek designs to seamless functionality, our digital marketing platform ensures your online presence not only engages but also converts visitors into customers.",
+      "We merge sleek design with seamless functionality for an engaging user experience. Our designed website ensures online presence that captivates and converts visitors into loyal customers, propelling your brand to new heights.",
   },
   {
-    heading: "Search Engine Optimization",
+    heading: "Search Engine Optimization (SEO)",
     content:
-      "Enhance your online visibility with our SEO expertise. We optimize content, enhance website structure, and employ strategic techniques, ensuring your brand ranks higher, attracts traffic, and achieves digital success.",
+      "Boost your online visibility with our SEO expertise. We optimize content, refine website structure, and employ strategic techniques to strengthen your brand's ranking on search engines attracting quality traffic & driving business growth.",
   },
   {
     heading: "Social Media Marketing",
     content:
-      "Boost your brand's presence and engagement with our Social Media Marketing expertise. We create compelling content, strategic campaigns, and foster meaningful connections to elevate your business in the digital realm.",
+      "Moving beyond superficial metrics, we specialize in crafting well-researched, insight-driven, and captivating content strategies that provide genuine value to your target audience. At the heart of our approach is the belief that social media is about fostering authentic conversations and building a real community",
   },
   {
     heading: "Web Analytics",
     content:
-      "We transform data into actionable insights, leveraging web analytics to optimize your online strategy. Gain a deeper understanding of user behavior and enhance your digital presence for maximum impact.",
+      "Harness the power of web analytics with our expert service. Gain valuable insights into user behavior, optimize site performance, and make data-driven decisions to propel your online presence and business success",
   },
   {
     heading: "Graphics Design",
     content:
-      "Revitalize your brand's visual identity with our graphic design expertise. From stunning visuals to compelling branding, we craft graphics that resonate with your audience, elevating your online presence.",
+      "Transform your brand through an impactful visual identity with our artistic ingenuity. From crafting memorable logos to designing impactful ads, we specialize in building visual identities that resonate and leave a lasting impression.",
   },
   {
     heading: "Email Marketing",
     content:
-      "We amplify your brand's reach through targeted email marketing. From captivating campaigns to strategic automation, we drive engagement and conversions, ensuring your message resonates with your audience effectively.",
+      "Our dynamic email marketing campaigns and strategic automation go beyond capturing attention; they forge meaningful connections and convert, ensuring your message resonates deeply with your audience. This approach not only cultivates engagement but consistently drives tangible and sustainable results for your business.",
   },
 ];
 

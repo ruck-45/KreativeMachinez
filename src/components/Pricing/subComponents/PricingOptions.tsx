@@ -95,7 +95,7 @@ const PricingOptions = () => {
     <div className="bg-[#e9ecef] md:px-[5rem] py-[5rem] flex flex-col lg:flex-row gap-[2.5rem] lg:gap-[5rem]">
       <div className="flex items-center justify-center">
         <h1 className="font-['lilita_one'] text-[3rem] text-center">
-          Our <span className="text-[#F5A524]">Pricing</span>
+          Our <span className="text-[#F5A524]">packages</span>
         </h1>
       </div>
 

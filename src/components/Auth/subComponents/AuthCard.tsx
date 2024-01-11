@@ -19,9 +19,10 @@ const AuthCard = (props: AuthCardProps) => {
       </Link>
       <h1 className="text-white">Kreative Machinez Pvt Ltd.</h1>
       <p className="text-white max-w-[25rem]">
-        Welcome back! Log in to access your account and continue your digital journey with us. New here? Sign up now to
-        unlock a world of innovative digital marketing solutions tailored just for you. Join Kreative Machinez and let's
-        start shaping your online success together!
+        Welcome to Your Secure Login! <br/>
+        Enter your details with confidence. Our robust security ensures your information is
+        protected. Whether you are a valued client or a team member, this is your gateway to a streamlined and secure
+        experience. Access your account with ease and explore your personalized space.
       </p>
     </div>
   );
