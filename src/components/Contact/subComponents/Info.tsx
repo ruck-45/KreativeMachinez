@@ -11,12 +11,12 @@ const moral = [
   {
     heading: "Our Values",
     content:
-      "At Kreative Machinez, our strength lies in our diverse team, each contributing to our success. We embrace four core values that shape our work culture: Collaborative Innovation, Customer-Centricity, Continuous Growth, and Creative Excellence. These values define who we are and guide us in providing exceptional digital marketing solutions. Join us in creating success through collaboration and creativity!",
+      "At Kreative Machinez, our strength lies in the diverse talents within our team. Each person contributes uniquely, creating a collective force driving us to shared success. We embrace diversity as our core, championing values like Inspiring Innovation, Customer Dedication, Unceasing Growth, and Unbridled Creative Excellence. These values shape our culture, defining our identity and guiding us to deliver unmatched digital marketing solutions.",
   },
   {
-    heading: "Our Environment",
+    heading: "Our Culture",
     content:
-      "Step into our office, and you'll feel the dynamic energy. At Kreative Machinez, we believe in more than just work, we're committed to giving back to our community. Our 'Creatives' are encouraged to share ideas and suggestions, functioning like the cogs of a creative machine, ensuring a smooth and efficient working environment.",
+      "Individuality. Our workspace is more than an office; it's a vibrant ecosystem where diverse talents converge to create something extraordinary. Here, we embrace the spirit of continual growth, fostering an environment where each team member contributes their unique perspective to the collective tapestry of success. Creativity is not just encouraged; it's a way of life. We believe in nurturing a culture that values ideas, fuels inspiration, and propels us towards unparalleled achievements.",
   },
 ];
 

@@ -29,7 +29,7 @@ const About = () => {
       <Intro
         normalHead=" About "
         redHead="Us "
-        caption="Your brand's digital success is our mission. With expertise, creativity, and a personal touch, we amplify your online presence. Join us to reshape your narrative, foster connections, and unlock growth."
+        caption="Welcome to Kreative Machinez! Where innovation, creativity, and cutting-edge technology converge to shape your brand's digital narrative."
       />
       <AboutUs />
       <AboutWork />

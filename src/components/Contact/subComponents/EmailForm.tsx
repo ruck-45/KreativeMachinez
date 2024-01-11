@@ -8,9 +8,11 @@ const EmailForm = () => {
       <div className="text-white lg:w-[40%] flex flex-col gap-[1rem] lg:order-last">
         <h1 className="font-['lilita_one'] text-[3rem] ">Email Us</h1>
         <p className="text-justify text-default-500 text-[0.95rem] sm:text-md">
-          Have questions or need assistance? Feel free to reach out to our dedicated team via email. Whether you're
-          looking for information on our services, need support, or have specific inquiries, we're here to help. Drop us
-          a mail, and we'll get back to you promptly. Your digital success starts with us , let's connect!
+          Whether you're curious about our services, or looking for personalized solutions for your brand, the Kreative
+          Machinez team is here for you. Your privacy is our priority, and we ensure the confidentiality of your
+          information. Rest assured, we don't share your details with any third party. Our team of professionals
+          understands your needs, offering expert guidance to propel your digital journey forward. Drop us an email, and
+          we will get back to you at the earliest.
         </p>
         <p className="text-justify text-default-500 text-[0.95rem] sm:text-md">
           We'll never share your email with anyone else.

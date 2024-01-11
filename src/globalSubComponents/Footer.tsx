@@ -61,11 +61,11 @@ const Footer = () => {
         <div className="max-w-[20rem] flex flex-col gap-[2rem] companySection">
           <Image width={150} src={logo} alt="logo" className="bg-white p-[1rem]" />
           <p className="text-justify text-sm">
-            Kreative Machinez is a unit of HMS Freedom LLC, we're a lively digital marketing agency that's all about
-            crafting innovative solutions for businesses like yours, helping you build a robust online presence that
-            truly stands out. Driven by a ferocious hunger to create tangible impact for your brands, we work with
-            in-house specialists, industry partners and technology leaders to push the boundaries of creativity and put
-            your brand ahead of the competition.
+            Kreative Machinez is a unit of <span className="font-bold">HMS Freedom LLC</span>, we're a lively digital
+            marketing agency that's all about crafting innovative solutions for businesses like yours, helping you build
+            a robust online presence that truly stands out. Driven by a ferocious hunger to create tangible impact for
+            your brands, we work with in-house specialists, industry partners and technology leaders to push the
+            boundaries of creativity and put your brand ahead of the competition.
           </p>
           <div className="flex text-[1.8rem] gap-[1rem]">
             <a href="https://www.facebook.com/profile.php?id=61554936182745" target="_blank" rel="noreferrer">

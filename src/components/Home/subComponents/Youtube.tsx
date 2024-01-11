@@ -27,7 +27,7 @@ const Youtube = () => {
       <iframe
         width={width}
         height={height}
-        src="https://www.youtube.com/embed/AT6oSIDbGkw"
+        src="https://www.youtube.com/embed/FrkGp4_RlLs"
         title="KreativeMachinez Promo Video"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen

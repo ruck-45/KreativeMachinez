@@ -23,7 +23,7 @@ const Contact = () => {
       <Intro
         normalHead=" Contact "
         redHead="Us "
-        caption="Need help? Our team is here for you! Reach out for personalized support, whether it's about your website, social media, or any digital marketing need. Contact us via phone or email, and let's make your online journey smooth and successful."
+        caption="At Kreative Machinez, we are dedicated to ensuring your online journey is not just smooth but exceptionally successful. Whether you seek assistance with your website, social media presence, or any digital marketing need, our team is here to provide personalized and professional support"
       />
       <Info />
       <EmailForm />

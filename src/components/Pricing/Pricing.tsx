@@ -19,7 +19,7 @@ const Pricing = () => {
       <Intro
         normalHead=" Pricing "
         redHead="& FAQ "
-        caption="Explore our Pricing to discover transparent and competitive rates for our digital marketing services. Uncover detailed answers to common queries in FAQ section, ensuring clarity and confidence in your decision. "
+        caption="Discover Transparent Pricing & Answers to Your Question. Explore Our packages and find the perfect fit. Your journey to excellence begins now. "
       />
       <PricingOptions />
       <Banner />
