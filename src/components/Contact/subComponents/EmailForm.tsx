@@ -25,15 +25,15 @@ const EmailForm = () => {
 
  const sendEmail = async () => {
    try {
-     if (userNameState > 0 && emailState > 0) {
-      await emailjs.sendForm(
+     if (!emailValidity && userNameState > 0 && emailState > 0) {
+       await emailjs.sendForm(
          `${process.env.REACT_APP_SERVICE_ID}`,
          `${process.env.REACT_APP_TEMPLATE_ID}`,
          form.current!,
          `${process.env.REACT_APP_PUBLIC_KEY}`
        );
-
        emailSent();
+       console.log("send");
      } else {
        formNotFill();
      }
@@ -48,7 +48,7 @@ const EmailForm = () => {
     setEmailState(event.currentTarget.value.length);
 
     const validity = email.current.match(emailRe);
-
+    console.log("Validity", validity)
     if (validity) {
       setEmailValidity(false);
     } else {
@@ -91,7 +91,7 @@ const EmailForm = () => {
           />
         </div>
         <Input type="text" label="Subject" name="subject" />
-        <Textarea label="Message" />
+        <Textarea label="Message" name="message"/>
         <Button
           color="warning"
           variant="shadow"
