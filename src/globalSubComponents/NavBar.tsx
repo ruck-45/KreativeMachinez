@@ -19,10 +19,14 @@ import { RootState } from "../store/store";
 import { updateNavStatus } from "../store/navOpenStatusSlice";
 import { updateToLoginStatus } from "../store/toLoginSlice";
 import ButtonElement from "../globalElements/ButtonElement";
-
+import UserAvatar from "./UserAvatar";
+import { getCookie } from "../cookies/cookies";
 const menuItems = ["Home", "Services", "About", "Contact", "Pricing", "Log In"];
 
 const NavBar = () => {
+  const authToken = getCookie("authToken");
+  console.log(authToken)
+  const isLoggedIn = authToken ? true : false;
   const curTab = useSelector((state: RootState) => state.curTab.value);
   const navOpenStatus = useSelector((state: RootState) => state.navOpenStatus.value);
   const dispatch = useDispatch();
@@ -99,30 +103,38 @@ const NavBar = () => {
           </Link>
         </NavbarItem>
       </NavbarContent>
-      <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <ButtonElement
-            to="../Auth"
-            variant="bordered"
-            color="warning"
-            label="Login"
-            radius="full"
-            className="w-full px-[8px] py-[10px]"
-            onClickFunction={() => dispatch(updateToLoginStatus(true))}
-          />
-        </NavbarItem>
-        <NavbarItem>
-          <ButtonElement
-            to="../Auth"
-            variant="solid"
-            color="warning"
-            label="Sign Up"
-            radius="full"
-            className="w-full px-[8px] py-[10px] font-semibold"
-            onClickFunction={() => dispatch(updateToLoginStatus(false))}
-          />
-        </NavbarItem>
-      </NavbarContent>
+      {isLoggedIn ? (
+        <NavbarContent justify="end">
+          <NavbarItem>
+            <UserAvatar />
+          </NavbarItem>
+        </NavbarContent>
+      ) : (
+        <NavbarContent justify="end">
+          <NavbarItem className="hidden lg:flex">
+            <ButtonElement
+              to="../Auth"
+              variant="bordered"
+              color="warning"
+              label="Login"
+              radius="full"
+              className="w-full px-[8px] py-[10px]"
+              onClickFunction={() => dispatch(updateToLoginStatus(true))}
+            />
+          </NavbarItem>
+          <NavbarItem>
+            <ButtonElement
+              to="../Auth"
+              variant="solid"
+              color="warning"
+              label="Sign Up"
+              radius="full"
+              className="w-full px-[8px] py-[10px] font-semibold"
+              onClickFunction={() => dispatch(updateToLoginStatus(false))}
+            />
+          </NavbarItem>
+        </NavbarContent>
+      )}
 
       <NavbarMenu className="mt-[1rem] bg-[rgba(0,0,0,0.4)] z-[200]">
         {menuItems.map((item, index) => (

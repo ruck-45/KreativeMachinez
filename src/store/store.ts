@@ -5,9 +5,10 @@ import { configureStore } from "@reduxjs/toolkit";
 import curTabSlice from "./curTabSlice";
 import navOpenStatusSlice from "./navOpenStatusSlice";
 import toLoginSlice from "./toLoginSlice";
-
+import loginSlice from "./loginSlice";
 const store = configureStore({
   reducer: {
+    login: loginSlice,
     curTab: curTabSlice,
     navOpenStatus: navOpenStatusSlice,
     toLogin: toLoginSlice,

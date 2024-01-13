@@ -21,7 +21,7 @@ import AboutHero from "./globalAssets/About.jpg";
 import ContactHero from "./globalAssets/Contact.jpg";
 import PricingHero from "./globalAssets/Prices.jpg";
 import ServiceHero from "./globalAssets/Services.jpg";
-
+import User from "./components/user/User"
 function App() {
   const curTab = useSelector((state: RootState) => state.curTab.value);
 
@@ -54,6 +54,10 @@ function App() {
       background += `,url(${ServiceHero})`;
       break;
 
+    case "Profile":
+      className = "bg-no-repeat bg-top";
+      background += `,url(${ServiceHero})`;
+      break;
     default:
       break;
   }
@@ -61,7 +65,7 @@ function App() {
   return (
     <>
       <div style={{ backgroundImage: background }} className={className}>
-        {curTab === "Auth" ? null : <NavBar />}
+        {curTab === "Auth"  ? null : <NavBar />}
         <Routes>
           <Route path="/" element={<Navigate to="/Home" />} />
           <Route path="/Home" element={<Home />} />
@@ -70,16 +74,19 @@ function App() {
           <Route path="/Pricing" element={<Pricing />} />
           <Route path="/Auth" element={<Auth />} />
           <Route path="/Services/*" element={<Services />} />
+          <Route path="/Profile" element={<User />} />
           <Route path="*" element={<Navigate to="/Home" />} />
         </Routes>
       </div>
-      {curTab === "Auth" || curTab === "Pricing" || curTab === "Services" ? null : <FrequentQuestion />}
-      {curTab === "Auth" ? null : (
+      {curTab === "Auth" || curTab === "Pricing" || curTab === "Services" || curTab === "Profile" ? null : (
+        <FrequentQuestion />
+      )}
+      {curTab === "Auth" || curTab === "Profile" ? null : (
         <CTA text="❝ We Care for your Brand as Passionately as You Do. ❞" color="warning" showArrow={false} />
       )}
-      {curTab === "Auth" ? null : <Footer />}
-      {curTab === "Auth" ? null : <QuickContacts />}
-      {curTab === "Auth" ? null : <ScrollToTop />}
+      {curTab === "Auth" || curTab === "Profile" ? null : <Footer />}
+      {curTab === "Auth" || curTab === "Profile" ? null : <QuickContacts />}
+      {curTab === "Auth" || curTab === "Profile" ? null : <ScrollToTop />}
     </>
   );
 }
