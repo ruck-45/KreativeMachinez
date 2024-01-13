@@ -10,7 +10,7 @@ import Contact from "./components/Contact/Contact";
 import Pricing from "./components/Pricing/Pricing";
 import Services from "./components/Services/Services";
 import Auth from "./components/Auth/Auth";
-import Dashboard from "./components/Dashboard/Dashboard";
+import Profile from "./components/Profile/Profile";
 import Blog from "./components/Blog/Blog";
 import Privacy from "./components/Privacy/Privacy";
 import Footer from "./globalSubComponents/Footer";
@@ -77,7 +77,7 @@ function App() {
           <Route path="/Pricing" element={<Pricing />} />
           <Route path="/Auth" element={<Auth />} />
           <Route path="/Services/*" element={<Services />} />
-          <Route path="/Dashboard" element={<Dashboard />} />
+          <Route path="/Profile" element={<Profile />} />
           <Route path="/Blog" element={<Blog />} />
           <Route path="/Privacy" element={<Privacy />} />
           <Route path="*" element={<Navigate to="/Home" />} />
@@ -86,7 +86,7 @@ function App() {
       {curTab === "Auth" ||
       curTab === "Pricing" ||
       curTab === "Services" ||
-      curTab === "Dashboard" ||
+      curTab === "Profile" ||
       curTab === "Privacy" ? null : (
         <FrequentQuestion />
       )}
