@@ -6,7 +6,7 @@ import { FaSquareXTwitter, FaArrowRightLong } from "react-icons/fa6";
 import { AiFillGoogleCircle, AiFillInstagram } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+
 // Local Files
 import "./UserAuth.css";
 import EyeFilledIcon from "./EyeFilledIcon";
@@ -21,8 +21,6 @@ import {
 } from "../../../utils/authRegex";
 import { RootState } from "../../../store/store";
 import { updateToLoginStatus } from "../../../store/toLoginSlice";
-import { updateLoginStatus } from "../../../store/loginSlice";
-import { setCookie } from "../../../cookies/cookies";
 
 const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
   if (event.key === "Enter") {
@@ -31,11 +29,9 @@ const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
 };
 
 const UserAuth = () => {
-  const navigate = useNavigate()
   const [isVisible, setIsVisible] = useState(false);
 
   const toLogin = useSelector((state: RootState) => state.toLogin.value);
-  const isLoggedIn = useSelector((state: RootState) => state.login.isLoggedIn)
   const toggleVisibility = () => setIsVisible(!isVisible);
 
   const dispatch = useDispatch();
@@ -118,17 +114,8 @@ const UserAuth = () => {
   };
 
   const handleSubmit = () => {
-     try {
-      const data = {
-        user: "SSSS",
-      };
-      dispatch(updateLoginStatus(data));
-       setCookie("authToken", "kmjlksjknwjebijoewisjcnnjqensaoijojnsjadnbiuewhdsiabqe");
-       navigate("/");
-     } catch (error) {
-
-     }
-  }
+    //  Submit Logic here
+  };
 
   return (
     <form className="flex flex-col justify-center sm:min-w-[27rem] p-12 gap-3 Auth rounded-3xl" onSubmit={handleSubmit}>

@@ -20,13 +20,10 @@ import { updateNavStatus } from "../store/navOpenStatusSlice";
 import { updateToLoginStatus } from "../store/toLoginSlice";
 import ButtonElement from "../globalElements/ButtonElement";
 import UserAvatar from "./UserAvatar";
-import { getCookie } from "../cookies/cookies";
-const menuItems = ["Home", "Services", "About", "Contact", "Pricing", "Log In"];
+const menuItems = ["Home", "Services", "About", "Contact", "Pricing", "Blog", "Log In"];
 
 const NavBar = () => {
-  const authToken = getCookie("authToken");
-  console.log(authToken)
-  const isLoggedIn = authToken ? true : false;
+  const isLoggedIn = true;
   const curTab = useSelector((state: RootState) => state.curTab.value);
   const navOpenStatus = useSelector((state: RootState) => state.navOpenStatus.value);
   const dispatch = useDispatch();
@@ -102,6 +99,16 @@ const NavBar = () => {
             PRICING
           </Link>
         </NavbarItem>
+        {isLoggedIn ? (
+          <NavbarItem>
+            <Link
+              to="../Blog"
+              className={curTab === "Blog" ? "active navActive flex flex-col px-[1rem]" : "notActive px-[1rem]"}
+            >
+              BLOG
+            </Link>
+          </NavbarItem>
+        ) : null}
       </NavbarContent>
       {isLoggedIn ? (
         <NavbarContent justify="end">
@@ -137,20 +144,26 @@ const NavBar = () => {
       )}
 
       <NavbarMenu className="mt-[1rem] bg-[rgba(0,0,0,0.4)] z-[200]">
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
-            <Link
-              className={curTab === item ? "active" : "notActive"}
-              to={index === 5 ? "../Auth" : `../${item}`}
-              onClick={() => {
-                dispatch(updateNavStatus(!navOpenStatus));
-                dispatch(updateToLoginStatus(item === "Log In" ? true : false));
-              }}
-            >
-              {item}
-            </Link>
-          </NavbarMenuItem>
-        ))}
+        {menuItems.map((item, index) => {
+          if (isLoggedIn || index !== 5) {
+            return (
+              <NavbarMenuItem key={`${item}-${index}`}>
+                <Link
+                  className={curTab === item ? "active" : "notActive"}
+                  to={index === 6 ? "../Auth" : `../${item}`}
+                  onClick={() => {
+                    dispatch(updateNavStatus(!navOpenStatus));
+                    dispatch(updateToLoginStatus(item === "Log In" ? true : false));
+                  }}
+                >
+                  {item}
+                </Link>
+              </NavbarMenuItem>
+            );
+          } else {
+            return null;
+          }
+        })}
       </NavbarMenu>
     </Navbar>
   );
