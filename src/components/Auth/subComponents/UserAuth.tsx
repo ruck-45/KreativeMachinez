@@ -1,11 +1,14 @@
 // Dependencies
 import { useState, useRef } from "react";
+import axios from 'axios';
 import { Button, Input, Checkbox } from "@nextui-org/react";
 import { FaFacebook } from "react-icons/fa";
 import { FaSquareXTwitter, FaArrowRightLong } from "react-icons/fa6";
 import { AiFillGoogleCircle, AiFillInstagram } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import toast, { Toaster, ToastPosition } from "react-hot-toast";
 
 // Local Files
 import "./UserAuth.css";
@@ -27,8 +30,20 @@ const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     event.preventDefault();
   }
 };
+const toastSetting: {
+  position: ToastPosition;
+} = { position: "top-right" };
+
+const successToast = (message: string): void => {
+  toast.success("You have Signed up successfully", toastSetting);
+}
+const errorToast = (message: string): void => {
+  toast.error(message, toastSetting);
+};
+
 
 const UserAuth = () => {
+  const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
 
   const toLogin = useSelector((state: RootState) => state.toLogin.value);
@@ -113,12 +128,52 @@ const UserAuth = () => {
     }
   };
 
-  const handleSubmit = () => {
-    //  Submit Logic here
+  const handlelogIn = async (event: React.FormEvent<HTMLFormElement>) => {};
+
+  const handleSignup = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    try {
+      const emailValue = email.current;
+      const passwordValue = password.current;
+      const confirmPasswordValue = confirmPassword.current;
+      const usernameValue = username.current;
+
+      if (emailValue === "" || passwordValue === "" || usernameValue === "" || confirmPasswordValue === "") {
+        errorToast("Please fill all fields");
+      } else if (usernameValue.length < 3) {
+        errorToast("Username should have minimum 3 characters");
+      } else if (passwordValue !== confirmPasswordValue) {
+        errorToast("Password and confirm password do not match");
+      } else {
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/signup`, {
+          email: emailValue,
+          username: usernameValue,
+          password: passwordValue,
+        });
+        console.log(response);
+        if (response.data.success) {
+          successToast("Registration successful");
+          dispatch(updateToLoginStatus(true));
+          navigate("/Auth");
+        } else {
+          errorToast(`${response.data.message}`);
+        }
+      }
+    } catch (error: any) {
+      console.log(error)
+      if (error.response.data.message.code === "ER_DUP_ENTRY") {
+        errorToast(`User Already Registered`);
+      } else if (error.response.status === 406) {
+        errorToast("Username should have than 50 character and Email should have less than 50 character")
+      }
+    }
   };
 
   return (
-    <form className="flex flex-col justify-center sm:min-w-[27rem] p-12 gap-3 Auth rounded-3xl" onSubmit={handleSubmit}>
+    <form
+      className="flex flex-col justify-center sm:min-w-[27rem] p-12 gap-3 Auth rounded-3xl"
+      onSubmit={toLogin ? handlelogIn : handleSignup}
+    >
       <Link to="../" className="mb-[2rem] flex items-center gap-[0.5rem] hover:gap-[1rem] duration-100 text-[#006FEE]">
         <FaArrowRightLong />
         <p>Home</p>
@@ -222,6 +277,7 @@ const UserAuth = () => {
           <AiFillGoogleCircle />
         </Button>
       </div>
+      <Toaster />
     </form>
   );
 };

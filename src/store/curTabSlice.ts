@@ -1,14 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+type CurTabState  = {
+  value: string;
+}
+
+const initialState: CurTabState = {
   value: "",
 };
 
 const curTabSlice = createSlice({
   name: "curTab",
-  initialState: initialState,
+  initialState,
   reducers: {
-    updateTab: (state, action) => {
+    updateTab: (state, action: PayloadAction<string>) => {
       state.value = action.payload;
     },
   },
