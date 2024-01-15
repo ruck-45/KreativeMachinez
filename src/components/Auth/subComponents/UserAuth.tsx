@@ -59,7 +59,6 @@ const UserAuth = () => {
   const password = useRef("");
   const confirmPassword = useRef("");
   const username = useRef("");
-  const rememberMe = useRef(true);
 
   const [invalidPasswordMessage, setInvalidPasswordMessage] = useState("");
   const [invalidUsernameMessage, setInvalidUsernameMessage] = useState("");
@@ -68,6 +67,11 @@ const UserAuth = () => {
   const [passwordState, setPasswordState] = useState(false);
   const [confirmPasswordState, setConfirmPasswordState] = useState(false);
   const [usernameState, setUsernameState] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
+
+  const handleCheckboxChange = () => {
+    setRememberMe(!rememberMe);
+  };
 
   const checkEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     email.current = event.target.value;
@@ -134,7 +138,8 @@ const UserAuth = () => {
     try {
       const emailValue = email.current;
       const passwordValue = password.current;
-      const rememberMeValue = rememberMe.current
+      const rememberMeValue = rememberMe
+      console.log(rememberMeValue)
       if (emailValue === "" || passwordValue === "") {
         errorToast("Please fill all fields");
       } else {
@@ -158,7 +163,7 @@ const UserAuth = () => {
     } catch (error: any) {
       console.log("Error", error)
       if (error.response.status === 401) {
-        errorToast(`User not found`);
+        errorToast(``);
       } else if (error.response.status === 406) {
         errorToast("Email should have less than 50 character");
       }
@@ -275,7 +280,7 @@ const UserAuth = () => {
       <p className={toLogin ? "text-xs text-right cursor-pointer" : "hidden"} style={{ color: "#006FEE" }}>
         Forgot Password?
       </p>
-      <Checkbox defaultSelected size="sm" className={toLogin ? "" : "hidden"} onChange={() => !rememberMe.current}>
+      <Checkbox defaultSelected size="sm" className={toLogin ? "" : "hidden"} onChange={handleCheckboxChange}>
         Remember Me
       </Checkbox>
       <Button className="mt-2 mb-2" color="primary" variant="shadow" type="submit">
