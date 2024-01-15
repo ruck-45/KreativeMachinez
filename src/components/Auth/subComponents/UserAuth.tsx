@@ -128,7 +128,9 @@ const UserAuth = () => {
     }
   };
 
-  const handlelogIn = async (event: React.FormEvent<HTMLFormElement>) => {};
+  const handlelogIn = async (event: React.FormEvent<HTMLFormElement>) => {
+    
+  };
 
   const handleSignup = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
