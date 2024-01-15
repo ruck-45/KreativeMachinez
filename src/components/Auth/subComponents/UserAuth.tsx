@@ -139,7 +139,6 @@ const UserAuth = () => {
       const emailValue = email.current;
       const passwordValue = password.current;
       const rememberMeValue = rememberMe
-      console.log(rememberMeValue)
       if (emailValue === "" || passwordValue === "") {
         errorToast("Please fill all fields");
       } else {
@@ -148,11 +147,11 @@ const UserAuth = () => {
           password: passwordValue,
           remember: rememberMeValue,
         });
-        console.log(response);
         if (response.data.success) {
           successToast("Login Successfull");
           const expiresDate = new Date(response.data.payload.expires);
           setCookie("token", response.data.payload.token, { expires: expiresDate });
+          setCookie("email", emailValue);
           setTimeout(() => {
             navigate("/Profile");
           }, 2000);
@@ -190,7 +189,6 @@ const UserAuth = () => {
           username: usernameValue,
           password: passwordValue,
         });
-        console.log(response);
         if (response.data.success) {
           successToast("Registration successful");
           dispatch(updateToLoginStatus(true));
@@ -200,7 +198,6 @@ const UserAuth = () => {
         }
       }
     } catch (error: any) {
-      console.log(error)
       if (error.response.data.message.code === "ER_DUP_ENTRY") {
         errorToast(`User Already Registered`);
       } else if (error.response.status === 406) {
