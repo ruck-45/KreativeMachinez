@@ -20,10 +20,11 @@ import { updateNavStatus } from "../store/navOpenStatusSlice";
 import { updateToLoginStatus } from "../store/toLoginSlice";
 import ButtonElement from "../globalElements/ButtonElement";
 import UserAvatar from "./UserAvatar";
+import { getCookie } from "../cookies/cookies";
 const menuItems = ["Home", "Services", "About", "Contact", "Pricing", "Blog", "Log In"];
 
 const NavBar = () => {
-  const isLoggedIn = true;
+  const isLoggedIn = getCookie("token") ? true : false;
   const curTab = useSelector((state: RootState) => state.curTab.value);
   const navOpenStatus = useSelector((state: RootState) => state.navOpenStatus.value);
   const dispatch = useDispatch();

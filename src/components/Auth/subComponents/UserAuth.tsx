@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster, ToastPosition } from "react-hot-toast";
-
+import { setCookie } from "../../../cookies/cookies";
 // Local Files
 import "./UserAuth.css";
 import EyeFilledIcon from "./EyeFilledIcon";
@@ -35,7 +35,7 @@ const toastSetting: {
 } = { position: "top-right" };
 
 const successToast = (message: string): void => {
-  toast.success("You have Signed up successfully", toastSetting);
+  toast.success(message, toastSetting);
 }
 const errorToast = (message: string): void => {
   toast.error(message, toastSetting);
@@ -59,6 +59,7 @@ const UserAuth = () => {
   const password = useRef("");
   const confirmPassword = useRef("");
   const username = useRef("");
+  const rememberMe = useRef(true);
 
   const [invalidPasswordMessage, setInvalidPasswordMessage] = useState("");
   const [invalidUsernameMessage, setInvalidUsernameMessage] = useState("");
@@ -129,7 +130,39 @@ const UserAuth = () => {
   };
 
   const handlelogIn = async (event: React.FormEvent<HTMLFormElement>) => {
-    
+    event.preventDefault();
+    try {
+      const emailValue = email.current;
+      const passwordValue = password.current;
+      const rememberMeValue = rememberMe.current
+      if (emailValue === "" || passwordValue === "") {
+        errorToast("Please fill all fields");
+      } else {
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, {
+          email: emailValue,
+          password: passwordValue,
+          remember: rememberMeValue,
+        });
+        console.log(response);
+        if (response.data.success) {
+          successToast("Login Successfull");
+          const expiresDate = new Date(response.data.payload.expires);
+          setCookie("token", response.data.payload.token, { expires: expiresDate });
+          setTimeout(() => {
+            navigate("/Profile");
+          }, 2000);
+        } else {
+          errorToast(`${response.data.message}`);
+        }
+      }
+    } catch (error: any) {
+      console.log("Error", error)
+      if (error.response.status === 401) {
+        errorToast(`User not found`);
+      } else if (error.response.status === 406) {
+        errorToast("Email should have less than 50 character");
+      }
+    }
   };
 
   const handleSignup = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -242,7 +275,7 @@ const UserAuth = () => {
       <p className={toLogin ? "text-xs text-right cursor-pointer" : "hidden"} style={{ color: "#006FEE" }}>
         Forgot Password?
       </p>
-      <Checkbox defaultSelected size="sm" className={toLogin ? "" : "hidden"}>
+      <Checkbox defaultSelected size="sm" className={toLogin ? "" : "hidden"} onChange={() => !rememberMe.current}>
         Remember Me
       </Checkbox>
       <Button className="mt-2 mb-2" color="primary" variant="shadow" type="submit">
