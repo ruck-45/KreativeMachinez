@@ -1,11 +1,11 @@
 import Cookies from "js-cookie";
 
-interface CookieOptions {
+type CookieOptions = {
   expires?: number | Date;
   path?: string;
   domain?: string;
   secure?: boolean;
-}
+};
 
 export const setCookie = (key: string, value: string, options: CookieOptions = {}): void => {
   Cookies.set(key, value, options);

@@ -20,7 +20,7 @@ import { updateNavStatus } from "../store/navOpenStatusSlice";
 import { updateToLoginStatus } from "../store/toLoginSlice";
 import ButtonElement from "../globalElements/ButtonElement";
 import UserAvatar from "./UserAvatar";
-import { getCookie } from "../cookies/cookies";
+import { getCookie } from "../utils/cookies";
 const menuItems = ["Home", "Services", "About", "Contact", "Pricing", "Blog", "Log In"];
 
 const NavBar = () => {

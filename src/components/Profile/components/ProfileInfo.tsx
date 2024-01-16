@@ -1,6 +1,6 @@
 // Dependencies
 import { Chip, Listbox, ListboxItem, Textarea } from "@nextui-org/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import {
   Button,
@@ -13,14 +13,15 @@ import {
   Input,
 } from "@nextui-org/react";
 import toast, { Toaster, ToastPosition } from "react-hot-toast";
+
 // Local Files
 import "./ProfileInfo.css";
 import profilepic from "../../../globalAssets/profilepic.jpg";
-import { getCookie } from "../../../cookies/cookies";
+import { getCookie, setCookie } from "../../../utils/cookies";
 
 const toastSetting: {
   position: ToastPosition;
-} = { position: "top-right" };
+} = { position: "top-center" };
 
 const successToast = (message: string): void => {
   toast.success(message, toastSetting);
@@ -30,59 +31,30 @@ const errorToast = (message: string): void => {
 };
 
 const ProfileInfo = () => {
-  const token = getCookie("token")
-  const userEmail = getCookie("email")
-  const username = getCookie("username")
-  const [about, setAbout] = useState("");
-  const [profession, setProfession] = useState("");
-  const [address, setAddress] = useState("");
-  const [phone, setPhone] = useState("");
-  const [plan, setPlan] = useState("");
-  useEffect(() => {
-    const getProfile = async () => {
-      try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/profile`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setAbout(response.data.payload.about);
-        setProfession(response.data.payload.profession);
-        setAddress(response.data.payload.address);
-        setPhone(response.data.payload.phone);
-        setPlan(response.data.payload.plan); 
-      } catch (error) {
-        console.error("Update failed:", error);
-      }
-    };
-    getProfile()
-  }, [])
+  const token = getCookie("token");
+  const userEmail = getCookie("email");
+  const username = getCookie("username");
+  const expiration = getCookie("expiration");
 
-  useEffect(() => {
-    setFormData({
-      phone: phone,
-      address: address,
-      about: about,
-      profession: profession,
-    });
-  }, [phone, address, about, profession]);
+  const about = getCookie("about") || "Share a bit more about yourself!! We'd love to get to know you Better";
+  const profession = getCookie("profession") || "your profession";
+  const address = getCookie("address") || "please provide us with your Address";
+  const phone = getCookie("phone") || "None";
+  const plan = getCookie("plan") || "None";
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [formData, setFormData] = useState({
-    phone: "", 
-    address: "",
-    about: "",
-    profession: "", 
-  });
+  const [formData, setFormData] = useState({ phone, address, about, profession });
+  const [renderer, setRenderer] = useState(true);
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
   };
-  const handleSubmit = async (e: any) => {
+
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     try {
       const response = await axios.put(`${process.env.REACT_APP_API_URL}/profile`, formData, {
@@ -91,13 +63,30 @@ const ProfileInfo = () => {
         },
       });
       if (response.data.success) {
-        successToast("Profile updated successfully")
+        const profileResponse = await axios.get(`${process.env.REACT_APP_API_URL}/profile`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        const cookieOptions = { expires: expiration ? parseInt(expiration) : 1 };
+
+        setCookie("about", profileResponse.data.payload.about, cookieOptions);
+        setCookie("profession", profileResponse.data.payload.profession, cookieOptions);
+        setCookie("address", profileResponse.data.payload.address, cookieOptions);
+        setCookie("phone", profileResponse.data.payload.phone, cookieOptions);
+        setCookie("plan", profileResponse.data.payload.plan, cookieOptions);
+
+        setRenderer((prev) => !prev);
+
+        successToast("Profile updated successfully");
+      } else {
+        errorToast("Couldn't update profile");
       }
     } catch (error) {
-      errorToast("An error occurred while updating profile")
+      errorToast("Couldn't update profile");
     }
   };
-
 
   return (
     <div className="flex justify-between gap-[2rem] items-center UserStat">
@@ -113,32 +102,57 @@ const ProfileInfo = () => {
               <Chip color="success" variant="dot" className="my-4">
                 Online
               </Chip>
-              <p className="text-md font-bold">{ username || `username`}</p>
-              <p className="flex items-center text-small text-default-500">{profession || "Your profession"}</p>
+              <p className="text-md font-bold">{username}</p>
+              <p className="flex items-center text-small text-default-500">{profession}</p>
             </div>
           </div>
           <div>
             <p className="text-md font-bold">
               <span style={{ display: "flex", alignItems: "center" }}>About </span>
             </p>
-            <p className="text-default-500 text-small">
-              {about ||
-                `Share a bit more about yourself!! Whether it's your hobbies, interests, or experiences, we'd love to get to know you better and understand what makes you unique.`}
-            </p>
+            <p className="text-default-500 text-small">{about}</p>
           </div>
           <div className="">
             <p className="text-md font-bold">
-              <span style={{ display: "flex", alignItems: "center" }}>Address </span>
+              <span style={{ display: "flex", alignItems: "center" }}>Address</span>
             </p>
-            <p className="text-default-500 text-small">{address || `Please Provide us with your address`}</p>
+            <p className="text-default-500 text-small">{address}</p>
           </div>
         </div>
       </div>
+      <Listbox aria-label="Actions" className="max-w-[350px] bg-[#28292b] rounded-3xl p-[2rem] dark">
+        <ListboxItem showDivider key="Username" textValue="username">
+          <div className="flex justify-between h-[3.3rem] items-center">
+            <p className="flex items-center text-white font-semibold">Username</p>
+            <p className="text-[#F31260] font-bold">{username}</p>
+          </div>
+        </ListboxItem>
+        <ListboxItem showDivider key="Email" textValue="email">
+          <div className="flex justify-between h-[3.3rem] items-center">
+            <p className="flex items-center text-white font-semibold">Email</p>
+            <p className="text-[#F31260] font-bold">{userEmail}</p>
+          </div>
+        </ListboxItem>
+        <ListboxItem showDivider key="Phone" textValue="phone">
+          <div className="flex justify-between h-[3.3rem] items-center">
+            <p className="flex items-center text-white font-semibold">Phone</p>
+            <p className="text-[#F31260] font-bold">{phone}</p>
+          </div>
+        </ListboxItem>
+        <ListboxItem key="Package" textValue="package">
+          <div className="flex justify-between h-[3.3rem] items-center">
+            <p className="text-white font-semibold">Package</p>
+            <p className="text-[#F31260] font-bold">{plan}</p>
+          </div>
+        </ListboxItem>
+      </Listbox>
+
       <Button
         onPress={onOpen}
-        className="absolute top-12 right-0 m-4 mt-[3rem] mr-[7rem]"
+        className="absolute top-12 right-0 m-4 mt-[3.5rem] mr-[7rem]"
         variant="shadow"
         color="warning"
+        radius="full"
       >
         Edit
       </Button>
@@ -146,9 +160,9 @@ const ProfileInfo = () => {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Profile Information</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">Update Profile</ModalHeader>
               <ModalBody>
-                <form onSubmit={handleSubmit}>
+                <form>
                   <Input
                     type="text"
                     label="Profession"
@@ -183,41 +197,15 @@ const ProfileInfo = () => {
                 </form>
               </ModalBody>
               <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose} onClick={handleSubmit}>
-                  Save
+                <Button color="danger" variant="ghost" onPress={onClose} onClick={handleSubmit} radius="full">
+                  Update
                 </Button>
               </ModalFooter>
             </>
           )}
         </ModalContent>
       </Modal>
-      < Toaster/>
-      <Listbox aria-label="Actions" className="max-w-[350px] bg-[#28292b] rounded-3xl p-[2rem] dark">
-        <ListboxItem showDivider key="Username">
-          <div className="flex justify-between h-[3.3rem] items-center">
-            <p className="flex items-center text-white font-semibold">Username </p>
-            <p className="text-[#F31260] font-bold">{username || `username`}</p>
-          </div>
-        </ListboxItem>
-        <ListboxItem showDivider key="Email">
-          <div className="flex justify-between h-[3.3rem] items-center">
-            <p className="flex items-center text-white font-semibold">Email </p>
-            <p className="text-[#F31260] font-bold">{userEmail}</p>
-          </div>
-        </ListboxItem>
-        <ListboxItem showDivider key="Phone">
-          <div className="flex justify-between h-[3.3rem] items-center">
-            <p className="flex items-center text-white font-semibold">Phone </p>
-            <p className="text-[#F31260] font-bold">{phone || `+91-xxxxxxxxxx`}</p>
-          </div>
-        </ListboxItem>
-        <ListboxItem key="Package">
-          <div className="flex justify-between h-[3.3rem] items-center">
-            <p className="text-white font-semibold">Package</p>
-            <p className="text-[#F31260] font-bold">{plan || `None`}</p>
-          </div>
-        </ListboxItem>
-      </Listbox>
+      <Toaster />
     </div>
   );
 };

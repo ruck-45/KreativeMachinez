@@ -1,6 +1,6 @@
 // Dependencies
 import { useState, useRef } from "react";
-import axios from 'axios';
+import axios from "axios";
 import { Button, Input, Checkbox } from "@nextui-org/react";
 import { FaFacebook } from "react-icons/fa";
 import { FaSquareXTwitter, FaArrowRightLong } from "react-icons/fa6";
@@ -9,7 +9,8 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster, ToastPosition } from "react-hot-toast";
-import { setCookie } from "../../../cookies/cookies";
+import { setCookie } from "../../../utils/cookies";
+
 // Local Files
 import "./UserAuth.css";
 import EyeFilledIcon from "./EyeFilledIcon";
@@ -32,15 +33,14 @@ const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
 };
 const toastSetting: {
   position: ToastPosition;
-} = { position: "top-right" };
+} = { position: "top-center" };
 
 const successToast = (message: string): void => {
   toast.success(message, toastSetting);
-}
+};
 const errorToast = (message: string): void => {
   toast.error(message, toastSetting);
 };
-
 
 const UserAuth = () => {
   const navigate = useNavigate();
@@ -133,90 +133,86 @@ const UserAuth = () => {
     }
   };
 
-  const handlelogIn = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    try {
-      const emailValue = email.current;
-      const passwordValue = password.current;
-      const rememberMeValue = rememberMe
-      if (emailValue === "" || passwordValue === "") {
-        errorToast("Please fill all fields");
-      } else if (passwordValue.length < 8) {
-        errorToast("Password must be at least 8 characters")
-      } else if (emailValue.length > 100) {
-        errorToast("Email must have less than 100 characters")
-      }else {
-        const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, {
-          email: emailValue,
-          password: passwordValue,
-          remember: rememberMeValue,
-        });
-        if (response.data.success) {
-          successToast("Login Successfull");
-          const expiresDate = new Date(response.data.payload.expires);
-          setCookie("token", response.data.payload.token, { expires: expiresDate });
-          setCookie("email", emailValue);
-          setCookie("username", response.data.payload.userName);
-          setTimeout(() => {
-            navigate("/Profile");
-          }, 2000);
-        } else {
-          errorToast(`${response.data.message}`);
-        }
-      }
-    } catch (error: any) {
-      if (error.response.status === 401) {
-        errorToast(`${error.response.data.payload.message}`);  
-      } else if (error.response.status === 406) {
-        errorToast("Email should have less than 100 character"); 
-      }
+
+    if (emailState || passwordState || email.current.length === 0 || password.current.length === 0) {
+      errorToast("Please The Form Correctly");
+      return;
     }
-  };
 
-  const handleSignup = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    try {
-      const emailValue = email.current;
-      const passwordValue = password.current;
-      const confirmPasswordValue = confirmPassword.current;
-      const usernameValue = username.current;
-
-      if (emailValue === "" || passwordValue === "" || usernameValue === "" || confirmPasswordValue === "") {
-        errorToast("Please fill all fields");
-      } else if (usernameValue.length < 3) {
-        errorToast("Username should have minimum 3 characters");
-      } else if (passwordValue !== confirmPasswordValue) {
-        errorToast("Password and confirm password do not match");
-      } else {
-        const response = await axios.post(`${process.env.REACT_APP_API_URL}/signup`, {
-          email: emailValue,
-          username: usernameValue,
-          password: passwordValue,
+    if (toLogin) {
+      try {
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, {
+          email: email.current,
+          password: password.current,
+          remember: rememberMe,
         });
+
+        if (response.data.success) {
+          const cookieOptions = { expires: response.data.payload.expires };
+
+          setCookie("token", response.data.payload.token, cookieOptions);
+          setCookie("email", email.current, cookieOptions);
+          setCookie("username", response.data.payload.userName, cookieOptions);
+          setCookie("expiration", response.data.payload.expires, cookieOptions);
+
+          const profileResponse = await axios.get(`${process.env.REACT_APP_API_URL}/profile`, {
+            headers: {
+              Authorization: `Bearer ${response.data.payload.token}`,
+            },
+          });
+
+          setCookie("about", profileResponse.data.payload.about, cookieOptions);
+          setCookie("profession", profileResponse.data.payload.profession, cookieOptions);
+          setCookie("address", profileResponse.data.payload.address, cookieOptions);
+          setCookie("phone", profileResponse.data.payload.phone, cookieOptions);
+          setCookie("plan", profileResponse.data.payload.plan, cookieOptions);
+          
+          navigate("/Profile");
+        } else {
+          errorToast(response.data.payload.message);
+        }
+      } catch (error: any) {
+        errorToast(error.response.data.payload.message);
+      }
+    } else {
+      if (
+        usernameState ||
+        confirmPasswordState ||
+        confirmPassword.current.length === 0 ||
+        username.current.length === 0
+      ) {
+        errorToast("Please The Form Correctly");
+        return;
+      }
+
+      try {
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/signup`, {
+          email: email.current,
+          username: username.current,
+          password: password.current,
+        });
+
         if (response.data.success) {
           successToast("Registration successful");
           dispatch(updateToLoginStatus(true));
           navigate("/Auth");
         } else {
-          errorToast(`${response.data.message}`);
+          errorToast(`${response.data.payload.message}`);
         }
-      }
-    } catch (error: any) {
-      if (error.response.status === 501) {
-        errorToast(`Email Address Already Registered`);
-      } else if (error.response.status === 406) {
-        errorToast("Username or Email is too long")
-      } else {
-        errorToast("Sign Up Failed");
+      } catch (error: any) {
+        if (error.response.status === 501) {
+          errorToast("Email Address Already Registered");
+        } else {
+          errorToast("Sign Up Failed");
+        }
       }
     }
   };
 
   return (
-    <form
-      className="flex flex-col justify-center sm:min-w-[27rem] p-12 gap-3 Auth rounded-3xl"
-      onSubmit={toLogin ? handlelogIn : handleSignup}
-    >
+    <form className="flex flex-col justify-center sm:min-w-[27rem] p-12 gap-3 Auth rounded-3xl" onSubmit={handleSubmit}>
       <Link to="../" className="mb-[2rem] flex items-center gap-[0.5rem] hover:gap-[1rem] duration-100 text-[#006FEE]">
         <FaArrowRightLong />
         <p>Home</p>
@@ -229,9 +225,9 @@ const UserAuth = () => {
       <Input
         type="text"
         label="Username"
+        maxLength={50}
         labelPlacement="outside"
         placeholder="Enter your username"
-        isClearable
         className={toLogin ? "hidden" : ""}
         onKeyDown={handleKeyPress}
         isInvalid={usernameState}
@@ -241,9 +237,9 @@ const UserAuth = () => {
       <Input
         type="email"
         label="Email"
+        maxLength={100}
         labelPlacement="outside"
         placeholder="Enter your email"
-        isClearable
         onKeyDown={handleKeyPress}
         isInvalid={emailState}
         errorMessage={emailState ? "Please enter a valid Email" : ""}
@@ -267,6 +263,8 @@ const UserAuth = () => {
         isInvalid={passwordState}
         errorMessage={passwordState ? invalidPasswordMessage : ""}
         onChange={checkPassword}
+        onPaste={(e) => e.preventDefault()}
+        onCopy={(e) => e.preventDefault()}
       />
       <Input
         label="Confirm Password"
@@ -279,6 +277,8 @@ const UserAuth = () => {
         isInvalid={confirmPasswordState}
         errorMessage={confirmPasswordState ? "Passwords do not match" : ""}
         onChange={checkConfirmPassword}
+        onPaste={(e) => e.preventDefault()}
+        onCopy={(e) => e.preventDefault()}
       />
       <p className={toLogin ? "text-xs text-right cursor-pointer" : "hidden"} style={{ color: "#006FEE" }}>
         Forgot Password?

@@ -14,7 +14,7 @@ const QuestionAccordion = (props: QuestionAccordionProps) => {
   const className = "font-['poppins'] " + props.className;
 
   return (
-    <Accordion className={className} isCompact variant={props.varient} >
+    <Accordion className={className} isCompact variant={props.varient}>
       {props.questions.map((queries, index) => (
         <AccordionItem
           key={index}
@@ -26,7 +26,7 @@ const QuestionAccordion = (props: QuestionAccordionProps) => {
             {queries.answer.map((ans, index) => {
               if (ans.bullet) {
                 return (
-                  <div className="flex flex-col gap-[1rem]">
+                  <div className="flex flex-col gap-[1rem]" key={index}>
                     <p>{ans.data.main}</p>
                     <ul className="px-[1rem] flex flex-col gap-[0.5rem]">
                       {ans.data.points.map((point, index) => (
@@ -38,7 +38,7 @@ const QuestionAccordion = (props: QuestionAccordionProps) => {
                   </div>
                 );
               } else {
-                return <p>{ans.data.main}</p>;
+                return <p key={index}>{ans.data.main}</p>;
               }
             })}
           </div>
