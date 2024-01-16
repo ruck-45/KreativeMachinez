@@ -77,7 +77,7 @@ function App() {
           <Route path="/Pricing" element={<Pricing />} />
           <Route path="/Auth" element={<Auth />} />
           <Route path="/Services/*" element={<Services />} />
-          <Route path="/Profile" element={<Profile />} /> 
+          <Route path="/Profile" element={<Profile />} />
           <Route path="/Blog" element={<Blog />} />
           <Route path="/Privacy" element={<Privacy />} />
           <Route path="*" element={<Navigate to="/Home" />} />
