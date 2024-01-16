@@ -67,7 +67,7 @@ const UserAuth = () => {
   const [passwordState, setPasswordState] = useState(false);
   const [confirmPasswordState, setConfirmPasswordState] = useState(false);
   const [usernameState, setUsernameState] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
+  const [rememberMe, setRememberMe] = useState(true);
 
   const handleCheckboxChange = () => {
     setRememberMe(!rememberMe);
@@ -141,7 +141,11 @@ const UserAuth = () => {
       const rememberMeValue = rememberMe
       if (emailValue === "" || passwordValue === "") {
         errorToast("Please fill all fields");
-      } else {
+      } else if (passwordValue.length < 8) {
+        errorToast("Password must be at least 8 characters")
+      } else if (emailValue.length > 100) {
+        errorToast("Email must have less than 100 characters")
+      }else {
         const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, {
           email: emailValue,
           password: passwordValue,
@@ -152,6 +156,7 @@ const UserAuth = () => {
           const expiresDate = new Date(response.data.payload.expires);
           setCookie("token", response.data.payload.token, { expires: expiresDate });
           setCookie("email", emailValue);
+          setCookie("username", response.data.payload.userName);
           setTimeout(() => {
             navigate("/Profile");
           }, 2000);
@@ -160,11 +165,10 @@ const UserAuth = () => {
         }
       }
     } catch (error: any) {
-      console.log("Error", error)
       if (error.response.status === 401) {
-        errorToast(``);
+        errorToast(`${error.response.data.payload.message}`);  
       } else if (error.response.status === 406) {
-        errorToast("Email should have less than 50 character");
+        errorToast("Email should have less than 100 character"); 
       }
     }
   };
@@ -198,10 +202,12 @@ const UserAuth = () => {
         }
       }
     } catch (error: any) {
-      if (error.response.data.message.code === "ER_DUP_ENTRY") {
-        errorToast(`User Already Registered`);
+      if (error.response.status === 501) {
+        errorToast(`Email Address Already Registered`);
       } else if (error.response.status === 406) {
-        errorToast("Username should have than 50 character and Email should have less than 50 character")
+        errorToast("Username or Email is too long")
+      } else {
+        errorToast("Sign Up Failed");
       }
     }
   };

@@ -33,7 +33,6 @@ const EmailForm = () => {
          `${process.env.REACT_APP_PUBLIC_KEY}`
        );
        emailSent();
-       console.log("send");
      } else {
        formNotFill();
      }
@@ -48,7 +47,6 @@ const EmailForm = () => {
     setEmailState(event.currentTarget.value.length);
 
     const validity = email.current.match(emailRe);
-    console.log("Validity", validity)
     if (validity) {
       setEmailValidity(false);
     } else {

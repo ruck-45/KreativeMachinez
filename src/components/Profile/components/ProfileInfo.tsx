@@ -1,6 +1,6 @@
 // Dependencies
 import { Chip, Listbox, ListboxItem, Textarea } from "@nextui-org/react";
-import { useState,  } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import {
   Button,
@@ -12,34 +12,67 @@ import {
   useDisclosure,
   Input,
 } from "@nextui-org/react";
+import toast, { Toaster, ToastPosition } from "react-hot-toast";
 // Local Files
 import "./ProfileInfo.css";
 import profilepic from "../../../globalAssets/profilepic.jpg";
 import { getCookie } from "../../../cookies/cookies";
 
+const toastSetting: {
+  position: ToastPosition;
+} = { position: "top-right" };
+
+const successToast = (message: string): void => {
+  toast.success(message, toastSetting);
+};
+const errorToast = (message: string): void => {
+  toast.error(message, toastSetting);
+};
+
 const ProfileInfo = () => {
   const token = getCookie("token")
   const userEmail = getCookie("email")
-  const getProfile = async () => {
-    try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/profile`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      console.log("Update successful:", response.data);
-    } catch (error) {
-      console.error("Update failed:", error);
-    }
-  };
-  getProfile()
+  const username = getCookie("username")
+  const [about, setAbout] = useState("");
+  const [profession, setProfession] = useState("");
+  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
+  const [plan, setPlan] = useState("");
+  useEffect(() => {
+    const getProfile = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/profile`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setAbout(response.data.payload.about);
+        setProfession(response.data.payload.profession);
+        setAddress(response.data.payload.address);
+        setPhone(response.data.payload.phone);
+        setPlan(response.data.payload.plan); 
+      } catch (error) {
+        console.error("Update failed:", error);
+      }
+    };
+    getProfile()
+  }, [])
+
+  useEffect(() => {
+    setFormData({
+      phone: phone,
+      address: address,
+      about: about,
+      profession: profession,
+    });
+  }, [phone, address, about, profession]);
+
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [formData, setFormData] = useState({
     phone: "", 
     address: "",
     about: "",
     profession: "", 
-    token: token
   });
 
   const handleChange = (e: any) => {
@@ -51,12 +84,17 @@ const ProfileInfo = () => {
   };
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-
     try {
-      const response = await axios.put(`${process.env.REACT_APP_API_URL}/profile`, formData);
-      console.log("Update successful:", response.data);
+      const response = await axios.put(`${process.env.REACT_APP_API_URL}/profile`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response.data.success) {
+        successToast("Profile updated successfully")
+      }
     } catch (error) {
-      console.error("Update failed:", error);
+      errorToast("An error occurred while updating profile")
     }
   };
 
@@ -75,8 +113,8 @@ const ProfileInfo = () => {
               <Chip color="success" variant="dot" className="my-4">
                 Online
               </Chip>
-              <p className="text-md font-bold">username</p>
-              <p className="flex items-center text-small text-default-500">Your profession </p>
+              <p className="text-md font-bold">{ username || `username`}</p>
+              <p className="flex items-center text-small text-default-500">{profession || "Your profession"}</p>
             </div>
           </div>
           <div>
@@ -84,15 +122,15 @@ const ProfileInfo = () => {
               <span style={{ display: "flex", alignItems: "center" }}>About </span>
             </p>
             <p className="text-default-500 text-small">
-              Share a bit more about yourself!! Whether it's your hobbies, interests, or experiences, we'd love to get
-              to know you better and understand what makes you unique.
+              {about ||
+                `Share a bit more about yourself!! Whether it's your hobbies, interests, or experiences, we'd love to get to know you better and understand what makes you unique.`}
             </p>
           </div>
           <div className="">
             <p className="text-md font-bold">
               <span style={{ display: "flex", alignItems: "center" }}>Address </span>
             </p>
-            <p className="text-default-500 text-small">Please Provide us with your address</p>
+            <p className="text-default-500 text-small">{address || `Please Provide us with your address`}</p>
           </div>
         </div>
       </div>
@@ -153,11 +191,12 @@ const ProfileInfo = () => {
           )}
         </ModalContent>
       </Modal>
+      < Toaster/>
       <Listbox aria-label="Actions" className="max-w-[350px] bg-[#28292b] rounded-3xl p-[2rem] dark">
         <ListboxItem showDivider key="Username">
           <div className="flex justify-between h-[3.3rem] items-center">
             <p className="flex items-center text-white font-semibold">Username </p>
-            <p className="text-[#F31260] font-bold">username</p>
+            <p className="text-[#F31260] font-bold">{username || `username`}</p>
           </div>
         </ListboxItem>
         <ListboxItem showDivider key="Email">
@@ -169,13 +208,13 @@ const ProfileInfo = () => {
         <ListboxItem showDivider key="Phone">
           <div className="flex justify-between h-[3.3rem] items-center">
             <p className="flex items-center text-white font-semibold">Phone </p>
-            <p className="text-[#F31260] font-bold">+91-xxxxxxxxxx</p>
+            <p className="text-[#F31260] font-bold">{phone || `+91-xxxxxxxxxx`}</p>
           </div>
         </ListboxItem>
         <ListboxItem key="Package">
           <div className="flex justify-between h-[3.3rem] items-center">
             <p className="text-white font-semibold">Package</p>
-            <p className="text-[#F31260] font-bold">None</p>
+            <p className="text-[#F31260] font-bold">{plan || `None`}</p>
           </div>
         </ListboxItem>
       </Listbox>

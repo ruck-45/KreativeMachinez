@@ -23,7 +23,6 @@ const ServiceImage = (props: ServiceImageProps) => {
 
   const [scaleUp, setScaleUp] = useState(false);
   const handleClick = () => {
-    console.log(props.state)
     navigate("/Services/Individual", { state: props.state });
   }
   return (
