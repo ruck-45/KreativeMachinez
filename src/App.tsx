@@ -12,7 +12,7 @@ import Services from "./components/Services/Services";
 import Auth from "./components/Auth/Auth";
 import Profile from "./components/Profile/Profile";
 import Blog from "./components/Blog/Blog";
-import Privacy from "./components/Privacy/subComponents/Privacy";
+import Privacy from "./components/Privacy/Privacy";
 import Footer from "./globalSubComponents/Footer";
 import FrequentQuestion from "./globalSubComponents/FrequentQuestion";
 import CTA from "./globalSubComponents/CTA";
@@ -61,9 +61,9 @@ function App() {
       break;
 
     case "Privacy":
-        className = "bg-no-repeat bg-top";
-        background += `,url(${PrivacyHero})`;
-        break;  
+      className = "bg-no-repeat bg-top";
+      background += `,url(${PrivacyHero})`;
+      break;  
 
     case "Profile":
       className = "bg-no-repeat bg-top";

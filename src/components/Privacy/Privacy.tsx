@@ -3,9 +3,9 @@ import { useDispatch } from "react-redux";
 import { Accordion, AccordionItem,  Divider } from "@nextui-org/react";
 
 // Local Files
-import { updateTab } from "../../../store/curTabSlice";
-import { scrollTop } from "../../../utils/controllers";
-import Intro from "../../../globalSubComponents/Intro";
+import { updateTab } from "../../store/curTabSlice";
+import { scrollTop } from "../../utils/controllers";
+import Intro from "../../globalSubComponents/Intro";
 
 
 
@@ -117,7 +117,7 @@ const conditionsTravel = [
 
 
 
-const Privacy = () => {
+  const Privacy = () => {
   const dispatch = useDispatch();
   dispatch(updateTab("Privacy"));
   scrollTop();
@@ -130,8 +130,7 @@ const Privacy = () => {
         redHead="Policy "
         caption="This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You. We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy. "
         />
-    </div>
-    
+    </div>  
     <div className=" text-lg bg-[#e9ecef] rounded-md md:p-[6rem] md:py-[5rem] px-[1rem] py-[5rem] ">
         <h1 className=" font-['DM_Serif_Display'] text-[1.8rem] font-semibold text-default-800">Interpretation and Definitions</h1>
         <h1 className="font-['DM_Serif_Display'] text-[1.3rem] font-semibold text-default-800 mt-4">Interpretation</h1>
@@ -154,10 +153,8 @@ const Privacy = () => {
             ))}
           </AccordionItem>
         </Accordion>
-
         <h1 className=" font-['DM_Serif_Display'] text-[1.8rem] font-semibold text-default-800">Collecting and Using Your Personal Data</h1>
         <h1 className="font-['DM_Serif_Display'] text-[1.3rem] font-semibold text-default-800 mt-4">Types of Data Collected </h1>
-
         <Accordion className="mt-[1rem]  " >
           <AccordionItem 
            className="text-justify text-default-800 text-[1.2rem] sm:text-md font-['poppins']"
@@ -260,7 +257,6 @@ const Privacy = () => {
             </p>
           </AccordionItem>
         </Accordion>
-
         <h1 className="font-['DM_Serif_Display'] text-[1.3rem] font-semibold text-default-800">Use of Your Personal Data</h1>
         <Accordion className="mt-[1rem]  " >
           <AccordionItem
@@ -401,11 +397,7 @@ const Privacy = () => {
         </p>
         <li className=" mx-[1rem] text-sm ">By visiting this page on our website: https://www.hmsfreedom.com/Contact</li>
         </div>
-
-
-    </>
-
-    
+    </>    
   )
 };
 
