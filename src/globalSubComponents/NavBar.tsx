@@ -100,16 +100,14 @@ const NavBar = () => {
             PRICING
           </Link>
         </NavbarItem>
-        {isLoggedIn ? (
-          <NavbarItem>
-            <Link
-              to="../Blog"
-              className={curTab === "Blog" ? "active navActive flex flex-col px-[1rem]" : "notActive px-[1rem]"}
-            >
-              BLOG
-            </Link>
-          </NavbarItem>
-        ) : null}
+        <NavbarItem>
+          <Link
+            to="../Blog"
+            className={curTab === "Blog" ? "active navActive flex flex-col px-[1rem]" : "notActive px-[1rem]"}
+          >
+            BLOG
+          </Link>
+        </NavbarItem>
       </NavbarContent>
       {isLoggedIn ? (
         <NavbarContent justify="end">
@@ -146,24 +144,20 @@ const NavBar = () => {
 
       <NavbarMenu className="mt-[1rem] bg-[rgba(0,0,0,0.4)] z-[200]">
         {menuItems.map((item, index) => {
-          if (isLoggedIn || index !== 5) {
-            return (
-              <NavbarMenuItem key={`${item}-${index}`}>
-                <Link
-                  className={curTab === item ? "active" : "notActive"}
-                  to={index === 6 ? "../Auth" : `../${item}`}
-                  onClick={() => {
-                    dispatch(updateNavStatus(!navOpenStatus));
-                    dispatch(updateToLoginStatus(item === "Log In" ? true : false));
-                  }}
-                >
-                  {item}
-                </Link>
-              </NavbarMenuItem>
-            );
-          } else {
-            return null;
-          }
+          return (
+            <NavbarMenuItem key={`${item}-${index}`}>
+              <Link
+                className={curTab === item ? "active" : "notActive"}
+                to={index === 6 ? "../Auth" : `../${item}`}
+                onClick={() => {
+                  dispatch(updateNavStatus(!navOpenStatus));
+                  dispatch(updateToLoginStatus(item === "Log In" ? true : false));
+                }}
+              >
+                {item}
+              </Link>
+            </NavbarMenuItem>
+          );
         })}
       </NavbarMenu>
     </Navbar>

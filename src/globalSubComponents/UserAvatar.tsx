@@ -22,6 +22,7 @@ const UserAvatar = () => {
     removeCookie("about");
     removeCookie("email");
     removeCookie("expiration");
+    removeCookie("image");
     
     dispatch(updateToLoginStatus(true));
     navigate("/Auth");

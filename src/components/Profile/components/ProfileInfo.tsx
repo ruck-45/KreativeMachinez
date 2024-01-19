@@ -11,8 +11,12 @@ import {
   ModalFooter,
   useDisclosure,
   Input,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
 } from "@nextui-org/react";
 import toast, { Toaster, ToastPosition } from "react-hot-toast";
+import { FaCloudUploadAlt } from "react-icons/fa";
 
 // Local Files
 import "./ProfileInfo.css";
@@ -46,10 +50,12 @@ const ProfileInfo = () => {
   const address = getCookie("address") || "please provide us with your Address";
   const phone = getCookie("phone") || "None";
   const plan = getCookie("plan") || "None";
+  const image = getCookie("image") || "None";
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [formData, setFormData] = useState({ phone, address, about, profession });
   const [renderer, setRenderer] = useState(true);
+  const [userProfilePic, setUserProfilePic] = useState<File | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -93,13 +99,80 @@ const ProfileInfo = () => {
     }
   };
 
+  const handleFileUpload = async () => {
+    if (userProfilePic === null) {
+      return errorToast("Please Upload File Correctly");
+    }
+
+    if (userProfilePic.size > 1572864) {
+      return errorToast("File is Bigger Than 1.5 MB");
+    }
+
+    const userProfilePicData = new FormData();
+    userProfilePicData.append("image", userProfilePic);
+
+    try {
+      const response = await axios.put(`${apiUrl}/users/profile/images`, userProfilePicData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          imageId: image,
+        },
+      });
+
+      if (response.data.success) {
+        successToast("Profile Picture Updated Successfully");
+        window.location.reload();
+      } else {
+        errorToast("Profile Picture Failed to Update");
+      }
+    } catch {
+      errorToast("Profile Picture Failed to Update");
+    }
+  };
+
+  const imageUrl = `${apiUrl}/users/profileImages/${image}.png`;
+  const imageExists = (url: string) => {
+    const img = new Image();
+    img.src = url;
+    return img.complete || img.height !== 0;
+  };
+
   return (
     <div className="flex justify-between gap-[2rem] items-center UserStat">
       <div className="flex md:gap-[2rem] items-center md:justify-evenly w-full flex-col md:flex-row">
         <div
-          className="h-[22rem] w-[22rem] rounded-3xl profilePic"
-          style={{ backgroundImage: `url(${profilepic})` }}
-        ></div>
+          className="h-[22rem] w-[22rem] rounded-3xl profilePic relative"
+          style={{ backgroundImage: `url(${imageExists(imageUrl) ? imageUrl : profilepic})` }}
+        >
+          <Popover placement="top">
+            <PopoverTrigger>
+              <Button
+                isIconOnly
+                variant="solid"
+                radius="full"
+                className="w-[3rem] h-[3rem] text-[1.5rem] absolute bottom-2 right-2"
+              >
+                <FaCloudUploadAlt />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="p-0">
+              <form className="p-[1rem] flex flex-col gap-[1rem]">
+                <p>Please Upload .png file</p>
+                <input
+                  type="file"
+                  id="myFile"
+                  name="profilepic"
+                  accept=".png"
+                  className="p-[1rem] bg-[#E4E4E7] rounded-xl"
+                  onChange={(e) => setUserProfilePic(e.target.files ? e.target.files[0] : null)}
+                />
+                <Button color="danger" variant="ghost" radius="full" onClick={handleFileUpload}>
+                  Update
+                </Button>
+              </form>
+            </PopoverContent>
+          </Popover>
+        </div>
 
         <div className="max-w-[350px] flex flex-col gap-[1rem] min-w-[300px]">
           <div className="flex gap-3">

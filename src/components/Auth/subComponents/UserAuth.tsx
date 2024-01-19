@@ -173,6 +173,7 @@ const UserAuth = () => {
           setCookie("address", profileResponse.data.payload.address, cookieOptions);
           setCookie("phone", profileResponse.data.payload.phone, cookieOptions);
           setCookie("plan", profileResponse.data.payload.plan, cookieOptions);
+          setCookie("image", profileResponse.data.payload.image, cookieOptions);
 
           navigate("/Profile");
         } else {

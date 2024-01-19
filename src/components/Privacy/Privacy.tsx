@@ -1,13 +1,11 @@
 // Dependencies
 import { useDispatch } from "react-redux";
-import { Accordion, AccordionItem,  Divider } from "@nextui-org/react";
+import { Accordion, AccordionItem } from "@nextui-org/react";
 
 // Local Files
 import { updateTab } from "../../store/curTabSlice";
 import { scrollTop } from "../../utils/controllers";
 import Intro from "../../globalSubComponents/Intro";
-
-
 
 const definations = [
   `Account means a unique account created for You to access our Service or parts of our Service`,
@@ -65,74 +63,24 @@ const legalRequirements = [
   "Protect against legal liability",
 ];
 
-const bookingProcedures = [
-  "Request for package bookings to be confirmed by written only",
-  "All booking correspondence to be made by written only",
-  "No. verbal communication to be considered, if any dispute occurs",
-  "Booking to be confirmed only after getting 50% of the total package cost",
-  "Rest of the payment to be cleared before starting the service",
-];
-
-const Cancellationterms = [
-  "In any case of cancellation of booking, it must inform in advance to BVL by writing",
-  "Cancellation will be effective only on the date and time of receipt of cancellation letter.",
-  "Once the booking is done and advance paid, minimum 10% of the package cost to be deducted",
-  "If postponed or preponed of the service date made on or before 30 days, only 5% of the package cost to be deducted and cost for the desired date of the service to be calculated on the basis of Hotel Cost and Transportation Cost of that particular time period",
-  "30 days before of service starts, 20% of the total package cost will be deducted",
-  "From 29 days up to 15 days before of service 40 % of total cost will be deducted",
-  "From 14 days up to 10 days before of service 50 % of total cost will be deducted",
-  "From 09 days up to 06 days before of service 60 % of total cost will be deducted",
-  "From 05 days up to 48hrs before of service 90 % of total cost will be deducted",
-  "Between 48 hours to the day of service starts 100 % of total cost will be deducted",
-  "In case of NO SHOW, 100% of the total coast will be deducted",
-];
-
-const conditionsTravel = [
-  `The client will have to strictly follow the Tour Program. There shall be no refund, if the client fails to join the group at the commencement of the tour, or joins the group later or leaves the group before tour ending. It shall be noted that for all purposes, it shall be the responsibility of the client to reach the place of commencement of the tour and register with the representative of the company at the appointed place, date and time`,
-  `In case where a client along with his family is compelled to discontinue the tour due to any reason whatsoever including illness, death or loss of any
-    travel documents, no claim shall be entertained for refund of unutilized services. Even if a client is unable to reach the place of commencement of
-    the tour due to any reason whatsoever including loss of baggage or loss of travel documents, his booking shall be treated as "no show" on the tour and 100% cancellation charges will be levied.`,
-  `If a client avails pre - tour services or part thereof, or the air tickets (if booked under any offer) but fails to join the group for the main tour at the
-    appointed place, or cancels the tour after using the air tickets or pre - tour arrangements or part thereof, it shall be treated as "no show" and there
-    will be no refund whatsoever for the unutilized pre-tour or main tour services.`,
-  `The company reserves the right to withdraw tour membership of any client whose behaviour is deemed likely to affect the smooth operation of the
-    tour or adversely affect the enjoyment or safety of other passengers and the Company shall be under no liability to any such person.`,
-  ` The immunities provided under this contract shall be available to THE COMPANY's employees, directors, managers, including, Employees and
-    Agents but not to the Independent Contractors selected by the company.`,
-  `Each of these conditions shall be severable from the other and if any provision be invalid, illegal or unenforceable, the remaining provisions shall
-    nevertheless have full force and effect. No liability on the part of THE COMPANY arising in any way out of the Contract in respect of any tour,
-    holiday, excursion facilities shall exceed the total amount paid or agreed to be paid for the tour holiday, and shall in no case include any
-    consequential, incidental loss or additional expense whatsoever.`,
-  `It is a condition of Booking that the client takes out a Holiday Insurance – Client may procure travel insurance (optional) at their own cost.`,
-  `The prices quoted in our website / brochure have been calculated at the rate prevailing at the time of publishing / printing. THE COMPANY reserves
-    the right to amend the prices published in this brochure in case of fuel costs, special/high season charge levied by the suppliers, hike in the
-    airline/rail charges before the date of departure and to surcharge accordingly. The Client must pay for all such increases in price in full before the
-    departure`,
-  `If no suit/action is brought against THE COMPANY within 7 days of the last day of the tour, THE COMPANY shall be discharged from all liabilities
-    under/or arising out of this contract and the client shall be deemed to have relinquished/abandoned all his rights under or arising from this contract.`,
-  `In case of publication of any travel scheme offering any discount or benefit by THE COMPANY, we shall have the sole right to withdraw such a
-    scheme or discount at any time unless a specific assurance of the contrary is published.`,
-];
-
-
-
-
-  const Privacy = () => {
+const Privacy = () => {
   const dispatch = useDispatch();
   dispatch(updateTab("Privacy"));
   scrollTop();
 
-  return(<>
-    <div>
-      <Intro
-        
-        normalHead=" Privacy"
-        redHead="Policy "
-        caption="This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You. We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy. "
+  return (
+    <>
+      <div>
+        <Intro
+          normalHead=" Privacy"
+          redHead="Policy "
+          caption="This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You. We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy. "
         />
-    </div>  
-    <div className=" text-lg bg-[#e9ecef] rounded-md md:p-[6rem] md:py-[5rem] px-[1rem] py-[5rem] ">
-        <h1 className=" font-['DM_Serif_Display'] text-[1.8rem] font-semibold text-default-800">Interpretation and Definitions</h1>
+      </div>
+      <div className=" text-lg bg-[#e9ecef] rounded-md md:p-[6rem] md:py-[5rem] px-[1rem] py-[5rem] ">
+        <h1 className=" font-['DM_Serif_Display'] text-[1.8rem] font-semibold text-default-800">
+          Interpretation and Definitions
+        </h1>
         <h1 className="font-['DM_Serif_Display'] text-[1.3rem] font-semibold text-default-800 mt-4">Interpretation</h1>
         <p className="text-justify text-default-800 text-[0.95rem] sm:text-md  font-['poppins']">
           The words of which the initial letter is capitalized have meanings defined under the following conditions. The
@@ -153,12 +101,18 @@ const conditionsTravel = [
             ))}
           </AccordionItem>
         </Accordion>
-        <h1 className=" font-['DM_Serif_Display'] text-[1.8rem] font-semibold text-default-800">Collecting and Using Your Personal Data</h1>
-        <h1 className="font-['DM_Serif_Display'] text-[1.3rem] font-semibold text-default-800 mt-4">Types of Data Collected </h1>
-        <Accordion className="mt-[1rem]  " >
-          <AccordionItem 
-           className="text-justify text-default-800 text-[1.2rem] sm:text-md font-['poppins']"
-          title="Personal Data" subtitle={<span>Press to expand</span>}>
+        <h1 className=" font-['DM_Serif_Display'] text-[1.8rem] font-semibold text-default-800">
+          Collecting and Using Your Personal Data
+        </h1>
+        <h1 className="font-['DM_Serif_Display'] text-[1.3rem] font-semibold text-default-800 mt-4">
+          Types of Data Collected{" "}
+        </h1>
+        <Accordion className="mt-[1rem]  ">
+          <AccordionItem
+            className="text-justify text-default-800 text-[1.2rem] sm:text-md font-['poppins']"
+            title="Personal Data"
+            subtitle={<span>Press to expand</span>}
+          >
             <p className=" text-justify text-default-800 text-[0.95rem] sm:text-md">
               While using Our Service, We may ask You to provide Us with certain personally identifiable information
               that can be used to contact or identify You. Personally identifiable information may include, but is not
@@ -170,10 +124,14 @@ const conditionsTravel = [
               </li>
             ))}
           </AccordionItem>
-          <AccordionItem 
-           className="text-justify text-default-800 text-[1.2rem] sm:text-md font-['poppins']"
-          title="Usage Data" subtitle={<span>Press to expand</span>}>
-            <p className=" text-justify text-default-800 text-[0.95rem] sm:text-md">Usage Data is collected automatically when using the Service</p>
+          <AccordionItem
+            className="text-justify text-default-800 text-[1.2rem] sm:text-md font-['poppins']"
+            title="Usage Data"
+            subtitle={<span>Press to expand</span>}
+          >
+            <p className=" text-justify text-default-800 text-[0.95rem] sm:text-md">
+              Usage Data is collected automatically when using the Service
+            </p>
             <p className=" text-justify text-default-800 text-[0.95rem] sm:text-md">
               Usage Data may include information such as Your Device's Internet Protocol address (e.g. IP address),
               browser type, browser version, the pages of our Service that You visit, the time and date of Your visit,
@@ -190,9 +148,11 @@ const conditionsTravel = [
               the Service by or through a mobile device.
             </p>
           </AccordionItem>
-          <AccordionItem 
-           className="text-justify text-default-800 text-[1.2rem] sm:text-md font-['poppins']"
-          title="Tracking Technologies and Cookies " subtitle={<span>Press to expand</span>}>
+          <AccordionItem
+            className="text-justify text-default-800 text-[1.2rem] sm:text-md font-['poppins']"
+            title="Tracking Technologies and Cookies "
+            subtitle={<span>Press to expand</span>}
+          >
             <p className="text-justify text-default-800 text-[0.95rem] sm:text-md">
               We use Cookies and similar tracking technologies to track the activity on Our Service and store certain
               information. Tracking technologies used are beacons, tags, and scripts to collect and track information
@@ -257,10 +217,12 @@ const conditionsTravel = [
             </p>
           </AccordionItem>
         </Accordion>
-        <h1 className="font-['DM_Serif_Display'] text-[1.3rem] font-semibold text-default-800">Use of Your Personal Data</h1>
-        <Accordion className="mt-[1rem]  " >
+        <h1 className="font-['DM_Serif_Display'] text-[1.3rem] font-semibold text-default-800">
+          Use of Your Personal Data
+        </h1>
+        <Accordion className="mt-[1rem]  ">
           <AccordionItem
-             className="text-justify text-default-800 text-[1.2rem] sm:text-md font-['poppins']"
+            className="text-justify text-default-800 text-[1.2rem] sm:text-md font-['poppins']"
             title="The Company may use Personal Data for the following purposes:"
             subtitle={<span>Press to expand</span>}
           >
@@ -271,7 +233,7 @@ const conditionsTravel = [
             ))}
           </AccordionItem>
           <AccordionItem
-             className="text-justify text-default-800 text-[1.2rem] sm:text-md font-['poppins']"
+            className="text-justify text-default-800 text-[1.2rem] sm:text-md font-['poppins']"
             title="We may share Your personal information in the following situations:"
             subtitle={<span>Press to expand</span>}
           >
@@ -281,9 +243,11 @@ const conditionsTravel = [
               </li>
             ))}
           </AccordionItem>
-          <AccordionItem 
-           className="text-justify text-default-800 text-[1.2rem] sm:text-md font-['poppins']"
-           title=" Retention of Your Personal Data" subtitle={<span>Press to expand</span>}>
+          <AccordionItem
+            className="text-justify text-default-800 text-[1.2rem] sm:text-md font-['poppins']"
+            title=" Retention of Your Personal Data"
+            subtitle={<span>Press to expand</span>}
+          >
             <p className="text-justify text-default-800 text-[0.95rem] sm:text-md">
               The Company will retain Your Personal Data only for as long as is necessary for the purposes set out in
               this Privacy Policy. We will retain and use Your Personal Data to the extent necessary to comply with our
@@ -295,8 +259,10 @@ const conditionsTravel = [
             </p>
           </AccordionItem>
           <AccordionItem
-           className="text-justify text-default-800 text-[1.2rem] sm:text-md font-['poppins']"
-          title="Transfer of Your Personal Data" subtitle={<span>Press to expand</span>}>
+            className="text-justify text-default-800 text-[1.2rem] sm:text-md font-['poppins']"
+            title="Transfer of Your Personal Data"
+            subtitle={<span>Press to expand</span>}
+          >
             <p className="text-justify text-default-800 text-[0.95rem] sm:text-md">
               Your information, including Personal Data, is processed at the Company's operating offices and in any
               other places where the parties involved in the processing are located. It means that this information may
@@ -312,8 +278,10 @@ const conditionsTravel = [
             </p>
           </AccordionItem>
           <AccordionItem
-             className="text-justify text-default-800 text-[1.2rem] sm:text-md font-['poppins']"
-            title="Delete Your Personal Data" subtitle={<span>Press to expand</span>}>
+            className="text-justify text-default-800 text-[1.2rem] sm:text-md font-['poppins']"
+            title="Delete Your Personal Data"
+            subtitle={<span>Press to expand</span>}
+          >
             <p className="text-justify text-default-800 text-[0.95rem] sm:text-md">
               You have the right to delete or request that We assist in deleting the Personal Data that We have
               collected about You.
@@ -328,9 +296,11 @@ const conditionsTravel = [
               lawful basis to do so.
             </p>
           </AccordionItem>
-          <AccordionItem 
-           className="text-justify text-default-800 text-[1.2rem] sm:text-md font-['poppins']"
-          title="Disclosure of Your Personal Data" subtitle={<span>Press to expand</span>}>
+          <AccordionItem
+            className="text-justify text-default-800 text-[1.2rem] sm:text-md font-['poppins']"
+            title="Disclosure of Your Personal Data"
+            subtitle={<span>Press to expand</span>}
+          >
             <h1 className="text-justify text-default-800 text-[0.95rem] sm:text-md">Business Transactions </h1>
             <p className="text-justify text-default-800 text-[0.95rem] sm:text-md">
               If the Company is involved in a merger, acquisition or asset sale, Your Personal Data may be transferred.
@@ -352,9 +322,11 @@ const conditionsTravel = [
               </li>
             ))}
           </AccordionItem>
-          <AccordionItem 
-           className="text-justify text-default-800 text-[1.2rem] sm:text-md font-['poppins']"
-           title="Security of Your Personal Data" subtitle={<span>Press to expand</span>}>
+          <AccordionItem
+            className="text-justify text-default-800 text-[1.2rem] sm:text-md font-['poppins']"
+            title="Security of Your Personal Data"
+            subtitle={<span>Press to expand</span>}
+          >
             <p className="text-justify text-default-800 text-[0.95rem] sm:text-md">
               The security of Your Personal Data is important to Us, but remember that no method of transmission over
               the Internet, or method of electronic storage is 100% secure. While We strive to use commercially
@@ -372,7 +344,9 @@ const conditionsTravel = [
           If We need to rely on consent as a legal basis for processing Your information and Your country requires
           consent from a parent, We may require Your parent's consent before We collect and use that information.
         </p>
-        <h1 className="font-['DM_Serif_Display'] text-[1.3rem] font-semibold text-default-800 mt-4">Links to Other Websites</h1>
+        <h1 className="font-['DM_Serif_Display'] text-[1.3rem] font-semibold text-default-800 mt-4">
+          Links to Other Websites
+        </h1>
         <p className="text-justify text-default-800 text-[0.95rem] sm:text-md">
           Our Service may contain links to other websites that are not operated by Us. If You click on a third party
           link, You will be directed to that third party's site. We strongly advise You to review the Privacy Policy of
@@ -381,7 +355,9 @@ const conditionsTravel = [
           We have no control over and assume no responsibility for the content, privacy policies or practices of any
           third party sites or services.
         </p>
-        <h1 className="font-['DM_Serif_Display'] text-[1.3rem] font-semibold text-default-800 mt-4">Changes to this Privacy Policy</h1>
+        <h1 className="font-['DM_Serif_Display'] text-[1.3rem] font-semibold text-default-800 mt-4">
+          Changes to this Privacy Policy
+        </h1>
         <p className="text-justify text-default-800 text-[0.95rem] sm:text-md">
           We may update Our Privacy Policy from time to time. We will notify You of any changes by posting the new
           Privacy Policy on this page.
@@ -395,10 +371,12 @@ const conditionsTravel = [
         <p className="text-justify text-default-800 text-[0.95rem] sm:text-md">
           If you have any questions about this Privacy Policy, You can contact us:
         </p>
-        <li className=" mx-[1rem] text-sm ">By visiting this page on our website: https://www.hmsfreedom.com/Contact</li>
-        </div>
-    </>    
-  )
+        <li className=" mx-[1rem] text-sm ">
+          By visiting this page on our website: https://www.hmsfreedom.com/Contact
+        </li>
+      </div>
+    </>
+  );
 };
 
 export default Privacy;
