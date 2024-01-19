@@ -31,6 +31,11 @@ const errorToast = (message: string): void => {
 };
 
 const ProfileInfo = () => {
+  let apiUrl = process.env.REACT_APP_API_URL;
+  if (process.env.NODE_ENV === "development") {
+    apiUrl = process.env.REACT_APP_DEV_API_URL;
+  }
+
   const token = getCookie("token");
   const userEmail = getCookie("email");
   const username = getCookie("username");
@@ -57,13 +62,13 @@ const ProfileInfo = () => {
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     try {
-      const response = await axios.put(`${process.env.REACT_APP_API_URL}/profile`, formData, {
+      const response = await axios.put(`${apiUrl}/users/profile`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       if (response.data.success) {
-        const profileResponse = await axios.get(`${process.env.REACT_APP_API_URL}/profile`, {
+        const profileResponse = await axios.get(`${apiUrl}/users/profile`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

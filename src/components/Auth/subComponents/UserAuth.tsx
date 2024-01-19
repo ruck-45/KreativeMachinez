@@ -43,6 +43,11 @@ const errorToast = (message: string): void => {
 };
 
 const UserAuth = () => {
+  let apiUrl = process.env.REACT_APP_API_URL;
+  if (process.env.NODE_ENV === "development") {
+    apiUrl = process.env.REACT_APP_DEV_API_URL;
+  }
+
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
 
@@ -143,7 +148,7 @@ const UserAuth = () => {
 
     if (toLogin) {
       try {
-        const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, {
+        const response = await axios.post(`${apiUrl}/users/login`, {
           email: email.current,
           password: password.current,
           remember: rememberMe,
@@ -157,7 +162,7 @@ const UserAuth = () => {
           setCookie("username", response.data.payload.userName, cookieOptions);
           setCookie("expiration", response.data.payload.expires, cookieOptions);
 
-          const profileResponse = await axios.get(`${process.env.REACT_APP_API_URL}/profile`, {
+          const profileResponse = await axios.get(`${apiUrl}/users/profile`, {
             headers: {
               Authorization: `Bearer ${response.data.payload.token}`,
             },
@@ -168,7 +173,7 @@ const UserAuth = () => {
           setCookie("address", profileResponse.data.payload.address, cookieOptions);
           setCookie("phone", profileResponse.data.payload.phone, cookieOptions);
           setCookie("plan", profileResponse.data.payload.plan, cookieOptions);
-          
+
           navigate("/Profile");
         } else {
           errorToast(response.data.payload.message);
@@ -188,7 +193,7 @@ const UserAuth = () => {
       }
 
       try {
-        const response = await axios.post(`${process.env.REACT_APP_API_URL}/signup`, {
+        const response = await axios.post(`${apiUrl}/users/signup`, {
           email: email.current,
           username: username.current,
           password: password.current,
