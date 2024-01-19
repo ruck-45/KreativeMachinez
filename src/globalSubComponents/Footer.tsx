@@ -67,6 +67,8 @@ const Footer = () => {
             your brands, we work with in-house specialists, industry partners and technology leaders to push the
             boundaries of creativity and put your brand ahead of the competition.
           </p>
+
+          <Link to='/Privacy' className="text-blue-400">Privacy & Policy</Link>
           <div className="flex text-[1.8rem] gap-[1rem]">
             <a href="https://www.facebook.com/profile.php?id=61554936182745" target="_blank" rel="noreferrer">
               <SiFacebook className="mt-[0.4rem] cursor-pointer hover:scale-105" />
