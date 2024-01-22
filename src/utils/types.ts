@@ -8,3 +8,11 @@ export type questionPattern = {
     bullet: boolean;
   }[];
 }[];
+
+export type blogsType = {
+  blogId: string;
+  created_at: Date;
+  image: string;
+  summary: string;
+  title: string;
+}[];

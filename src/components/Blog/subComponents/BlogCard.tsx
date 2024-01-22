@@ -3,6 +3,8 @@ import { Card, CardBody, CardFooter } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 
 type BlogCardProps = {
+  blogId?: string;
+  createdAt?: string;
   thumbnail: string;
   title: string;
   summary: string;
