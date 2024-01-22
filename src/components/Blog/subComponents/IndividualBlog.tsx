@@ -41,9 +41,7 @@ const IndividualBlog = () => {
   useLayoutEffect(() => {
     const getBlogContent = async () => {
       try {
-        const response: AxiosResponse<any> = await axios.get(`${apiUrl}/blogs/blog`, {
-          params: { id: blogId },
-        });
+        const response: AxiosResponse<any> = await axios.get(`${apiUrl}/blogs/${blogId}`);
 
         setContent(response.data.payload.result[0]['content'])
       } catch (error) {

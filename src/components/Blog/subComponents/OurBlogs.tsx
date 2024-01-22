@@ -30,7 +30,7 @@ const OurBlogs = () => {
         const start = (currentPage - 1) * pageSize ;
         const end = currentPage * pageSize;
         console.log(start, end);
-        const response: AxiosResponse<any> = await axios.get(`${apiUrl}/blogs/ourBlogs`, {
+        const response: AxiosResponse<any> = await axios.get(`${apiUrl}/blogs/getBlogs`, {
           params: { start, end },
         });
 
