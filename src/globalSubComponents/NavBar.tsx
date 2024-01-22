@@ -25,6 +25,7 @@ const menuItems = ["Home", "Services", "About", "Contact", "Pricing", "Blog", "L
 
 const NavBar = () => {
   const isLoggedIn = getCookie("token") ? true : false;
+  const isEmployee = getCookie("isEmployee") ? true : false;
   const curTab = useSelector((state: RootState) => state.curTab.value);
   const navOpenStatus = useSelector((state: RootState) => state.navOpenStatus.value);
   const dispatch = useDispatch();
