@@ -2,54 +2,153 @@
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { FaArrowRightLong } from "react-icons/fa6";
-import { scrollTop } from "../../../utils/controllers";
 import { useLayoutEffect, useState } from "react";
-import { AxiosResponse } from "axios";
 import axios from "axios";
 
-// Local Files
+const getFormattedDate = (cDate: string) => {
+  const date = new Date(cDate);
+
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${year}/${month}/${day}`;
+};
 
 const IndividualBlog = () => {
-  scrollTop();
   let apiUrl = process.env.REACT_APP_API_URL;
   if (process.env.NODE_ENV === "development") {
     apiUrl = process.env.REACT_APP_DEV_API_URL;
   }
+
   const location = useLocation();
   let thumbnail = "";
-  let summary = "";
   let blogId = "";
   let title = "";
   let createdAt = "";
+
   if (location.state) {
     thumbnail = location.state.thumbnail;
-    summary = location.state.summary;
     title = location.state.title;
     blogId = location.state.blogId;
     createdAt = location.state.createdAt;
   }
-  console.log(createdAt)
-  const [content, setContent] = useState("");
-  const date = new Date(createdAt);
 
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
-  const day = String(date.getDate()).padStart(2, "0");
-
-  const formattedDate = `${year}/${month}/${day}`;
+  const [content, setContent] = useState<any[]>([]);
+  const formattedDate = getFormattedDate(createdAt);
 
   useLayoutEffect(() => {
     const getBlogContent = async () => {
       try {
-        const response: AxiosResponse<any> = await axios.get(`${apiUrl}/blogs/${blogId}`);
+        const response = await axios.get(`${apiUrl}/blogs/${blogId}`);
 
-        setContent(response.data.payload.result[0]['content'])
+        if (!response.data.success) {
+          console.log("blog Not Found");
+        } else {
+          setContent(JSON.parse(response.data.payload.result));
+        }
       } catch (error) {
-        console.log(error)
+        console.log("Blog Not Found");
+      }
+    };
+
+    getBlogContent();
+  }, [apiUrl, blogId]);
+
+  const singleStyled = (text: string, style: any) => {
+    const left = text.slice(0, style.offset);
+    const styledComp = text.slice(style.offset, style.offset + style.length + 1);
+    const right = text.slice(style.offset + style.length);
+    const className = style.style === "BOLD" ? "font-bold" : "italic";
+
+    return (
+      <p>
+        {left}
+        {<span className={className}>{styledComp}</span>}
+        {right}
+      </p>
+    );
+  };
+
+  const getCurStatus = (pos: number, bold: number[][], blength: number, italic: number[][], ilength: number) => {
+    let res = "";
+    if (pos >= bold[0][0] && pos < bold[blength - 1][1]) {
+      for (const value of bold) {
+        if (pos >= value[0] && pos < value[1]) {
+          res += "B";
+          break;
+        }
       }
     }
-    getBlogContent();
-  }, [blogId, apiUrl])
+
+    if (pos >= italic[0][0] && pos < italic[ilength - 1][1]) {
+      for (const value of italic) {
+        if (pos >= value[0] && pos < value[1]) {
+          res += "I";
+          break;
+        }
+      }
+    }
+
+    return res.split("").sort().join("");
+  };
+
+  const getClassname = (status: string) => {
+    let res = "";
+    if (status.includes("B")) {
+      res += " font-bold ";
+    }
+
+    if (status.includes("I")) {
+      res += " italic ";
+    }
+
+    return res;
+  };
+
+  const multistyledStyled = (text: string, style: any) => {
+    let bold = [];
+    let italic = [];
+    const length = text.length;
+
+    for (const value of style) {
+      if (value.style === "BOLD") {
+        bold.push([value.offset, value.offset + value.length + 1]);
+      } else {
+        italic.push([value.offset, value.offset + value.length + 1]);
+      }
+    }
+
+    bold = bold.sort((a, b) => a[0] - b[0]);
+    italic = italic.sort((a, b) => a[0] - b[0]);
+    const blength = bold.length;
+    const ilength = italic.length;
+
+    const elements = [];
+    let cur = "";
+    let status = "";
+
+    for (let i = 0; i < length; i++) {
+      const curStatus = getCurStatus(i, bold, blength, italic, ilength);
+      if (curStatus === status) {
+        cur += text[i];
+      } else {
+        const cn = getClassname(status);
+        const htmEle = <span className={cn}>{cur}</span>;
+        elements.push(htmEle);
+        cur = text[i];
+        status = curStatus;
+      }
+    }
+
+    const cn = getClassname(status);
+    const htmEle = <span className={cn}>{cur}</span>;
+    elements.push(htmEle);
+
+    const finalEle = <p>{elements.map((data) => data)}</p>;
+
+    return finalEle;
+  };
 
   return (
     <div className="px-[5%] py-[5rem] bg-[#e9ecef]">
@@ -74,13 +173,29 @@ const IndividualBlog = () => {
               <h1 className="text-xl font-bold">{title}</h1>
               <p className="text-default-500 text-sm">Created At : {formattedDate}</p>
             </div>
-            <div className="flex flex-col gap-[1rem]">
-              {content.split(`\n`).map((paragraph, index) => (
-                <p key={index} className="text-default-500">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
+            {content.length === 0 ? (
+              <div className="w-full h-[15rem] flex justify-center items-center">
+                <p className="font-bold text-default-300 text-4xl">Content Not Found</p>
+              </div>
+            ) : (
+              <div className="flex flex-col gap-[1.5rem]">
+                {content.map((data, index) => {
+                  let html = <></>;
+                  if (data.style.length === 0) {
+                    html = <span>{data.text}</span>;
+                  } else if (data.style.length === 1) {
+                    html = singleStyled(data.text, data.style[0]);
+                  } else {
+                    html = multistyledStyled(data.text, data.style);
+                  }
+
+                  if (data.isListItem) {
+                    html = <li>{html}</li>;
+                  }
+                  return html;
+                })}
+              </div>
+            )}
           </div>
         </div>
       </div>

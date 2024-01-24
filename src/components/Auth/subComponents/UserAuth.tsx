@@ -160,6 +160,7 @@ const UserAuth = () => {
           setCookie("username", response.data.payload.userName, cookieOptions);
           setCookie("expiration", response.data.payload.expires, cookieOptions);
           setCookie("isEmployee", response.data.payload.isEmployee, cookieOptions);
+          
           const profileResponse = await axios.get(`${apiUrl}/users/profile`, {
             headers: {
               Authorization: `Bearer ${response.data.payload.token}`,

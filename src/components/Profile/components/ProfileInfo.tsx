@@ -31,6 +31,7 @@ const toastSetting: {
 const successToast = (message: string): void => {
   toast.success(message, toastSetting);
 };
+
 const errorToast = (message: string): void => {
   toast.error(message, toastSetting);
 };
