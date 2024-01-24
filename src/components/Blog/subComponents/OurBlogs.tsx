@@ -33,11 +33,11 @@ const OurBlogs = () => {
         const response: AxiosResponse<any> = await axios.get(`${apiUrl}/blogs/getBlogs`, {
           params: { start, end },
         });
-
+        console.log("here", response)
         setBlogsData(response.data.payload.result);
         setBlogsCount(response.data.payload.total);
       } catch (error) {
-        // Handle errors
+        console.log("Error in Blogs", error);
       }
     };
 
