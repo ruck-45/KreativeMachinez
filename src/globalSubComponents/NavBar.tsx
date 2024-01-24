@@ -41,13 +41,11 @@ const NavBar = () => {
     >
       <NavbarContent>
         <NavbarMenuToggle aria-label={navOpenStatus ? "Close menu" : "Open menu"} className="lg:hidden text-white" />
-        <Link to="../Home">
-          <div className="bg-white p-[1rem] pb-[2rem] ribbon slant-down hidden lg:block">
-            <Image width={90} src={logo} alt="logo" radius="none" className="mt-[5rem]" />
-            <div className="left-ribbon-border"></div>
-            <div className="right-ribbon-border"></div>
-          </div>
-        </Link>
+        <div className="bg-white p-[1rem] pb-[2rem] ribbon slant-down hidden lg:block">
+          <Image width={90} src={logo} alt="logo" radius="none" className="mt-[5rem]" />
+          <div className="left-ribbon-border"></div>
+          <div className="right-ribbon-border"></div>
+        </div>
       </NavbarContent>
       <NavbarContent className="lg:hidden logo">
         <Link to="../Home">

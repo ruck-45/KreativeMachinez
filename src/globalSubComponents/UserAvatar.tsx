@@ -21,6 +21,7 @@ const UserAvatar = () => {
 
   const userEmail = getCookie("email");
   const image = getCookie("image");
+  const isEmployee = getCookie("isEmployee");
 
   const handleLogout = () => {
     removeCookie("token");
@@ -33,12 +34,14 @@ const UserAvatar = () => {
     removeCookie("email");
     removeCookie("expiration");
     removeCookie("image");
+    removeCookie("isEmployee");
 
     dispatch(updateToLoginStatus(true));
     navigate("/Auth");
   };
 
   const imageUrl = `${apiUrl}/users/profileImages/${image}.jpg`;
+  const createBlogClassName = isEmployee === "true" ? "p-0" : "hidden";
 
   return (
     <>
@@ -67,7 +70,7 @@ const UserAvatar = () => {
               Privacy & Policies
             </Link>
           </DropdownItem>
-          <DropdownItem key="privacy" className="p-0" textValue="privacy">
+          <DropdownItem key="blog" className={createBlogClassName} textValue="blog">
             <Link to="/Blog/Create" style={{ display: "block", padding: "6px 8px" }}>
               Create Blog
             </Link>
