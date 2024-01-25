@@ -1,8 +1,9 @@
-// OurBlogs.jsx
+// Dependencies
 import { Pagination, Divider } from "@nextui-org/react";
 import { useLayoutEffect, useState } from "react";
 import axios from "axios";
 
+// Local Files
 import BlogCard from "./BlogCard";
 import BlogsSkeleton from "./BlogsSkeleton";
 import { scrollTop } from "../../../utils/controllers";
@@ -81,7 +82,7 @@ const OurBlogs = () => {
         initialPage={1}
         className="self-center"
         onChange={(pageNumber) => setCurrentPage(pageNumber)}
-      />  
+      />
     </div>
   );
 };
