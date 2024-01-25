@@ -1,7 +1,7 @@
 // Dependencies
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { Editor } from "react-draft-wysiwyg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Button, Input, Textarea } from "@nextui-org/react";
 import { useState, useRef } from "react";
@@ -30,9 +30,10 @@ if (process.env.NODE_ENV === "development") {
 }
 
 const CreateBlog = () => {
+  const navigate = useNavigate();
   const [blogPic, setBlogPic] = useState<File | null>(null);
   const [previewImageUrl, setPreviewImageUrl] = useState("");
-
+  const [handleCreateButton, setHandleCreateButton] = useState(false);
   const token = getCookie("token");
 
   const title = useRef("");
@@ -60,6 +61,7 @@ const CreateBlog = () => {
   };
 
   const handleCreateBlog = async () => {
+    
     if (title.current === "" || summary.current === "" || blogPic === null || content.current[0].text === "") {
       return errorToast("Please Fill All Required Fields");
     }
@@ -71,6 +73,7 @@ const CreateBlog = () => {
     const filteredContent = JSON.stringify(getFilteredContent(content.current));
 
     try {
+      setHandleCreateButton(true);
       const response = await axios.post(
         `${apiUrl}/blogs/create`,
         { title: title.current, summary: summary.current, content: filteredContent },
@@ -82,12 +85,12 @@ const CreateBlog = () => {
       );
 
       if (!response.data.success) {
+        setHandleCreateButton(false);
         errorToast("Blog Creation Failed");
       } else {
         const { imageId } = response.data.payload;
         const BlogImageData = new FormData();
         BlogImageData.append("image", blogPic);
-
         try {
           const response2 = await axios.post(`${apiUrl}/blogs/blogImages`, BlogImageData, {
             headers: {
@@ -96,15 +99,19 @@ const CreateBlog = () => {
             },
           });
           if (!response2.data.success) {
+            setHandleCreateButton(false);
             errorToast("Blog Creation Failed");
           } else {
             successToast("Blog Creation Successful");
+            navigate("/Blog/All");
           }
         } catch (error) {
+          setHandleCreateButton(false);
           errorToast("Blog Creation Failed");
         }
       }
     } catch (error) {
+      setHandleCreateButton(false);
       errorToast("Blog Creation Failed");
     }
   };
@@ -144,17 +151,15 @@ const CreateBlog = () => {
             classNames={{
               inputWrapper: "bg-white",
             }}
-            maxLength={80}
+            maxLength={70}
             onChange={(event) => (title.current = event.target.value)}
           />
-
           <Textarea
             placeholder="Summary"
             classNames={{ inputWrapper: "bg-white" }}
-            maxLength={250}
+            maxLength={135}
             onChange={(event) => (summary.current = event.target.value)}
           />
-
           <Editor
             wrapperClassName="bg-white rounded-3xl"
             editorClassName="px-[2rem] py-[1rem] min-h-[20rem]"
@@ -171,7 +176,14 @@ const CreateBlog = () => {
             placeholder="Content"
           />
 
-          <Button color="warning" variant="shadow" radius="full" className="self-center" onClick={handleCreateBlog}>
+          <Button
+            color="warning"
+            variant="shadow"
+            radius="full"
+            className="self-center"
+            onClick={handleCreateBlog}
+            isLoading={handleCreateButton}
+          >
             Create Blog
           </Button>
         </form>
