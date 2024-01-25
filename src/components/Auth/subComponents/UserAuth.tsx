@@ -153,7 +153,7 @@ const UserAuth = () => {
           password: password.current,
           remember: rememberMe,
         });
-        console.log(response.data.payload.isEmployee);
+        
         if (response.data.success) {
           const cookieOptions = { expires: response.data.payload.expires };
 
@@ -162,7 +162,7 @@ const UserAuth = () => {
           setCookie("username", response.data.payload.userName, cookieOptions);
           setCookie("expiration", response.data.payload.expires, cookieOptions);
           setCookie("isEmployee", response.data.payload.isEmployee, cookieOptions);
-          
+
           const profileResponse = await axios.get(`${apiUrl}/users/profile`, {
             headers: {
               Authorization: `Bearer ${response.data.payload.token}`,
