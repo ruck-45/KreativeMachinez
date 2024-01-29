@@ -42,6 +42,8 @@ const ProfileInfo = () => {
     apiUrl = process.env.REACT_APP_DEV_API_URL;
   }
 
+  const [uploadButtonDisabled, setIsuploadButtonDisabled] = useState(false);
+
   const token = getCookie("token");
   const userEmail = getCookie("email");
   const username = getCookie("username");
@@ -73,7 +75,7 @@ const ProfileInfo = () => {
       const response = await axios.put(`${apiUrl}/users/profile`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
-        },
+        },    
       });
       if (response.data.success) {
         const profileResponse = await axios.get(`${apiUrl}/users/profile`, {
@@ -114,6 +116,7 @@ const ProfileInfo = () => {
     userProfilePicData.append("image", userProfilePic);
 
     try {
+      setIsuploadButtonDisabled(true);
       const response = await axios.put(`${apiUrl}/users/profile/images`, userProfilePicData, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -126,9 +129,11 @@ const ProfileInfo = () => {
         window.location.reload();
       } else {
         errorToast("Profile Picture Failed to Update");
+        setIsuploadButtonDisabled(false);
       }
     } catch {
       errorToast("Profile Picture Failed to Update");
+      setIsuploadButtonDisabled(false);
     }
   };
 
@@ -162,7 +167,13 @@ const ProfileInfo = () => {
                   className="p-[1rem] bg-[#E4E4E7] rounded-xl"
                   onChange={(e) => setUserProfilePic(e.target.files ? e.target.files[0] : null)}
                 />
-                <Button color="danger" variant="ghost" radius="full" onClick={handleFileUpload}>
+                <Button
+                  color="danger"
+                  variant="ghost"
+                  radius="full"
+                  onClick={handleFileUpload}
+                  isDisabled={uploadButtonDisabled}
+                >
                   Update
                 </Button>
               </form>

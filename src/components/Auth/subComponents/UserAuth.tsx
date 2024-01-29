@@ -72,6 +72,7 @@ const UserAuth = () => {
   const [usernameState, setUsernameState] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
   const [handleLoginButton, setHandleLoginButton] = useState(false);
+  const [forgotPasswordState, setForgotPasswordState] = useState(false);
 
   const handleCheckboxChange = () => {
     setRememberMe(!rememberMe);
@@ -220,6 +221,10 @@ const UserAuth = () => {
     }
   };
 
+  const handleForgotPasswordClick = async () => {
+    navigate("../Auth", { state: false}); 
+  }
+
   return (
     <form className="flex flex-col justify-center sm:min-w-[27rem] p-12 gap-3 Auth rounded-3xl" onSubmit={handleSubmit}>
       <Link to="../" className="mb-[2rem] flex items-center gap-[0.5rem] hover:gap-[1rem] duration-100 text-[#006FEE]">
@@ -289,19 +294,19 @@ const UserAuth = () => {
         onPaste={(e) => e.preventDefault()}
         onCopy={(e) => e.preventDefault()}
       />
-      <p className={toLogin ? "text-xs text-right cursor-pointer" : "hidden"} style={{ color: "#006FEE" }}>
-        Forgot Password?
-      </p>
+      {toLogin ? (
+        <p
+          className="text-xs text-right cursor-pointer"
+          style={{ color: "#006FEE" }}
+          onClick={handleForgotPasswordClick}
+        >
+          Forgot Password?
+        </p>
+      ) : null}
       <Checkbox defaultSelected size="sm" className={toLogin ? "" : "hidden"} onChange={handleCheckboxChange}>
         Remember Me
       </Checkbox>
-      <Button
-        className="mt-2 mb-2"
-        color="primary"
-        variant="shadow"
-        type="submit"
-        isLoading={handleLoginButton}
-      >
+      <Button className="mt-2 mb-2" color="primary" variant="shadow" type="submit" isLoading={handleLoginButton}>
         Submit
       </Button>
       <p className="text-xs text-center">

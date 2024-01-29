@@ -6,11 +6,16 @@ import { updateTab } from "../../store/curTabSlice";
 import UserAuth from "./subComponents/UserAuth";
 import loginBg from "./assets/loginBg.jpg";
 import AuthCard from "./subComponents/AuthCard";
-
+import { useLocation } from "react-router-dom";
+import ForgetPassword from "./subComponents/ForgetPassword";
 const Auth = () => {
   const dispatch = useDispatch();
   dispatch(updateTab("Auth"));
-
+  let forgotPasswordState = false;  
+  const location = useLocation();
+   if (!location.state) {
+     forgotPasswordState = true;
+   }
   return (
     <div
       className="flex h-screen justify-center lg:justify-between sm:px-[5rem] gap-[5rem] items-center"
@@ -21,8 +26,8 @@ const Auth = () => {
         backgroundPosition: "bottom",
       }}
     >
-      <AuthCard className="hidden lg:flex"/>
-      <UserAuth />
+      <AuthCard className="hidden lg:flex" />
+      {forgotPasswordState ? <ForgetPassword /> : <UserAuth />}
     </div>
   );
 };
