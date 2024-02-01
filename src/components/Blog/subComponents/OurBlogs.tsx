@@ -5,6 +5,7 @@ import axios from "axios";
 
 // Local Files
 import BlogCard from "./BlogCard";
+import BlogsSkeleton from "./BlogsSkeleton";
 import { scrollTop } from "../../../utils/controllers";
 
 const pageSize = 8;
@@ -13,7 +14,7 @@ const OurBlogs = () => {
   scrollTop();
 
   const [blogsData, setBlogsData] = useState([{ blog_id: "", created_at: "", image: "", summary: "", title: "" }]);
-  const [blogsCount, setBlogsCount] = useState(-1);
+  const [blogsCount, setBlogsCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
 
   let apiUrl = process.env.REACT_APP_API_URL;
@@ -33,13 +34,15 @@ const OurBlogs = () => {
         setBlogsData(response.data.payload.result);
         setBlogsCount(response.data.payload.total);
       } catch (error) {
-        console.log("No Blog Found");
+        console.log("Error fetching blogs:", error);
+        setBlogsData([]); // Set an empty array to indicate no blogs found
+        setBlogsCount(0);
       }
     };
 
     getBlogs();
   }, [apiUrl, currentPage]);
-
+  let totalpages = blogsCount ? Math.ceil(blogsCount / pageSize) : 1;
   return (
     <div className="bg-[#e9ecef] px-[2rem] sm:px-[5rem] py-[5rem] flex flex-col gap-[3rem]">
       <div className="flex flex-col gap-[2rem]">
@@ -63,8 +66,10 @@ const OurBlogs = () => {
           ))}
         </div>
       ) : (
-        <div className="w-full h-[15rem] flex justify-center items-center">
-          <p className="font-bold text-default-300 text-4xl">No Blog Found</p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[3rem]">
+          {Array.from({ length: pageSize }).map((_, index) => (
+            <BlogsSkeleton key={index} />
+          ))}
         </div>
       )}
 
@@ -73,7 +78,7 @@ const OurBlogs = () => {
         showControls
         color="warning"
         variant="flat"
-        total={blogsCount ? Math.ceil(blogsCount / 8) : 1}
+        total={blogsCount ? Math.ceil(blogsCount / pageSize) : 1}
         initialPage={1}
         className="self-center"
         onChange={(pageNumber) => setCurrentPage(pageNumber)}

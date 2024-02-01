@@ -71,6 +71,7 @@ const UserAuth = () => {
   const [confirmPasswordState, setConfirmPasswordState] = useState(false);
   const [usernameState, setUsernameState] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
+  const [handleLoginButton, setHandleLoginButton] = useState(false);
 
   const handleCheckboxChange = () => {
     setRememberMe(!rememberMe);
@@ -146,12 +147,13 @@ const UserAuth = () => {
 
     if (toLogin) {
       try {
+        setHandleLoginButton(true);
         const response = await axios.post(`${apiUrl}/users/login`, {
           email: email.current,
           password: password.current,
           remember: rememberMe,
         });
-
+        
         if (response.data.success) {
           const cookieOptions = { expires: response.data.payload.expires };
 
@@ -160,7 +162,7 @@ const UserAuth = () => {
           setCookie("username", response.data.payload.userName, cookieOptions);
           setCookie("expiration", response.data.payload.expires, cookieOptions);
           setCookie("isEmployee", response.data.payload.isEmployee, cookieOptions);
-          
+
           const profileResponse = await axios.get(`${apiUrl}/users/profile`, {
             headers: {
               Authorization: `Bearer ${response.data.payload.token}`,
@@ -177,9 +179,11 @@ const UserAuth = () => {
           navigate("/Profile");
         } else {
           errorToast(response.data.payload.message);
+          setHandleLoginButton(false);
         }
       } catch (error: any) {
         errorToast(error.response.data.payload.message);
+        setHandleLoginButton(false);
       }
     } else {
       if (
@@ -291,7 +295,13 @@ const UserAuth = () => {
       <Checkbox defaultSelected size="sm" className={toLogin ? "" : "hidden"} onChange={handleCheckboxChange}>
         Remember Me
       </Checkbox>
-      <Button className="mt-2 mb-2" color="primary" variant="shadow" type="submit">
+      <Button
+        className="mt-2 mb-2"
+        color="primary"
+        variant="shadow"
+        type="submit"
+        isLoading={handleLoginButton}
+      >
         Submit
       </Button>
       <p className="text-xs text-center">
