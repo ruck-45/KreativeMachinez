@@ -181,8 +181,7 @@ const UserAuth = () => {
           setHandleLoginButton(false);
         }
       } catch (error: any) {
-        console.log("Error ", error)
-        errorToast("error");
+        errorToast(error.response.data.payload.message);
         setHandleLoginButton(false);
       }
     } else {
@@ -305,7 +304,13 @@ const UserAuth = () => {
       <Checkbox defaultSelected size="sm" className={toLogin ? "" : "hidden"} onChange={handleCheckboxChange}>
         Remember Me
       </Checkbox>
-      <Button className="mt-2 mb-2" color="primary" variant="shadow" type="submit" isLoading={handleLoginButton}>
+      <Button
+        className="mt-2 mb-2"
+        color="primary"
+        variant="shadow"
+        type="submit"
+        isLoading={handleLoginButton}
+      >
         Submit
       </Button>
       <p className="text-xs text-center">
