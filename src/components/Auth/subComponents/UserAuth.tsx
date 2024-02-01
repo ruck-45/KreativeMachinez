@@ -219,10 +219,6 @@ const UserAuth = () => {
     }
   };
 
-  const handleForgotPasswordClick = async () => {
-    navigate("../ResetPassword"); 
-  }
-
   return (
     <form className="flex flex-col justify-center sm:min-w-[27rem] p-12 gap-3 Auth rounded-3xl" onSubmit={handleSubmit}>
       <Link to="../" className="mb-[2rem] flex items-center gap-[0.5rem] hover:gap-[1rem] duration-100 text-[#006FEE]">
@@ -296,7 +292,7 @@ const UserAuth = () => {
         <p
           className="text-xs text-right cursor-pointer"
           style={{ color: "#006FEE" }}
-          onClick={handleForgotPasswordClick}
+          onClick={() => navigate("../ResetPassword")}
         >
           Forgot Password?
         </p>

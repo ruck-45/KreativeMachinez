@@ -108,7 +108,7 @@ const IndividualBlog = () => {
     return res;
   };
 
-  const multistyledStyled = (text: string, style: any) => {
+  const multiStyled = (text: string, style: any) => {
     let bold = [];
     let italic = [];
     const length = text.length;
@@ -194,7 +194,7 @@ const IndividualBlog = () => {
                       } else if (data.style.length === 1) {
                         html = singleStyled(data.text, data.style[0]);
                       } else {
-                        html = multistyledStyled(data.text, data.style);
+                        html = multiStyled(data.text, data.style);
                       }
 
                       if (data.isListItem) {
