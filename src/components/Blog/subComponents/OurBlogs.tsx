@@ -42,7 +42,6 @@ const OurBlogs = () => {
 
     getBlogs();
   }, [apiUrl, currentPage]);
-  let totalpages = blogsCount ? Math.ceil(blogsCount / pageSize) : 1;
   return (
     <div className="bg-[#e9ecef] px-[2rem] sm:px-[5rem] py-[5rem] flex flex-col gap-[3rem]">
       <div className="flex flex-col gap-[2rem]">
@@ -78,7 +77,7 @@ const OurBlogs = () => {
         showControls
         color="warning"
         variant="flat"
-        total={blogsCount ? Math.ceil(blogsCount / pageSize) : 1}
+        total={blogsCount ? Math.ceil(blogsCount / pageSize) : 0}
         initialPage={1}
         className="self-center"
         onChange={(pageNumber) => setCurrentPage(pageNumber)}

@@ -72,7 +72,6 @@ const UserAuth = () => {
   const [usernameState, setUsernameState] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
   const [handleLoginButton, setHandleLoginButton] = useState(false);
-  const [forgotPasswordState, setForgotPasswordState] = useState(false);
 
   const handleCheckboxChange = () => {
     setRememberMe(!rememberMe);
@@ -154,7 +153,6 @@ const UserAuth = () => {
           password: password.current,
           remember: rememberMe,
         });
-        
         if (response.data.success) {
           const cookieOptions = { expires: response.data.payload.expires };
 
@@ -183,7 +181,8 @@ const UserAuth = () => {
           setHandleLoginButton(false);
         }
       } catch (error: any) {
-        errorToast(error.response.data.payload.message);
+        console.log("Error ", error)
+        errorToast("error");
         setHandleLoginButton(false);
       }
     } else {
@@ -222,7 +221,7 @@ const UserAuth = () => {
   };
 
   const handleForgotPasswordClick = async () => {
-    navigate("../Auth", { state: false}); 
+    navigate("../ResetPassword"); 
   }
 
   return (
