@@ -156,11 +156,11 @@ const UserAuth = () => {
         if (response.data.success) {
           const cookieOptions = { expires: response.data.payload.expires };
 
-          setCookie("token", response.data.payload.token, cookieOptions);
-          setCookie("email", email.current, cookieOptions);
-          setCookie("username", response.data.payload.userName, cookieOptions);
-          setCookie("expiration", response.data.payload.expires, cookieOptions);
-          setCookie("isEmployee", response.data.payload.isEmployee, cookieOptions);
+          setCookie("token", response.data.payload.token);
+          setCookie("email", email.current);
+          setCookie("username", response.data.payload.userName);
+          setCookie("expiration", response.data.payload.expires);
+          setCookie("isEmployee", response.data.payload.isEmployee);
 
           const profileResponse = await axios.get(`${apiUrl}/users/profile`, {
             headers: {
@@ -168,12 +168,12 @@ const UserAuth = () => {
             },
           });
 
-          setCookie("about", profileResponse.data.payload.about, cookieOptions);
-          setCookie("profession", profileResponse.data.payload.profession, cookieOptions);
-          setCookie("address", profileResponse.data.payload.address, cookieOptions);
-          setCookie("phone", profileResponse.data.payload.phone, cookieOptions);
-          setCookie("plan", profileResponse.data.payload.plan, cookieOptions);
-          setCookie("image", profileResponse.data.payload.image, cookieOptions);
+          setCookie("about", profileResponse.data.payload.about);
+          setCookie("profession", profileResponse.data.payload.profession);
+          setCookie("address", profileResponse.data.payload.address);
+          setCookie("phone", profileResponse.data.payload.phone);
+          setCookie("plan", profileResponse.data.payload.plan);
+          setCookie("image", profileResponse.data.payload.image);
 
           navigate("/Profile");
         } else {

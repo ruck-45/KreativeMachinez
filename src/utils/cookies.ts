@@ -1,9 +1,9 @@
 import Cookies from "js-cookie";
 
 
-export const setCookie = (key: string, value: number): void => {
+export const setCookie = (key: string, value: any): void => {
   if (value !== undefined) {
-    Cookies.set(key, value.toString());
+    Cookies.set(key, value);
   }
 };
 
