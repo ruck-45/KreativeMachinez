@@ -6,6 +6,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import queryString from "query-string";
 import { updateToLoginStatus } from "../../../store/toLoginSlice";
 import toast, { Toaster, ToastPosition } from "react-hot-toast";
 import {
@@ -16,7 +17,6 @@ import {
   passwordHighCase,
   passwordLowCase,
 } from "../../../utils/authRegex";
-import { error } from "console";
 // Local Files
 
 
@@ -39,7 +39,6 @@ const errorToast = (message: string): void => {
 const ForgetPassword = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  let reset = false;
   
   let apiUrl = process.env.REACT_APP_API_URL;
   if (process.env.NODE_ENV === "development") {
@@ -54,14 +53,9 @@ const ForgetPassword = () => {
   const [passwordState, setPasswordState] = useState(false);
   const [confirmPasswordState, setConfirmPasswordState] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const hasQueryParam = (name: string): boolean => {
-    const searchParams = new URLSearchParams(window.location.search);
-    return searchParams.has(name);
-  };
 
-  if (hasQueryParam("state")) {
-    reset = true;;
-  }
+  const searchParams = queryString.parse(window.location.search);
+  const isResetState = searchParams.state === "reset";
 
   const checkEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     email.current = event.target.value;
@@ -115,15 +109,20 @@ const ForgetPassword = () => {
     const regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
     const results = regex.exec(window.location.search);
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-  };
+  }; // Use Query String instead
 
   
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
       setIsLoading(true);
-      if (reset) {
-        if ( passwordState || password.current.length === 0 || confirmPassword.current.length === 0) {
+      if (isResetState) {
+        if (
+          passwordState ||
+          confirmPasswordState ||
+          password.current.length === 0 ||
+          confirmPassword.current.length === 0
+        ) {
           errorToast("Please The Form Correctly");
           return;
         }
@@ -157,11 +156,6 @@ const ForgetPassword = () => {
           setIsLoading(false);
           return;
         }
-        if (email === undefined) {
-          errorToast("Please enter your email");
-          setIsLoading(false);
-          return;
-        }
 
         const response = await axios.post(`${apiUrl}/users/forgot-password`, { email: email.current });
         if (response.data.success) {
@@ -179,20 +173,23 @@ const ForgetPassword = () => {
   };
 
   return (
-    <form className="flex flex-col justify-center w-[22rem] sm:min-w-[27rem] p-12 m-2 gap-3 Auth rounded-3xl" onSubmit={handleSubmit}>
+    <form
+      className="flex flex-col justify-center w-[22rem] sm:min-w-[27rem] p-12 m-2 gap-3 Auth rounded-3xl"
+      onSubmit={handleSubmit}
+    >
       <Link to="../" className="mb-[2rem] flex items-center gap-[0.5rem] hover:gap-[1rem] duration-100 text-[#006FEE]">
         <FaArrowRightLong />
         <p>Home</p>
       </Link>
       <div className="flex flex-col gap-8 font-semibold welcomeText mb-4">
         <p>Reset Password</p>
-        {reset ? (
+        {isResetState ? (
           <h1 className="font-normal">Please enter new password</h1>
         ) : (
           <h1 className="font-normal">Please Enter Your Email</h1>
         )}
       </div>
-      {reset ? (
+      {isResetState ? (
         <>
           <Input
             type="password"

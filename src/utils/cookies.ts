@@ -1,18 +1,10 @@
-import Cookies, { CookieAttributes } from "js-cookie";
+import Cookies from "js-cookie";
 
-type CookieOptions = {
-  expires?: number | Date | string;
-  path?: string;
-  domain?: string;
-  secure?: boolean;
-};
 
-export const setCookie = (key: string, value: string, options: CookieOptions = {}): void => {
-  if (typeof options.expires === "string") {
-    // Check if options.expires is defined before converting
-    options.expires = new Date(options.expires); // Convert string to Date object
+export const setCookie = (key: string, value: number): void => {
+  if (value !== undefined) {
+    Cookies.set(key, value.toString());
   }
-  Cookies.set(key, value, options as CookieAttributes);
 };
 
 export const getCookie = (key: string): string | undefined => {
