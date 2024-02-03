@@ -18,9 +18,9 @@ const OurBlogs = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   let apiUrl = process.env.REACT_APP_API_URL;
-  // if (process.env.NODE_ENV === "development") {
-  //   apiUrl = process.env.REACT_APP_DEV_API_URL;
-  // }
+  if (process.env.NODE_ENV === "development") {
+    apiUrl = process.env.REACT_APP_DEV_API_URL;
+  }
 
   useLayoutEffect(() => {
     const getBlogs = async () => {

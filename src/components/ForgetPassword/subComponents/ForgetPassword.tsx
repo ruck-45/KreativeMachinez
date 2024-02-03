@@ -56,6 +56,7 @@ const ForgetPassword = () => {
 
   const searchParams = queryString.parse(window.location.search);
   const isResetState = searchParams.state === "reset";
+  const token = searchParams.token
 
   const checkEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     email.current = event.target.value;
@@ -103,14 +104,6 @@ const ForgetPassword = () => {
       setConfirmPasswordState(true);
     }
   };
-
-  const getUrlParameter = (name: string): string => {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    const regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
-    const results = regex.exec(window.location.search);
-    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-  }; // Use Query String instead
-
   
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -126,7 +119,6 @@ const ForgetPassword = () => {
           errorToast("Please The Form Correctly");
           return;
         }
-        const token = getUrlParameter("token");
         if (token) {
           const response = await axios.put(
             `${apiUrl}/users/reset-password`,

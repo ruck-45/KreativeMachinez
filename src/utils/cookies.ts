@@ -1,9 +1,17 @@
-import Cookies from "js-cookie";
+import Cookies, { CookieAttributes } from "js-cookie";
 
+type CookieOptions = {
+  expires?: number | Date | string;
+  path?: string;
+  domain?: string;
+  secure?: boolean;
+};
 
-export const setCookie = (key: string, value: any): void => {
-  if (value !== undefined) {
-    Cookies.set(key, value);
+export const setCookie = (key: string, value: string, options: CookieOptions = {}): void => {
+  const { expires } = options;
+  if ( expires !== undefined) {
+      const expiresDate = new Date(expires);
+      Cookies.set(key, value, expiresDate);
   }
 };
 
