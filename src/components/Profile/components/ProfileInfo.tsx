@@ -88,11 +88,11 @@ const ProfileInfo = () => {
 
         const cookieOptions = { expires: expiration ? parseInt(expiration) : 1 };
 
-        setCookie("about", profileResponse.data.payload.about);
-        setCookie("profession", profileResponse.data.payload.profession);
-        setCookie("address", profileResponse.data.payload.address);
-        setCookie("phone", profileResponse.data.payload.phone);
-        setCookie("plan", profileResponse.data.payload.plan);
+        setCookie("about", profileResponse.data.payload.about, cookieOptions);
+        setCookie("profession", profileResponse.data.payload.profession, cookieOptions);
+        setCookie("address", profileResponse.data.payload.address, cookieOptions);
+        setCookie("phone", profileResponse.data.payload.phone, cookieOptions);
+        setCookie("plan", profileResponse.data.payload.plan, cookieOptions);
 
         setRenderer((prev) => !prev);
         setIsEditLoading(false);

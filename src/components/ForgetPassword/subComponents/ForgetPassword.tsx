@@ -19,7 +19,6 @@ import {
 } from "../../../utils/authRegex";
 // Local Files
 
-
 const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
   if (event.key === "Enter") {
     event.preventDefault();
@@ -39,7 +38,7 @@ const errorToast = (message: string): void => {
 const ForgetPassword = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   let apiUrl = process.env.REACT_APP_API_URL;
   if (process.env.NODE_ENV === "development") {
     apiUrl = process.env.REACT_APP_DEV_API_URL;
@@ -56,7 +55,7 @@ const ForgetPassword = () => {
 
   const searchParams = queryString.parse(window.location.search);
   const isResetState = searchParams.state === "reset";
-  const token = searchParams.token
+  const token = searchParams.token;
 
   const checkEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     email.current = event.target.value;
@@ -104,7 +103,7 @@ const ForgetPassword = () => {
       setConfirmPasswordState(true);
     }
   };
-  
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
@@ -135,7 +134,7 @@ const ForgetPassword = () => {
             setTimeout(() => {
               setIsLoading(false);
               navigate("/Auth");
-            }, 2000)
+            }, 2000);
           } else {
             errorToast("Error while updating password");
           }
@@ -159,6 +158,7 @@ const ForgetPassword = () => {
         }
       }
     } catch (error) {
+      console.log(error);
       errorToast("Please provide a valid email address");
       setIsLoading(false);
     }
