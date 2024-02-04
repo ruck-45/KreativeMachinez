@@ -1,59 +1,121 @@
 // Dependencies
 import { Input, Textarea, Button } from "@nextui-org/react";
 import { IoSend } from "react-icons/io5";
-import { useState, useRef, FormEvent } from "react";
-import emailjs from "@emailjs/browser";
+import { useState } from "react";
 import toast, { Toaster, ToastPosition } from "react-hot-toast";
+import axios from "axios";
+
 
 const emailRe: RegExp = /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_-]+)(\.[a-zA-Z]{2,5}){1,2}$/;
 const toastSetting: {
   position: ToastPosition;
 } = { position: "top-center" };
 
-const formNotFill = (): string => toast.error("Please Fill The Form Correctly", toastSetting);
-const emailSent = (): string => toast.success("Email Sent", toastSetting);
-const emailNotSent = (): string => toast.error("Email Not Sent", toastSetting);
-
 const EmailForm = () => {
-  const form = useRef<HTMLFormElement>(null);
-  const email = useRef<string>("");
+  
 
-  const [emailValidity, setEmailValidity] = useState<boolean>(false);
+  const [input, setInput] = useState({
+    name: "",
+    email: "",
+    message: "",
+    subject: "",
+  });
 
-  const [emailState, setEmailState] = useState<number>(-1);
-  const [userNameState, setUserNameState] = useState<number>(-1);
+  function handleUserInput(event: any) {
+    const { name, value } = event.target;
+    setInput({
+      ...input,
+      [name]: value,
+    });
+  }
 
- const sendEmail = async () => {
-   try {
-     if (!emailValidity && userNameState > 0 && emailState > 0) {
-       await emailjs.sendForm(
-         `${process.env.REACT_APP_SERVICE_ID}`,
-         `${process.env.REACT_APP_TEMPLATE_ID}`,
-         form.current!,
-         `${process.env.REACT_APP_PUBLIC_KEY}`
-       );
-       emailSent();
-     } else {
-       formNotFill();
-     }
-   } catch (error) {
-     emailNotSent();
-   }
- };
+  // const email = useRef("");
+  // const message = useRef("");
+  // const subject = useRef("");
+  // const username = useRef("");
 
+  // const form = useRef<HTMLFormElement>(null);
 
-  const checkEmail = (event: FormEvent<HTMLInputElement>) => {
-    email.current = event.currentTarget.value;
-    setEmailState(event.currentTarget.value.length);
+  // const [invalidUsernameMessage, setInvalidUsernameMessage] = useState("");
+  // const [emailValidity, setEmailValidity] = useState<boolean>(false);
+  // const [usernameState, setUsernameState] = useState(false);
 
-    const validity = email.current.match(emailRe);
-    if (validity) {
-      setEmailValidity(false);
-    } else {
-      setEmailValidity(true);
+  // const [emailState, setEmailState] = useState<number>(-1);
+  // const [userNameState, setUserNameState] = useState<number>(-1);
+  // const [setMessageState, setInvalidMessage]= useState<number>(-1);
+
+  //  const sendEmail = async () => {
+  //    try {
+
+  //      if (!emailValidity && userNameState > 0 && emailState > 0) {
+  //        dispatch(SendEmail(form))
+  //        emailSent();
+  //      } else {
+  //        formNotFill();
+  //      }
+  //    } catch (error) {
+  //      emailNotSent();
+  //    }
+  //  };
+
+  //   const checkUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //     username.current = event.target.value;
+
+  //     if (username.current.length < 3) {
+  //       setUsernameState(true);
+  //       setInvalidUsernameMessage("Username should have a minimum length of 3 characters");
+  //     } else {
+  //       setUsernameState(false);
+  //       setInvalidUsernameMessage("");
+  //     }
+  //   };
+
+  // const checkEmail = (event: FormEvent<HTMLInputElement>) => {
+  //   email.current = event.currentTarget.value;
+  //   setEmailState(event.currentTarget.value.length);
+
+  //   const validity = email.current.match(emailRe);
+  //   if (validity) {
+  //     setEmailValidity(false);
+  //   } else {
+  //     setEmailValidity(true);
+  //   }
+  // };
+
+  // const checkMessage = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   message.current = event.target.value;
+
+  // };
+
+  async function sendEmail(event: any) {
+    event.preventDefault();
+
+    if (!input.email || !input.name || !input.message || !input.message) {
+      toast.error("please fill all the details");
+      return;
     }
-  };
 
+    //dispatch create account action
+
+    try {
+      const response:any= await axios.post("http://localhost:5000/api/contact/form", input);
+      console.log(response);
+      
+      if(response?.data?.success){
+      toast.success("Email sent Successfully");
+      
+    }
+    } catch (error) {
+      toast.error("failed to send Email 404");
+    }
+
+    setInput({
+      name: "",
+      email: "",
+      message: "",
+      subject: "",
+    });
+  }
   return (
     <div className="bg-black px-[3rem] md:px-[5rem] py-[5rem] dark flex flex-col lg:flex-row gap-[2rem] lg:gap-[5rem]">
       <div className="text-white lg:w-[40%] flex flex-col gap-[1rem] lg:order-last">
@@ -69,33 +131,26 @@ const EmailForm = () => {
           We'll never share your email with anyone else.
         </p>
       </div>
-      <form className="flex flex-col gap-[1rem] items-center grow" ref={form} onSubmit={sendEmail}>
+      <form className="flex flex-col gap-[1rem] items-center grow" onSubmit={sendEmail}>
         <div className="flex gap-[1rem] w-full">
-          <Input
-            type="text"
-            label="Name"
-            name="name"
-            onChange={(event) => setUserNameState(event.currentTarget.value.length)}
-            errorMessage={userNameState === 0 ? "Please enter a valid Name" : ""}
-            isInvalid={userNameState === 0}
-          />
-          <Input
-            type="email"
-            label="Email"
-            name="email"
-            onChange={checkEmail}
-            isInvalid={emailValidity}
-            errorMessage={emailValidity ? "Please enter a valid Email" : ""}
-          />
+          <Input type="text" label="Name" name="name" id="name" value={input.name} onChange={handleUserInput} />
+          <Input type="email" label="Email" name="email" onChange={handleUserInput} value={input.email} id="email" />
         </div>
-        <Input type="text" label="Subject" name="subject" />
-        <Textarea label="Message" name="message"/>
+        <Input
+          type="text"
+          label="Subject"
+          name="subject"
+          onChange={handleUserInput}
+          id="subject"
+          value={input.subject}
+        />
+        <Textarea label="Message" name="message" onChange={handleUserInput} id="message" value={input.message} />
         <Button
           color="warning"
           variant="shadow"
           className="w-[10rem]"
           endContent={<IoSend className="mt-[0.2rem]" />}
-          onClick={sendEmail}
+          type="submit"
         >
           Send Message
         </Button>

@@ -7,8 +7,10 @@ import { updateTab } from "../../store/curTabSlice";
 import Contactmap from "./subComponents/Contactmap";
 import Intro from "../../globalSubComponents/Intro";
 import { scrollTop } from "../../utils/controllers";
-import Info from "./subComponents/Info";
+
 import EmailForm from "./subComponents/EmailForm";
+import Info from "./subComponents/Info";
+
 
 const Contact = () => {
   const dispatch = useDispatch();
