@@ -18,15 +18,15 @@ const EmailForm = () => {
     subject: "",
   });
 
-  function handleUserInput(event: any) {
+  const handleUserInput = (event: any) => {
     const { name, value } = event.target;
     setInput({
       ...input,
       [name]: value,
     });
-  }
+  };
 
-  async function sendEmail(event: any) {
+  const sendEmail = async (event: any) => {
     event.preventDefault();
 
     if (!input.email || !input.name || !input.message || !input.message) {
@@ -51,7 +51,7 @@ const EmailForm = () => {
       message: "",
       subject: "",
     });
-  }
+  };
   return (
     <div className="bg-black px-[3rem] md:px-[5rem] py-[5rem] dark flex flex-col lg:flex-row gap-[2rem] lg:gap-[5rem]">
       <div className="text-white lg:w-[40%] flex flex-col gap-[1rem] lg:order-last">
