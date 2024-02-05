@@ -5,15 +5,12 @@ import { useState } from "react";
 import toast, { Toaster, ToastPosition } from "react-hot-toast";
 import axios from "axios";
 
-
 const emailRe: RegExp = /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_-]+)(\.[a-zA-Z]{2,5}){1,2}$/;
 const toastSetting: {
   position: ToastPosition;
 } = { position: "top-center" };
 
 const EmailForm = () => {
-  
-
   const [input, setInput] = useState({
     name: "",
     email: "",
@@ -29,64 +26,6 @@ const EmailForm = () => {
     });
   }
 
-  // const email = useRef("");
-  // const message = useRef("");
-  // const subject = useRef("");
-  // const username = useRef("");
-
-  // const form = useRef<HTMLFormElement>(null);
-
-  // const [invalidUsernameMessage, setInvalidUsernameMessage] = useState("");
-  // const [emailValidity, setEmailValidity] = useState<boolean>(false);
-  // const [usernameState, setUsernameState] = useState(false);
-
-  // const [emailState, setEmailState] = useState<number>(-1);
-  // const [userNameState, setUserNameState] = useState<number>(-1);
-  // const [setMessageState, setInvalidMessage]= useState<number>(-1);
-
-  //  const sendEmail = async () => {
-  //    try {
-
-  //      if (!emailValidity && userNameState > 0 && emailState > 0) {
-  //        dispatch(SendEmail(form))
-  //        emailSent();
-  //      } else {
-  //        formNotFill();
-  //      }
-  //    } catch (error) {
-  //      emailNotSent();
-  //    }
-  //  };
-
-  //   const checkUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //     username.current = event.target.value;
-
-  //     if (username.current.length < 3) {
-  //       setUsernameState(true);
-  //       setInvalidUsernameMessage("Username should have a minimum length of 3 characters");
-  //     } else {
-  //       setUsernameState(false);
-  //       setInvalidUsernameMessage("");
-  //     }
-  //   };
-
-  // const checkEmail = (event: FormEvent<HTMLInputElement>) => {
-  //   email.current = event.currentTarget.value;
-  //   setEmailState(event.currentTarget.value.length);
-
-  //   const validity = email.current.match(emailRe);
-  //   if (validity) {
-  //     setEmailValidity(false);
-  //   } else {
-  //     setEmailValidity(true);
-  //   }
-  // };
-
-  // const checkMessage = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   message.current = event.target.value;
-
-  // };
-
   async function sendEmail(event: any) {
     event.preventDefault();
 
@@ -95,16 +34,13 @@ const EmailForm = () => {
       return;
     }
 
-    //dispatch create account action
-
     try {
-      const response:any= await axios.post("http://localhost:5000/api/contact/form", input);
+      const response: any = await axios.post("http://localhost:5000/api/contact/form", input);
       console.log(response);
-      
-      if(response?.data?.success){
-      toast.success("Email sent Successfully");
-      
-    }
+
+      if (response?.data?.success) {
+        toast.success("Email sent Successfully");
+      }
     } catch (error) {
       toast.error("failed to send Email 404");
     }
