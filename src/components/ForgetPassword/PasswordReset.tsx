@@ -3,13 +3,15 @@ import { useDispatch } from "react-redux";
 
 // Local Files
 import { updateTab } from "../../store/curTabSlice";
-import UserAuth from "./subComponents/UserAuth";
-import loginBg from "./assets/loginBg.jpg";
-import AuthCard from "./subComponents/AuthCard";
-const Auth = () => {
-  const dispatch = useDispatch();
-  dispatch(updateTab("Auth"));
+import AuthCard from "../Auth/subComponents/AuthCard";
+import loginBg from "../Auth/assets/loginBg.jpg"
+import ForgetPassword from "./subComponents/ForgetPassword";
 
+
+
+const PasswordReset = () => {
+  const dispatch = useDispatch();
+  dispatch(updateTab("Password Reset"));
   return (
     <div
       className="flex h-screen justify-center lg:justify-between sm:px-[5rem] gap-[5rem] items-center"
@@ -21,9 +23,9 @@ const Auth = () => {
       }}
     >
       <AuthCard className="hidden lg:flex" />
-      <UserAuth />
+      <ForgetPassword />
     </div>
   );
 };
 
-export default Auth;
+export default PasswordReset;

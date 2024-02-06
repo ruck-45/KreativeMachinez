@@ -153,7 +153,6 @@ const UserAuth = () => {
           password: password.current,
           remember: rememberMe,
         });
-        
         if (response.data.success) {
           const cookieOptions = { expires: response.data.payload.expires };
 
@@ -289,9 +288,15 @@ const UserAuth = () => {
         onPaste={(e) => e.preventDefault()}
         onCopy={(e) => e.preventDefault()}
       />
-      <p className={toLogin ? "text-xs text-right cursor-pointer" : "hidden"} style={{ color: "#006FEE" }}>
-        Forgot Password?
-      </p>
+      {toLogin ? (
+        <p
+          className="text-xs text-right cursor-pointer"
+          style={{ color: "#006FEE" }}
+          onClick={() => navigate("../ResetPassword")}
+        >
+          Forgot Password?
+        </p>
+      ) : null}
       <Checkbox defaultSelected size="sm" className={toLogin ? "" : "hidden"} onChange={handleCheckboxChange}>
         Remember Me
       </Checkbox>

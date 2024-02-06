@@ -6,9 +6,7 @@ import { updateToLoginStatus } from "../store/toLoginSlice";
 import { useDispatch } from "react-redux";
 
 // Local Files
-import profilepic from "../globalAssets/profilepic.jpg";
 import { getCookie, removeCookie } from "../utils/cookies";
-import { imageExists } from "../utils/controllers";
 
 const UserAvatar = () => {
   const navigate = useNavigate();
@@ -51,7 +49,7 @@ const UserAvatar = () => {
             isBordered
             as="button"
             className="transition-transform"
-            src={imageExists(imageUrl) ? imageUrl : profilepic}
+            src={imageUrl}
             color="danger"
           />
         </DropdownTrigger>
