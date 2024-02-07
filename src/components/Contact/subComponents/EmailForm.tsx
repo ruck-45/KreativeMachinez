@@ -17,9 +17,14 @@ const EmailForm = () => {
   const form = useRef<HTMLFormElement>(null);
 
   const [emailValidity, setEmailValidity] = useState<boolean>(false);
+  const [nameValidity, setNameValidity] = useState<boolean>(false);
+  const [subjectValidity, setSubjectValidity] = useState<boolean>(false);
+  const [messageValidity, setMessageValidity] = useState<boolean>(false);
 
   const [emailState, setEmailState] = useState<number>(-1);
   const [userNameState, setUserNameState] = useState<number>(-1);
+  const [subjectState, setSubjectState] = useState<number>(-1);
+  const [messageState, setMessageState] = useState<number>(-1);
   const [state, setState] = useState(false);
 
   const [input, setInput] = useState({
@@ -29,13 +34,13 @@ const EmailForm = () => {
     email: "",
   });
 
-  const handleUserInput = (event: any) => {
-    const { name, value } = event.target;
-    setInput({
-      ...input,
-      [name]: value,
-    });
-  };
+  // const handleUserInput = (event: any) => {
+  //   const { name, value } = event.target;
+  //   setInput({
+  //     ...input,
+  //     [name]: value,
+  //   });
+  // };
 
   const checkEmail = (event: any) => {
     input.email = event.currentTarget.value;
@@ -49,31 +54,48 @@ const EmailForm = () => {
     }
   };
 
+  const checkUserName = (event: any) => {
+    input.name = event.currentTarget.value;
+    setUserNameState(event.currentTarget.value.length);
+
+    const validity = input.name.length > 4;
+    if (validity) {
+      setNameValidity(false);
+    } else {
+      setNameValidity(true);
+    }
+  };
+
+  const checkSubject = (event: any) => {
+    input.subject = event.currentTarget.value;
+    setSubjectState(event.currentTarget.value.length);
+
+    const validity = input.subject.length > 4;
+    if (validity) {
+      setSubjectValidity(false);
+    } else {
+      setSubjectValidity(true);
+    }
+  };
+
+  const checkMessage = (event: any) => {
+    input.message = event.currentTarget.value;
+    setMessageState(event.currentTarget.value.length);
+
+    const validity = input.message.length > 10;
+    if (validity) {
+      setMessageValidity(false);
+    } else {
+      setMessageValidity(true);
+    }
+  };
+
   const sendEmail = async (event: any) => {
     event.preventDefault();
 
-    setState(true);
-    if (input.name.length < 5) {
-      toast.error("please Provide your name");
-      setState(false);
-      return;
-    }
-
-    if (!input.subject) {
-      toast.error("please Provide your Subject");
-      setState(false);
-      return;
-    }
-
-    if (!input.message) {
-      toast.error("please fill the message section");
-      setState(false);
-      return;
-    }
-
     try {
       setState(true);
-      const response: any = await axios.post("http://localhost:5000/api/contact/form", input);
+      const response: any = await axios.post(`${apiUrl}/contact/form`, input);
       console.log(response);
 
       if (response?.data?.success) {
@@ -114,10 +136,9 @@ const EmailForm = () => {
             label="Name"
             name="name"
             id="name"
-            value={input.name}
-            onChange={handleUserInput}
-            errorMessage={userNameState === 0 ? "Please enter a valid Name" : ""}
-            isInvalid={userNameState === 0}
+            onChange={checkUserName}
+            errorMessage={nameValidity ? "Please enter a valid Name" : ""}
+            isInvalid={nameValidity}
           />
           <Input
             type="email"
@@ -132,11 +153,17 @@ const EmailForm = () => {
           type="text"
           label="Subject"
           name="subject"
-          onChange={handleUserInput}
-          id="subject"
-          value={input.subject}
+          onChange={checkSubject}
+          isInvalid={subjectValidity}
+          errorMessage={subjectValidity ? "Please enter a valid Subject" : ""}
         />
-        <Textarea label="Message" name="message" onChange={handleUserInput} id="message" value={input.message} />
+        <Textarea
+          label="Message"
+          name="message"
+          onChange={checkMessage}
+          isInvalid={messageValidity}
+          errorMessage={messageValidity ? "Please enter a minimum 10 charater" : ""}
+        />
         <Button
           color="warning"
           variant="shadow"
