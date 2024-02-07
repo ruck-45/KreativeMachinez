@@ -1,21 +1,32 @@
 // Dependencies
 import { Input, Textarea, Button } from "@nextui-org/react";
 import { IoSend } from "react-icons/io5";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import toast, { Toaster, ToastPosition } from "react-hot-toast";
 import axios from "axios";
+import { send } from "process";
 
 const emailRe: RegExp = /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_-]+)(\.[a-zA-Z]{2,5}){1,2}$/;
 const toastSetting: {
   position: ToastPosition;
 } = { position: "top-center" };
 
+let apiUrl = process.env.REACT_APP_API_URL;
+
 const EmailForm = () => {
+  const form = useRef<HTMLFormElement>(null);
+
+  const [emailValidity, setEmailValidity] = useState<boolean>(false);
+
+  const [emailState, setEmailState] = useState<number>(-1);
+  const [userNameState, setUserNameState] = useState<number>(-1);
+  const [state, setState] = useState(false);
+
   const [input, setInput] = useState({
     name: "",
-    email: "",
     message: "",
     subject: "",
+    email: "",
   });
 
   const handleUserInput = (event: any) => {
@@ -26,16 +37,43 @@ const EmailForm = () => {
     });
   };
 
+  const checkEmail = (event: any) => {
+    input.email = event.currentTarget.value;
+    setEmailState(event.currentTarget.value.length);
+
+    const validity = input.email.match(emailRe);
+    if (validity) {
+      setEmailValidity(false);
+    } else {
+      setEmailValidity(true);
+    }
+  };
+
   const sendEmail = async (event: any) => {
     event.preventDefault();
 
-    if (!input.email || !input.name || !input.message || !input.message) {
-      toast.error("please fill all the details");
+    setState(true);
+    if (input.name.length < 5) {
+      toast.error("please Provide your name");
+      setState(false);
+      return;
+    }
+
+    if (!input.subject) {
+      toast.error("please Provide your Subject");
+      setState(false);
+      return;
+    }
+
+    if (!input.message) {
+      toast.error("please fill the message section");
+      setState(false);
       return;
     }
 
     try {
-      const response: any = await axios.post("http://localhost:5000/api/contact/form", input);
+      setState(true);
+      const response: any = await axios.post(`${apiUrl}/contact/form`, input);
       console.log(response);
 
       if (response?.data?.success) {
@@ -43,13 +81,14 @@ const EmailForm = () => {
       }
     } catch (error) {
       toast.error("failed to send Email 404");
+      setState(false);
     }
 
     setInput({
       name: "",
-      email: "",
       message: "",
       subject: "",
+      email: "",
     });
   };
   return (
@@ -67,10 +106,26 @@ const EmailForm = () => {
           We'll never share your email with anyone else.
         </p>
       </div>
-      <form className="flex flex-col gap-[1rem] items-center grow" onSubmit={sendEmail}>
+      <form className="flex flex-col gap-[1rem] items-center grow" ref={form} onSubmit={sendEmail}>
         <div className="flex gap-[1rem] w-full">
-          <Input type="text" label="Name" name="name" id="name" value={input.name} onChange={handleUserInput} />
-          <Input type="email" label="Email" name="email" onChange={handleUserInput} value={input.email} id="email" />
+          <Input
+            type="text"
+            label="Name"
+            name="name"
+            id="name"
+            value={input.name}
+            onChange={handleUserInput}
+            errorMessage={userNameState === 0 ? "Please enter a valid Name" : ""}
+            isInvalid={userNameState === 0}
+          />
+          <Input
+            type="email"
+            label="Email"
+            name="email"
+            onChange={checkEmail}
+            isInvalid={emailValidity}
+            errorMessage={emailValidity ? "Please enter a valid Email" : ""}
+          />
         </div>
         <Input
           type="text"
@@ -87,6 +142,7 @@ const EmailForm = () => {
           className="w-[10rem]"
           endContent={<IoSend className="mt-[0.2rem]" />}
           type="submit"
+          isLoading={state}
         >
           Send Message
         </Button>
