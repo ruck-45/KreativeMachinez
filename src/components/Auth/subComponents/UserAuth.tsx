@@ -72,6 +72,7 @@ const UserAuth = () => {
   const [usernameState, setUsernameState] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
   const [handleLoginButton, setHandleLoginButton] = useState(false);
+  const [handleSignUpButton, setHandleSignUpButton] = useState(false);
 
   const handleCheckboxChange = () => {
     setRememberMe(!rememberMe);
@@ -196,6 +197,7 @@ const UserAuth = () => {
       }
 
       try {
+        setHandleSignUpButton(true);
         const response = await axios.post(`${apiUrl}/users/signup`, {
           email: email.current,
           username: username.current,
@@ -204,15 +206,19 @@ const UserAuth = () => {
 
         if (response.data.success) {
           successToast("Registration successful");
-          dispatch(updateToLoginStatus(true));
+          dispatch(updateToLoginStatus(true))
+          setHandleSignUpButton(true);
           navigate("/Auth");
         } else {
+          setHandleSignUpButton(true);
           errorToast(`${response.data.payload.message}`);
         }
       } catch (error: any) {
         if (error.response.status === 501) {
+          setHandleSignUpButton(true);
           errorToast("Email Address Already Registered");
         } else {
+          setHandleSignUpButton(true);
           errorToast("Sign Up Failed");
         }
       }
@@ -305,7 +311,7 @@ const UserAuth = () => {
         color="primary"
         variant="shadow"
         type="submit"
-        isLoading={handleLoginButton}
+        isLoading={toLogin ? handleLoginButton : handleSignUpButton}
       >
         Submit
       </Button>

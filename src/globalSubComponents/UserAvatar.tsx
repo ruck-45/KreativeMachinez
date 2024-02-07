@@ -63,7 +63,7 @@ const UserAvatar = () => {
 
   const imageUrl = `${apiUrl}/users/profileImages/${image}.jpg`;
   const createBlogClassName = isEmployee === "true" ? "p-0" : "hidden";
-  const deleteUserClassName = isEmployee === "true" ? "hidden" : "p-0";
+  const deleteUserClassName = isEmployee === "true" ? "hidden" : "";
 
   const deleteUser = async () => {
     try {
@@ -77,8 +77,10 @@ const UserAvatar = () => {
           errorToast("User could not be deleted");
         } else {
           successToast("User deleted successfully.");
-          handleLogout();
-          navigate("/Home");
+          setTimeout(() => {
+            handleLogout();
+            navigate("/Home");
+          }, 2000)
         }
       }
     } catch (error) {
