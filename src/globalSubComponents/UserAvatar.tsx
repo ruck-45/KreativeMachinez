@@ -1,11 +1,23 @@
 // Dependencies
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Avatar, Button } from "@nextui-org/react";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  Avatar,
+  Button,
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  useDisclosure,
+} from "@nextui-org/react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { updateToLoginStatus } from "../store/toLoginSlice";
 import { useDispatch } from "react-redux";
 import toast, { Toaster, ToastPosition } from "react-hot-toast";
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from "@nextui-org/react";
 import axios from "axios";
 // Local Files
 import { getCookie, removeCookie } from "../utils/cookies";
@@ -56,13 +68,11 @@ const UserAvatar = () => {
   const deleteUser = async () => {
     try {
       if (isEmployee !== "true") {
-        console.log("is not employee");
         const response = await axios.delete(`${apiUrl}/users/delete-user`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log(response);
         if (!response.data.success) {
           errorToast("User could not be deleted");
         } else {
@@ -104,7 +114,7 @@ const UserAvatar = () => {
           <DropdownItem key="logout" color="danger" onClick={handleLogout} textValue="logout">
             Log Out
           </DropdownItem>
-          <DropdownItem key="blog" color="danger" textValue="blog" onPress={onOpen}>
+          <DropdownItem key="blog" className={deleteUserClassName} color="danger" textValue="blog" onPress={onOpen}>
             Delete Profile
           </DropdownItem>
         </DropdownMenu>
