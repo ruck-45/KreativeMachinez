@@ -73,11 +73,12 @@ const EmailForm = () => {
 
     try {
       setState(true);
-      const response: any = await axios.post(`${apiUrl}/contact/form`, input);
+      const response: any = await axios.post("http://localhost:5000/api/contact/form", input);
       console.log(response);
 
       if (response?.data?.success) {
         toast.success("Email sent Successfully");
+        setState(false);
       }
     } catch (error) {
       toast.error("failed to send Email 404");
