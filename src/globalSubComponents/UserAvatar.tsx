@@ -66,19 +66,23 @@ const UserAvatar = () => {
   const deleteUserClassName = isEmployee === "true" ? "hidden" : "p-0";
 
   const deleteUser = async () => {
-    if (isEmployee !== "true") {
-      const response = await axios.delete(`${apiUrl}/users/delete-user`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      if (!response.data.success) {
-        errorToast("User could not be deleted");
-      } else {
-        successToast("User deleted successfully.");
-        handleLogout();
-        navigate("/Home");
+    try {
+      if (isEmployee !== "true") {
+        const response = await axios.delete(`${apiUrl}/users/delete-user`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (!response.data.success) {
+          errorToast("User could not be deleted");
+        } else {
+          successToast("User deleted successfully.");
+          handleLogout();
+          navigate("/Home");
+        }
       }
+    } catch (error) {
+      errorToast("Internal Server Error");
     }
   };
   return (
