@@ -207,18 +207,18 @@ const UserAuth = () => {
         if (response.data.success) {
           successToast("Registration successful");
           dispatch(updateToLoginStatus(true))
-          setHandleSignUpButton(true);
+          setHandleSignUpButton(false);
           navigate("/Auth");
         } else {
-          setHandleSignUpButton(true);
+          setHandleSignUpButton(false);
           errorToast(`${response.data.payload.message}`);
         }
       } catch (error: any) {
         if (error.response.status === 501) {
-          setHandleSignUpButton(true);
+          setHandleSignUpButton(false);
           errorToast("Email Address Already Registered");
         } else {
-          setHandleSignUpButton(true);
+          setHandleSignUpButton(false);
           errorToast("Sign Up Failed");
         }
       }
