@@ -88,6 +88,13 @@ const EmailForm = () => {
   const sendEmail = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    if(!input.name || !input.email || !input.message || !input.subject){
+      toast.error("please fill all details")
+      setState(false);
+      return
+    }
+    
+
     try {
       setState(true);
       const response = await axios.post(`${apiUrl}/contact/form`, input);
@@ -99,6 +106,7 @@ const EmailForm = () => {
       else{
         toast.error("Email not sent Succesfully");
         setState(false)
+        return
       }
     } catch (error) {
       toast.error("failed to send Email 404");
