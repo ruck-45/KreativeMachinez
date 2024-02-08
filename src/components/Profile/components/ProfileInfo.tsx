@@ -20,9 +20,7 @@ import { FaCloudUploadAlt } from "react-icons/fa";
 
 // Local Files
 import "./ProfileInfo.css";
-import profilepic from "../../../globalAssets/profilepic.jpg";
 import { getCookie, setCookie } from "../../../utils/cookies";
-import { imageExists } from "../../../utils/controllers";
 
 const toastSetting: {
   position: ToastPosition;
@@ -42,6 +40,8 @@ const ProfileInfo = () => {
     apiUrl = process.env.REACT_APP_DEV_API_URL;
   }
 
+  const [uploadButtonDisabled, setIsuploadButtonDisabled] = useState(false);
+
   const token = getCookie("token");
   const userEmail = getCookie("email");
   const username = getCookie("username");
@@ -58,6 +58,9 @@ const ProfileInfo = () => {
   const [formData, setFormData] = useState({ phone, address, about, profession });
   const [renderer, setRenderer] = useState(true);
   const [userProfilePic, setUserProfilePic] = useState<File | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isEditLoading, setIsEditLoading] = useState(false);
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -70,10 +73,11 @@ const ProfileInfo = () => {
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     try {
+      setIsEditLoading(true);
       const response = await axios.put(`${apiUrl}/users/profile`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
-        },
+        },    
       });
       if (response.data.success) {
         const profileResponse = await axios.get(`${apiUrl}/users/profile`, {
@@ -91,13 +95,15 @@ const ProfileInfo = () => {
         setCookie("plan", profileResponse.data.payload.plan, cookieOptions);
 
         setRenderer((prev) => !prev);
-
+        setIsEditLoading(false);
         successToast("Profile updated successfully");
       } else {
         errorToast("Couldn't update profile");
+        setIsEditLoading(false);
       }
     } catch (error) {
       errorToast("Couldn't update profile");
+      setIsLoading(false);
     }
   };
 
@@ -109,11 +115,12 @@ const ProfileInfo = () => {
     if (userProfilePic.size > 1572864) {
       return errorToast("File is Bigger Than 1.5 MB");
     }
-
+    setIsLoading(true);
     const userProfilePicData = new FormData();
     userProfilePicData.append("image", userProfilePic);
 
     try {
+      setIsuploadButtonDisabled(true);
       const response = await axios.put(`${apiUrl}/users/profile/images`, userProfilePicData, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -126,9 +133,12 @@ const ProfileInfo = () => {
         window.location.reload();
       } else {
         errorToast("Profile Picture Failed to Update");
+        setIsuploadButtonDisabled(false);
+        setIsLoading(false);
       }
     } catch {
       errorToast("Profile Picture Failed to Update");
+      setIsuploadButtonDisabled(false);
     }
   };
 
@@ -139,7 +149,7 @@ const ProfileInfo = () => {
       <div className="flex md:gap-[2rem] items-center md:justify-evenly w-full flex-col md:flex-row">
         <div
           className="h-[22rem] w-[22rem] rounded-3xl profilePic relative"
-          style={{ backgroundImage: `url(${imageExists(imageUrl) ? imageUrl : profilepic})` }}
+          style={{ backgroundImage: `url(${imageUrl})` }}
         >
           <Popover placement="top">
             <PopoverTrigger>
@@ -162,7 +172,14 @@ const ProfileInfo = () => {
                   className="p-[1rem] bg-[#E4E4E7] rounded-xl"
                   onChange={(e) => setUserProfilePic(e.target.files ? e.target.files[0] : null)}
                 />
-                <Button color="danger" variant="ghost" radius="full" onClick={handleFileUpload}>
+                <Button
+                  color="danger"
+                  variant="ghost"
+                  radius="full"
+                  onClick={handleFileUpload}
+                  isDisabled={uploadButtonDisabled}
+                  isLoading={isEditLoading}
+                >
                   Update
                 </Button>
               </form>

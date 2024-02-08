@@ -25,6 +25,7 @@ import ContactHero from "./globalAssets/Contact.jpg";
 import PricingHero from "./globalAssets/Prices.jpg";
 import ServiceHero from "./globalAssets/Services.jpg";
 import PrivacyHero from "./globalAssets/privacy.jpg";
+import PasswordReset from "./components/ForgetPassword/PasswordReset";
 
 function App() {
   const curTab = useSelector((state: RootState) => state.curTab.value);
@@ -73,7 +74,7 @@ function App() {
   return (
     <>
       <div style={{ backgroundImage: background }} className={className}>
-        {curTab === "Auth" ? null : <NavBar />}
+        {curTab === "Auth" || curTab === "Password Reset" ? null : <NavBar />}
         <Routes>
           <Route path="/" element={<Navigate to="/Home" />} />
           <Route path="/Home" element={<Home />} />
@@ -85,6 +86,7 @@ function App() {
           <Route path="/Profile" element={<Profile />} />
           <Route path="/Blog/*" element={<Blog />} />
           <Route path="/Privacy" element={<Privacy />} />
+          <Route path="/ResetPassword" element={<PasswordReset />} />
           <Route path="*" element={<Navigate to="/Home" />} />
         </Routes>
       </div>
@@ -93,15 +95,16 @@ function App() {
       curTab === "Blog" ||
       curTab === "Services" ||
       curTab === "Profile" ||
-      curTab === "Privacy" ? null : (
+      curTab === "Privacy" ||
+      curTab === "Password Reset" ? null : (
         <FrequentQuestion />
       )}
-      {curTab === "Auth" ? null : (
+      {curTab === "Auth" || curTab === "Password Reset" ? null : (
         <CTA text="❝ We Care for your Brand as Passionately as You Do. ❞" color="warning" showArrow={false} />
       )}
-      {curTab === "Auth" ? null : <Footer />}
-      {curTab === "Auth" ? null : <QuickContacts />}
-      {curTab === "Auth" ? null : <ScrollToTop />}
+      {curTab === "Auth" || curTab === "Password Reset" ? null : <Footer />}
+      {curTab === "Auth" || curTab === "Password Reset" ? null : <QuickContacts />}
+      {curTab === "Auth" || curTab === "Password Reset" ? null : <ScrollToTop />}
     </>
   );
 }
