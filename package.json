@@ -17,7 +17,7 @@
     "draft-js": "^0.11.7",
     "framer-motion": "^10.16.16",
     "js-cookie": "^3.0.5",
-    "query-string": "^8.1.0",
+    "query-string": "^8.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-draft-wysiwyg": "^1.15.0",
