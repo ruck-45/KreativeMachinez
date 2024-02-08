@@ -96,6 +96,10 @@ const EmailForm = () => {
         toast.success("Email sent Successfully");
         setState(false);
       }
+      else{
+        toast.error("Email not sent Succesfully");
+        setState(false)
+      }
     } catch (error) {
       toast.error("failed to send Email 404");
       setState(false);
