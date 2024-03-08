@@ -1,5 +1,6 @@
 // Dependencies
 import { configureStore } from "@reduxjs/toolkit";
+import popoverStatusSlice from "./popoverStatusSlice";
 
 // Local Files
 import curTabSlice from "./curTabSlice";
@@ -11,6 +12,7 @@ const store = configureStore({
     curTab: curTabSlice,
     navOpenStatus: navOpenStatusSlice,
     toLogin: toLoginSlice,
+    popoverStatus: popoverStatusSlice,
   },
 });
 

@@ -1,0 +1,49 @@
+.robin-active {
+  color: #f5a524;
+  font-weight: 700;
+  font-size: large;
+}
+
+.robin-notActive {
+  color: white;
+  font-size: large;
+}
+
+.robin-notActive:hover {
+  color: #f5a524;
+}
+
+.robin-nav {
+  font-family: "Roboto";
+}
+
+.robin-hbar{
+  background-color: #f5a524;
+  filter: drop-shadow(0 0 0.05rem #f5a524);
+  height: 5rem;
+  width: 0.1rem;
+  margin-left: 0.5rem;
+}
+
+.robin-NavDiv::after{
+  content: "";
+  height: 0.1rem;
+  border-radius: 1rem;
+  background-color: #f5a524;
+  filter: drop-shadow(0 -0.3rem 0.4rem #f5a524);
+  display: block;
+}
+
+.robin-navActiveServices::after {
+  content: "";
+  height: 0.25rem;
+  border-radius: 1rem;
+  transform: translate(1.25rem, 1rem) !important;
+  background-color: #f5a524;
+  max-width: 6rem;
+  filter: drop-shadow(0 -0.3rem 0.4rem #f5a524);
+}
+
+.robin-logo {
+  justify-content: center !important;
+}
