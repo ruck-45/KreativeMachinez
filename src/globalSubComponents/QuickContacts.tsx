@@ -8,7 +8,7 @@ const QuickContacts = () => {
   return (
     <div className="fixed top-[50%] right-[1rem] z-[100] flex flex-col gap-[0.5rem] ">
       <Button isIconOnly color="danger">
-        <a href="tel:+91-9205453309">
+        <a href="tel:+1-845-687-3270">
           <FaPhoneFlip className="text-4xl text-white p-2 rounded-xl" />
         </a>
       </Button>
