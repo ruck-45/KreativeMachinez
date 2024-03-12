@@ -16,8 +16,7 @@ const HeroSection = () => {
 
         <div className="flex flex-col items-center text-center text-[3rem] lg:text-[3.5rem] font-['Roboto'] font-bold leading-[3.4rem] lg:leading-[4rem] txtShadow">
           <span className="text-[white]">
-            Discover
-            <span className="text-[#F5A524]">unparalleled advantages</span> with
+            <span className="text-[#F5A524]">Benefit</span> with
           </span>
           <span className="text-[white]">
             <span className="text-[#F5A524]">Robinhood Gold </span> in just moments!
