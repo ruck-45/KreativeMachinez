@@ -34,18 +34,9 @@ const EmailForm = () => {
     email: "",
   });
 
-  // const handleUserInput = (event: any) => {
-  //   const { name, value } = event.target;
-  //   setInput({
-  //     ...input,
-  //     [name]: value,
-  //   });
-  // };
-
   const checkEmail = (event: any) => {
     input.email = event.currentTarget.value;
     setEmailState(event.currentTarget.value.length);
-
     const validity = input.email.match(emailRe);
     if (validity) {
       setEmailValidity(false);
@@ -90,13 +81,12 @@ const EmailForm = () => {
     }
   };
 
-  const sendEmail = async (event: any) => {
+  const sendEmail = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
       setState(true);
       const response: any = await axios.post(`${apiUrl}/contact/form`, input);
-      console.log(response);
 
       if (response?.data?.success) {
         toast.success("Email sent Successfully");
