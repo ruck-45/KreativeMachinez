@@ -86,6 +86,7 @@ function App() {
           <Route path="/Services/*" element={<Services />} />
           <Route path="/Profile" element={<Profile />} />
           <Route path="/Blog/*" element={<Blog />} />
+          <Route path="/WebDevelopment" element={<Robinhood />} />
           <Route path="/Privacy" element={<Privacy />} />
           <Route path="/ResetPassword" element={<PasswordReset />} />
           <Route path="*" element={<Navigate to="/Home" />} />
