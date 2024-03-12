@@ -25,6 +25,7 @@ import ContactHero from "./globalAssets/Contact.jpg";
 import PricingHero from "./globalAssets/Prices.jpg";
 import ServiceHero from "./globalAssets/Services.jpg";
 import PrivacyHero from "./globalAssets/privacy.jpg";
+import PasswordReset from "./components/ForgetPassword/PasswordReset";
 import Robinhood from "./components/Robinhood/Robinhood";
 
 function App() {
@@ -74,7 +75,7 @@ function App() {
   return (
     <>
       <div style={{ backgroundImage: background }} className={className}>
-        {curTab === "Auth" || curTab === "Robinhood" ? null : <NavBar />}
+        {curTab === "Auth" || curTab === "Robinhood" || curTab === "Password Reset" ? null : <NavBar />}
         <Routes>
           <Route path="/" element={<Navigate to="/Home" />} />
           <Route path="/Home" element={<Home />} />
@@ -87,6 +88,7 @@ function App() {
           <Route path="/Blog/*" element={<Blog />} />
           <Route path="/WebDevelopment" element={<Robinhood />} />
           <Route path="/Privacy" element={<Privacy />} />
+          <Route path="/ResetPassword" element={<PasswordReset />} />
           <Route path="*" element={<Navigate to="/Home" />} />
         </Routes>
       </div>
@@ -96,15 +98,16 @@ function App() {
       curTab === "Services" ||
       curTab === "Profile" ||
       curTab === "Privacy" ||
+      curTab === "Password Reset" ||
       curTab === "Robinhood" ? null : (
         <FrequentQuestion />
       )}
-      {curTab === "Auth" || curTab === "Robinhood" ? null : (
+      {curTab === "Auth" || curTab === "Robinhood" || curTab === "Password Reset" ? null : (
         <CTA text="❝ We Care for your Brand as Passionately as You Do. ❞" color="warning" showArrow={false} />
       )}
-      {curTab === "Auth" || curTab === "Robinhood" ? null : <Footer />}
-      {curTab === "Auth" || curTab === "Robinhood" ? null : <QuickContacts />}
-      {curTab === "Auth" || curTab === "Robinhood" ? null : <ScrollToTop />}
+      {curTab === "Auth" || curTab === "Robinhood" || curTab === "Password Reset" ? null : <Footer />}
+      {curTab === "Auth" || curTab === "Robinhood" || curTab === "Password Reset" ? null : <QuickContacts />}
+      {curTab === "Auth" || curTab === "Robinhood" || curTab === "Password Reset" ? null : <ScrollToTop />}
     </>
   );
 }

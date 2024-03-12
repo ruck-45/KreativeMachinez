@@ -72,6 +72,7 @@ const UserAuth = () => {
   const [usernameState, setUsernameState] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
   const [handleLoginButton, setHandleLoginButton] = useState(false);
+  const [handleSignUpButton, setHandleSignUpButton] = useState(false);
 
   const handleCheckboxChange = () => {
     setRememberMe(!rememberMe);
@@ -153,7 +154,6 @@ const UserAuth = () => {
           password: password.current,
           remember: rememberMe,
         });
-        
         if (response.data.success) {
           const cookieOptions = { expires: response.data.payload.expires };
 
@@ -197,6 +197,7 @@ const UserAuth = () => {
       }
 
       try {
+        setHandleSignUpButton(true);
         const response = await axios.post(`${apiUrl}/users/signup`, {
           email: email.current,
           username: username.current,
@@ -205,15 +206,19 @@ const UserAuth = () => {
 
         if (response.data.success) {
           successToast("Registration successful");
-          dispatch(updateToLoginStatus(true));
+          dispatch(updateToLoginStatus(true))
+          setHandleSignUpButton(false);
           navigate("/Auth");
         } else {
+          setHandleSignUpButton(false);
           errorToast(`${response.data.payload.message}`);
         }
       } catch (error: any) {
         if (error.response.status === 501) {
+          setHandleSignUpButton(false);
           errorToast("Email Address Already Registered");
         } else {
+          setHandleSignUpButton(false);
           errorToast("Sign Up Failed");
         }
       }
@@ -289,9 +294,15 @@ const UserAuth = () => {
         onPaste={(e) => e.preventDefault()}
         onCopy={(e) => e.preventDefault()}
       />
-      <p className={toLogin ? "text-xs text-right cursor-pointer" : "hidden"} style={{ color: "#006FEE" }}>
-        Forgot Password?
-      </p>
+      {toLogin ? (
+        <p
+          className="text-xs text-right cursor-pointer"
+          style={{ color: "#006FEE" }}
+          onClick={() => navigate("../ResetPassword")}
+        >
+          Forgot Password?
+        </p>
+      ) : null}
       <Checkbox defaultSelected size="sm" className={toLogin ? "" : "hidden"} onChange={handleCheckboxChange}>
         Remember Me
       </Checkbox>
@@ -300,7 +311,7 @@ const UserAuth = () => {
         color="primary"
         variant="shadow"
         type="submit"
-        isLoading={handleLoginButton}
+        isLoading={toLogin ? handleLoginButton : handleSignUpButton}
       >
         Submit
       </Button>

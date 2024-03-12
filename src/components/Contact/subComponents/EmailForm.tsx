@@ -1,7 +1,7 @@
 // Dependencies
 import { Input, Textarea, Button } from "@nextui-org/react";
 import { IoSend } from "react-icons/io5";
-import { useRef, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 import toast, { Toaster, ToastPosition } from "react-hot-toast";
 import axios from "axios";
 import { send } from "process";
@@ -12,6 +12,9 @@ const toastSetting: {
 } = { position: "top-center" };
 
 let apiUrl = process.env.REACT_APP_API_URL;
+if (process.env.NODE_ENV === "development") {
+  apiUrl = process.env.REACT_APP_DEV_API_URL;
+}
 
 const EmailForm = () => {
   const form = useRef<HTMLFormElement>(null);
@@ -34,7 +37,7 @@ const EmailForm = () => {
     email: "",
   });
 
-  const checkEmail = (event: any) => {
+  const checkEmail = (event: FormEvent<HTMLInputElement>) => {
     input.email = event.currentTarget.value;
     setEmailState(event.currentTarget.value.length);
     const validity = input.email.match(emailRe);
@@ -45,11 +48,11 @@ const EmailForm = () => {
     }
   };
 
-  const checkUserName = (event: any) => {
+  const checkUserName = (event: FormEvent<HTMLInputElement>) => {
     input.name = event.currentTarget.value;
     setUserNameState(event.currentTarget.value.length);
 
-    const validity = input.name.length > 4;
+    const validity = input.name.length > 2;
     if (validity) {
       setNameValidity(false);
     } else {
@@ -57,11 +60,11 @@ const EmailForm = () => {
     }
   };
 
-  const checkSubject = (event: any) => {
+  const checkSubject = (event: FormEvent<HTMLInputElement>) => {
     input.subject = event.currentTarget.value;
     setSubjectState(event.currentTarget.value.length);
 
-    const validity = input.subject.length > 4;
+    const validity = input.subject.length > 2;
     if (validity) {
       setSubjectValidity(false);
     } else {
@@ -69,11 +72,11 @@ const EmailForm = () => {
     }
   };
 
-  const checkMessage = (event: any) => {
+  const checkMessage = (event: FormEvent<HTMLInputElement>) => {
     input.message = event.currentTarget.value;
     setMessageState(event.currentTarget.value.length);
 
-    const validity = input.message.length > 10;
+    const validity = input.message.length > 2;
     if (validity) {
       setMessageValidity(false);
     } else {
@@ -81,16 +84,28 @@ const EmailForm = () => {
     }
   };
 
-  const sendEmail = async (event: React.FormEvent<HTMLFormElement>) => {
+  const sendEmail = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if(!input.name || !input.email || !input.message || !input.subject){
+      toast.error("please fill all details")
+      setState(false);
+      return
+    }
+    
 
     try {
       setState(true);
-      const response: any = await axios.post(`${apiUrl}/contact/form`, input);
+      const response = await axios.post(`${apiUrl}/contact/form`, input);
 
       if (response?.data?.success) {
         toast.success("Email sent Successfully");
         setState(false);
+      }
+      else{
+        toast.error("Email not sent Succesfully");
+        setState(false)
+        return
       }
     } catch (error) {
       toast.error("failed to send Email 404");

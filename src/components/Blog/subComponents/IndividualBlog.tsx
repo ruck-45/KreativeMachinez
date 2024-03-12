@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { useLayoutEffect, useState } from "react";
 import axios from "axios";
+import { Card, Skeleton } from "@nextui-org/react";
 
 const getFormattedDate = (cDate: string) => {
   const date = new Date(cDate);
@@ -20,7 +21,7 @@ const IndividualBlog = () => {
   if (process.env.NODE_ENV === "development") {
     apiUrl = process.env.REACT_APP_DEV_API_URL;
   }
-
+  const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
   let thumbnail = "";
   let blogId = "";
@@ -41,14 +42,15 @@ const IndividualBlog = () => {
     const getBlogContent = async () => {
       try {
         const response = await axios.get(`${apiUrl}/blogs/${blogId}`);
-
         if (!response.data.success) {
           console.log("blog Not Found");
         } else {
           setContent(JSON.parse(response.data.payload.result));
+          setIsLoading(false);
         }
       } catch (error) {
         console.log("Blog Not Found");
+        setIsLoading(false);
       }
     };
 
@@ -106,7 +108,7 @@ const IndividualBlog = () => {
     return res;
   };
 
-  const multistyledStyled = (text: string, style: any) => {
+  const multiStyled = (text: string, style: any) => {
     let bold = [];
     let italic = [];
     const length = text.length;
@@ -167,34 +169,42 @@ const IndividualBlog = () => {
               backgroundImage: `url(${thumbnail})`,
             }}
           ></div>
-
-          <div className="p-[2rem] flex flex-col gap-[2rem]">
-            <div className="flex flex-col justify-between">
-              <h1 className="text-xl font-bold">{title}</h1>
-              <p className="text-default-500 text-sm">Created At : {formattedDate}</p>
-            </div>
-            {content.length === 0 ? (
-              <div className="w-full h-[15rem] flex justify-center items-center">
-                <p className="font-bold text-default-300 text-4xl">Content Not Found</p>
-              </div>
+          <div className="p-8 flex flex-col gap-8">
+            {isLoading ? (
+              <>
+                <Skeleton className="w-full h-12 rounded-lg"></Skeleton>
+                <Skeleton className="w-full h-[30rem] rounded-lg"></Skeleton>
+              </>
             ) : (
-              <div className="flex flex-col gap-[1.5rem]">
-                {content.map((data, index) => {
-                  let html = <></>;
-                  if (data.style.length === 0) {
-                    html = <span>{data.text}</span>;
-                  } else if (data.style.length === 1) {
-                    html = singleStyled(data.text, data.style[0]);
-                  } else {
-                    html = multistyledStyled(data.text, data.style);
-                  }
+              <>
+                <div className="flex flex-col justify-between">
+                  <h1 className="text-xl font-bold">{title}</h1>
+                  <p className="text-default-500 text-sm">Created At : {formattedDate}</p>
+                </div>
+                {content.length === 0 ? (
+                  <div className="w-full h-[15rem] flex justify-center items-center">
+                    <p className="font-bold text-default-300 text-4xl">Content Not Found</p>
+                  </div>
+                ) : (
+                  <div className="flex flex-col gap-[1.5rem]">
+                    {content.map((data, index) => {
+                      let html = <></>;
+                      if (data.style.length === 0) {
+                        html = <span>{data.text}</span>;
+                      } else if (data.style.length === 1) {
+                        html = singleStyled(data.text, data.style[0]);
+                      } else {
+                        html = multiStyled(data.text, data.style);
+                      }
 
-                  if (data.isListItem) {
-                    html = <li>{html}</li>;
-                  }
-                  return html;
-                })}
-              </div>
+                      if (data.isListItem) {
+                        html = <li>{html}</li>;
+                      }
+                      return html;
+                    })}
+                  </div>
+                )}
+              </>
             )}
           </div>
         </div>

@@ -113,7 +113,7 @@ const NavBar = () => {
             <UserAvatar />
           </NavbarItem>
         </NavbarContent>
-      ) : (
+      ) : ( 
         <NavbarContent justify="end">
           <NavbarItem className="hidden lg:flex">
             <ButtonElement
