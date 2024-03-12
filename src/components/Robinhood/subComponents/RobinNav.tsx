@@ -29,10 +29,10 @@ const RobinNav = () => {
         isBordered
         shouldHideOnScroll
       >
-        <NavbarContent justify="end" className="lg:hidden">
+        <NavbarContent justify="end" className="hidden">
           <NavbarMenuToggle aria-label={navOpenStatus ? "Close menu" : "Open menu"} className=" text-black" />
         </NavbarContent>
-        <NavbarContent justify="start">
+        <NavbarContent justify="start" className="ml-[20%] sm:ml-0">
           <h1 className="font-bold text-xl">KREATIVE MACHINEZ</h1>
         </NavbarContent>
         <NavbarContent className="hidden lg:flex " justify="end">
