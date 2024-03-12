@@ -88,7 +88,7 @@ function App() {
           <Route path="/Blog/*" element={<Blog />} />
           <Route path="/Privacy" element={<Privacy />} />
           <Route path="/ResetPassword" element={<PasswordReset />} />
-          <Route path="/Robinhood" element={<Robinhood />} />
+          <Route path="/Utility" element={<Robinhood />} />
           <Route path="*" element={<Navigate to="/Home" />} />
         </Routes>
       </div>

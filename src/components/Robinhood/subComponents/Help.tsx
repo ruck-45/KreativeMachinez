@@ -6,20 +6,20 @@ import { Divider } from "@nextui-org/react";
 
 const data = [
   {
-    title: "Diversify your investments from as little as $1 and watch your portfolio grow.",
-    desc: "Explore the world of stocks, options, and ETFs at your own rhythm, all without commission fees.",
+    title: "Unlock your investment potential starting from just $1 and witness your portfolio flourish.",
+    desc: "Embark on a journey through the realms of stocks, options, and ETFs, commission-free, at your own pace.",
     thumbnail:
       "https://images.unsplash.com/photo-1580634240015-a9f56295699f?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
-    title: "Explore the crypto world fee-free, no commission hurdles in sight.",
-    desc: "Maximize your investment potential with minimal funds begin with just $1. Purchase, trade, and move various cryptocurrencies like BTC, DOGE, ETH, SHIB, and beyond.",
+    title: "Delve into the world of cryptocurrencies without fees or commission barriers in sight.",
+    desc: "Maximize your investment potential with minimal starting funds - as little as $1. Buy, trade, and transact in various cryptocurrencies such as BTC, DOGE, ETH, SHIB, and more.",
     thumbnail:
       "https://images.unsplash.com/photo-1622632169740-85c306c57aa2?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
-    title: "Invest Swipe: Grow your wealth with every transaction.",
-    desc: "Introducing our latest innovation: The WealthBuilder Debit Card—where spending becomes investing, effortlessly.",
+    title: "Invest and Swipe: Grow your wealth with every transaction.",
+    desc: "Introducing our latest innovation: The WealthBuilder Debit Card—where spending seamlessly transforms into investing.",
     thumbnail:
       "https://images.unsplash.com/photo-1589666564459-93cdd3ab856a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },

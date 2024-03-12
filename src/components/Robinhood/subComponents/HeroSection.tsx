@@ -16,17 +16,19 @@ const HeroSection = () => {
 
         <div className="flex flex-col items-center text-center text-[3rem] lg:text-[3.5rem] font-['Roboto'] font-bold leading-[3.4rem] lg:leading-[4rem] txtShadow">
           <span className="text-[white]">
-            Unlock unmatched <span className="text-[#F5A524]">IRA benefits</span> with
+            Discover
+            <span className="text-[#F5A524]">unparalleled advantages</span> with
           </span>
           <span className="text-[white]">
-            <span className="text-[#F5A524]">Robinhood Gold</span> in seconds!
+            <span className="text-[#F5A524]">Robinhood Gold </span> in just moments!
           </span>
         </div>
 
         <p className="text-white font-semibold italic txtShadow max-w-[55rem] text-center">
-          Maximize your investment potential! Unlock an additional 3%* bonus on each dollar you invest in your IRA with
-          our exclusive subscription offer. Enjoy the same benefits for IRA transfers and 401(k) rollovers until April
-          30.
+          Boost your financial growth today! Seize the opportunity to amplify your investment returns with an exclusive
+          subscription offer. Gain an extra 3%* bonus on every dollar you invest in your IRA, extending the same perks
+          to IRA transfers and 401(k) rollovers until April 30th. Don't miss out on maximizing your investment
+          potential!
         </p>
 
         <p className="text-default-200 flex txtShadow gap-[0.5rem]">

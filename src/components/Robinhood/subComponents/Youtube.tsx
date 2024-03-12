@@ -11,15 +11,16 @@ const Youtube = () => {
     <div className="px-[3rem] md:px-[5rem] py-[5rem] flex flex-col lg:flex-row lg:justify-evenly items-center gap-[2rem] lg:gap-[5rem] bg-white">
       <div className="lg:w-[40%] flex flex-col gap-[1.5rem] lg:order-last">
         <h1 className="font-['Roboto'] text-[3rem] leading-[3rem] font-semibold">
-          Embark on a Financial Brilliance
+          Embark on an Epic Investment Odyssey
         </h1>
         <p className="text-justify text-default-500 text-[0.95rem] sm:text-md">
-          Venture into the dynamic world of OpenAI Investment, where financial innovation and expertise converge to
-          shape exceptional investment experiences. Our video introduction encapsulates the essence of who we are and
-          what sets us apart in the investment landscape. Witness our team's passion, diverse financial expertise, and
-          commitment to excellence unfold on screen. As architects of success in the financial realm, we invite you to
-          press play and explore how OpenAI Investment is redefining the landscape of financial brilliance. Your
-          investment journey begins here, where financial creativity knows no bounds, and innovation knows no limits.
+          Embark on an epic journey into the realm of InvestNow, where innovation meets opportunity, and financial
+          excellence knows no bounds. Our introductory video serves as a portal into the heart of our organization,
+          where passion, expertise, and a relentless pursuit of success converge to redefine the investment experience.
+          Witness firsthand the dedication of our diverse team as they navigate the ever-evolving landscape of finance
+          with precision and ingenuity. As pioneers in our field, we invite you to join us on this exhilarating voyage
+          and discover how InvestNow is revolutionizing the world of investment. Press play and embark on your
+          extraordinary investment journey today.
         </p>
         <p className="text-justify text-default-500 text-[0.95rem] sm:text-md">
           Press play and step into the extraordinary realm of InvestNow

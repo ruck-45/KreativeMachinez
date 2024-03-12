@@ -33,7 +33,7 @@ const Popover = () => {
         Open Modal
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} className="sm:hidden zscale" placement="center" size="full">
-        <a href="tel:+1 (844) 671-7475">
+        <a href="tel:+1 (888) 891-7176">
           <ModalContent className="min-h-[95vh] max-h-[95vh]">
             <ModalHeader className="flex items-center gap-[0.4rem]">
               <Button isIconOnly variant="solid" radius="full" color="success" className="text-[1rem]">
@@ -76,7 +76,7 @@ const Popover = () => {
               color="success"
               startContent={<FaPhone />}
             >
-              +1 (844) 671-7475
+              +1 (888) 891-7176
             </Button>
           </ModalContent>
         </a>

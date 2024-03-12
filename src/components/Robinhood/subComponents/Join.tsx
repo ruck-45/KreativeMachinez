@@ -9,8 +9,8 @@ const Join = () => {
       }}
     >
       <p className="max-w-[50rem] text-[3.5rem] font-bold leading-[5rem] text-center">
-        Join A New <span className="text-[#F5A524] bg-black">&nbsp;Generation&nbsp;</span> Of &nbsp;
-        <span className="text-[#F5A524] bg-black">&nbsp;Investors&nbsp;</span> . InvestNow
+        Become <span className="text-[#F5A524] bg-black">&nbsp;Part Of&nbsp;</span> A New &nbsp;
+        <span className="text-[#F5A524] bg-black">&nbsp;Generation&nbsp;</span> With InvestNow
       </p>
     </div>
   );
