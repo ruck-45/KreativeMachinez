@@ -16,7 +16,7 @@ import logo from "../globalAssets/logo.svg";
 const contactInfo = [
   {
     name: "Phone",
-    value: "+1-845-687-3270",
+    value: "+91-9205453309",
     icon: <FaPhone />,
   },
   {

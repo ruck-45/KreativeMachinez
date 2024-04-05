@@ -36,7 +36,7 @@ const Robinhood = () => {
             radius="none"
           />
         </div>
-        <a className="flex gap-[1rem]" href="tel:+1-845-687-3270">
+        <a className="flex gap-[1rem]" href="tel:+91-9205453309">
           <Button
             startContent={<FaPhone />}
             variant="solid"
@@ -45,7 +45,7 @@ const Robinhood = () => {
             radius="sm"
             size="lg"
           >
-            Contact Us Today +1-845-687-3270
+            Contact Us Today +91-9205453309
           </Button>
         </a>
         <div className="flex sm:flex-row flex-col items-center justify-between py-[1rem] gap-[1rem]">
@@ -57,7 +57,12 @@ const Robinhood = () => {
             label="Your Email"
             className="w-[20rem] md:w-[25rem]"
           />
-          <Button size="lg" color="secondary" startContent={<GrSend className="text-3xl" />} onClick={() => navigate("/Home")}>
+          <Button
+            size="lg"
+            color="secondary"
+            startContent={<GrSend className="text-3xl" />}
+            onClick={() => navigate("/Home")}
+          >
             Subscribe
           </Button>
         </div>
